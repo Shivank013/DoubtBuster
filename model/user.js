@@ -46,6 +46,16 @@ const userSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    ratingAndReviews: [
+      {
+        feedback: String,
+        rating: {
+          type: Number,
+          min: 1,
+          max: 5,
+        },
+      },
+    ],
 
     Favourite: [
       {

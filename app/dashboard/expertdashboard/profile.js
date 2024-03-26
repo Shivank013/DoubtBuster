@@ -12,9 +12,7 @@ const UserDetails = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await axios.get(
-          'http://localhost:3000/api/expertdash/getdata'
-        )
+        const res = await axios.get('/api/expertdash/getdata')
         console.log(res.data)
         console.log('datadikhao')
         setexpertdata(res.data.experts) // Assuming `users` is the key containing user data
@@ -36,13 +34,18 @@ const UserDetails = () => {
       ) : expertdata ? (
         <div>
           <p>
-            <strong>Name:</strong> {expertdata.name}
+            <strong>Name:</strong> {expertdata.firstName}
+            <strong></strong> {expertdata.lastName}
           </p>
           <p>
             <strong>Email:</strong> {expertdata.email}
           </p>
           <p>
-            <strong>Role:</strong> {expertdata.role}
+            <img
+              src={expertdata.image}
+              alt="User"
+              style={{ width: '100px', height: '100px' }}
+            />
           </p>
           {/* Add more details here as needed */}
         </div>

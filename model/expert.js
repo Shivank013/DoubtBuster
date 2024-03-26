@@ -44,8 +44,12 @@ const expertSchema = new mongoose.Schema(
     },
     ratingAndReviews: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'feedback',
+        feedback: String,
+        rating: {
+          type: Number,
+          min: 1,
+          max: 5,
+        },
       },
     ],
     Time: {

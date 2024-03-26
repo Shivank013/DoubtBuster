@@ -3,7 +3,7 @@ import { Expert } from '@/model/expert'
 import otpGenerator from 'otp-generator'
 
 import mailSender from '@/utils/mailsender'
-import emailTemplate from '@/templates/otpsend'
+import emailTemplate from '@/templates/questiontemp'
 
 // ***********************for time calculation with respect to indian**************************************
 function getCurrentTimeInIndia() {}
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
     console.log(hour, minute, second)
 
-    const { skills } = req.body
+    const { skills, question, link } = req.body
     console.log(skills)
     // const currentTime = new Date()
     console.log(hour, minute, second)
@@ -47,9 +47,8 @@ export default async function handler(req, res) {
       skills: { $in: skills },
 
       'Time.start.hour': { $lte: hour },
-      'Time.start.minute': { $lte: minute },
+
       'Time.end.hour': { $gte: hour },
-      'Time.end.minute': { $gte: minute },
     })
     var roomid = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
@@ -71,7 +70,7 @@ export default async function handler(req, res) {
         const mailResponse = await mailSender(
           email,
           'Verification Email from DoubtSolver',
-          emailTemplate(roomid)
+          emailTemplate(question, link)
         )
         console.log('Email sent Successfully: ', mailResponse)
       } catch (error) {

@@ -8,13 +8,32 @@ import Ask from './allskills'
 import Reviews from './reviews'
 import Profile from './profile'
 import Addskill from './addskills'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 function page() {
   const [expanded, setExpanded] = useState(true)
   const [tab, setTab] = useState('profile')
-
+  const router = useRouter()
   const handelChange = async (choice) => {
     setTab(choice)
+  }
+  const handleLogout = async () => {
+    try {
+      // Make a request to the logout route
+      const response = await axios.get('/api/auth/expert/logout')
+      console.log(response)
+      if (response.data.success) {
+        router.push('/')
+        // If logout was successful, reset the state or perform any necessary actions
+        // For example, redirect to the login page or clear user data
+        console.log('Logout successful')
+        // Perform additional actions like redirecting the user or clearing the session
+      }
+    } catch (error) {
+      console.error('Logout failed', error)
+      // Handle logout failure, maybe show an error message to the user
+    }
   }
 
   return (
@@ -104,6 +123,22 @@ function page() {
                 }`}
               >
                 add skills
+              </button>
+            </div>
+            <div
+              className="flex items-center text-white pt-1.5 pb-1.5 pl-4 pr-4 transition-all hover:bg-[#1d4ed8] hover:transition-all"
+              activeClassName="bg-[#1d4ed8] text-white"
+            >
+              <div className="">
+                <LayoutDashboard size={20} />
+              </div>
+              <button
+                onClick={handleLogout} // Call handleLogout function on button click
+                className={`overflow-hidden ${
+                  expanded ? 'w-52 text-start ml-4' : 'w-0'
+                }`}
+              >
+                Logout
               </button>
             </div>
           </div>
