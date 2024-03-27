@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Board from './Board';
 import { useSocket } from '../../../context/SocketProvider';
 import { FaEraser } from "react-icons/fa";
@@ -7,17 +7,19 @@ import { FaPaintBrush } from "react-icons/fa";
 import { GrPowerReset } from "react-icons/gr";
 import { useContext } from "react";
 import { SocketContext } from '../../../context/SocketProvider';
+import { IoMdDownload } from "react-icons/io";
+import jsPDF from 'jspdf';
 
 const WhiteBoard = () => {
     const [color, setColor] = useState("#000000");
     const [size, setSize] = useState("3");
     const socket = useSocket();
     const [eraserstatus, setEraserstatus] = useState(false);
-    const { setBoarddata } = useContext(SocketContext);
+    const { setBoarddata,boarddata } = useContext(SocketContext);
 
-    const changeColor = (event) => {
+    const changeColor = useCallback((event) => {
         setColor(event.target.value);
-    };
+    }, []);
 
     const eraser = () => {
         setEraserstatus(!eraserstatus);
@@ -31,6 +33,37 @@ const WhiteBoard = () => {
         setSize(event.target.value);
     };
 
+    const downloadSlide = () => {
+        const img = new Image();
+        img.crossOrigin = "anonymous"; 
+        img.src = boarddata;
+    
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.drawImage(img, 0, 0);
+            
+            const pdfCanvas = document.createElement('canvas');
+            pdfCanvas.width = img.width;
+            pdfCanvas.height = img.height;
+            const pdfCtx = pdfCanvas.getContext('2d');
+    
+            pdfCtx.fillStyle = '#ffffff'; 
+            pdfCtx.fillRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+            
+            pdfCtx.drawImage(canvas, 0, 0);
+    
+            const imgData = pdfCanvas.toDataURL('image/jpeg', 1.0);
+    
+            const pdf = new jsPDF('l', 'mm', 'a4');
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
+            pdf.save("slide.pdf"); 
+        };
+    };
+    
     return (
         <div className=" bg-gray-900">
             <div className="tools-section text-center ">
@@ -70,6 +103,12 @@ const WhiteBoard = () => {
                     Reset : &nbsp;
                     <button onClick={reset} className=' text-xl mt-2'><GrPowerReset/></button>
                 </div>
+
+                <div className=' color-picker-container font-bold inline ml-12 text-white'>
+                    Download : &nbsp;
+                    <button onClick={downloadSlide} className=' text-xl mt-2'><IoMdDownload/></button>
+                </div>
+
             </div>
 
             <div className="board-container bg-white">
