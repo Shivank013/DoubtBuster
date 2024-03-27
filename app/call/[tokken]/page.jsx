@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useParams } from "next/navigation";
+import jwt from 'jsonwebtoken';
 import { useSocket } from "../../../context/SocketProvider";
 import { SocketContext } from "../../../context/SocketProvider";
 import { useRouter } from 'next/navigation'
@@ -12,7 +14,8 @@ const page = () => {
   const {email, setEmail, room, setRoom} = useContext(SocketContext);
   const router = useRouter();
   const socket = useSocket();
-  const { tokken } = router.query;
+  const {tokken}=useParams();
+  console.log(tokken);
   const handleSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
@@ -36,6 +39,34 @@ const page = () => {
     },
     []
   );
+  // email: email,
+  // skill: skill,
+  // doubt: doubt,
+  // roomid: roomid,
+  useEffect(() => {
+    if (tokken) {
+      try {
+        // Decode the token
+        // const token=JSON.stringify(router.query);
+        const decodedToken = jwt.decode(tokken);
+
+        // Extract roomId and email from decoded token
+        if (decodedToken) {
+          const {  email,roomid } = decodedToken;
+          setRoom(roomid);
+          setEmail(email);
+          console.log(roomid);
+          console.log(email);
+        }
+        console.log("not any ouput tokken "+token)
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
+    // console.log("not any ouput tokken "+token);
+  }, [router.query]);
+
+
 
   useEffect(() => {
     socket.on("room:join", handleJoinRoom);
@@ -50,7 +81,7 @@ const page = () => {
     <div>
       <h1>Lobby</h1>
       <form onSubmit={handleSubmitForm}>
-        <label htmlFor="email">Email ID</label>
+        {/* <label htmlFor="email">Email ID</label>
         <input
           type="email"
           id="email"
@@ -65,8 +96,10 @@ const page = () => {
           value={room}
           // onChange={(e) => setRoom(e.target.value)}
         />
-        <br />
-        <button type="submit">Join</button>
+        <br /> */}
+        <button type="submit">Join the meeting</button>
+       
+        
       </form>
     </div>
   );

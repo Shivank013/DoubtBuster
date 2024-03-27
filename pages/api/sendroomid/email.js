@@ -43,7 +43,7 @@ export default async function handler(req, res) {
 
       'Time.end.hour': { $gte: hour },
     })
-    var roomid = otpGenerator.generate(6, {
+    var roomid = otpGenerator.generate(4, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
       specialChars: false,
@@ -60,7 +60,7 @@ export default async function handler(req, res) {
       // tokken generator 
 
       const payload = {
-        email: email,
+        email: emails,
         skill: skill,
         doubt: doubt,
         roomid: roomid,
@@ -72,14 +72,11 @@ export default async function handler(req, res) {
       ans=url;
       try {
         // Send the email
-          //create url
-          // const token = crypto.randomBytes(20).toString("hex"); 
-       
-
+          // create url
         const mailResponse = await mailSender(
           emails,
           'Verification Email from DoubtSolver',
-          emailTemplate(email,url)
+          emailTemplate(emails,url)
         )
         console.log('Email sent Successfully: ', mailResponse)
       } catch (error) {
