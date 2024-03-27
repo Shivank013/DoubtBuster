@@ -12,7 +12,7 @@ const page = () => {
   const {email, setEmail, room, setRoom} = useContext(SocketContext);
   const router = useRouter();
   const socket = useSocket();
-
+  const { tokken } = router.query;
   const handleSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
@@ -55,7 +55,7 @@ const page = () => {
           type="email"
           id="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          // onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <label htmlFor="room">Room Number</label>
@@ -63,7 +63,7 @@ const page = () => {
           type="text"
           id="room"
           value={room}
-          onChange={(e) => setRoom(e.target.value)}
+          // onChange={(e) => setRoom(e.target.value)}
         />
         <br />
         <button type="submit">Join</button>
