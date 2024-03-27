@@ -11,9 +11,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 //! Send OTP
 export default async function handler(req, res) {
-  await connectDB();
 
+console.log("yes you are write");
   try {
+    await connectDB();
     if (req.method !== "POST") {
       return res.status(405).json({ success: false, message: "Method Not Allowed" });
     }
@@ -72,6 +73,7 @@ export default async function handler(req, res) {
     return res.status(500).json({
       success: false,
       message: "Something went wrong. Please retry later!",
+      error
     });
   }
 }
