@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import { setSignupData } from '@/frontendservices/slices/authSlice'
 import Image from 'next/image'
-import image from '../../../public/images/signupformimage.svg' 
-
+import image from '../../../public/images/signupformimage.svg'
+import { toast } from 'react-toastify'
 
 const Signup = () => {
   const dispatch = useDispatch()
@@ -19,7 +19,7 @@ const Signup = () => {
     confirmPassword: '',
     accountType: 'Student',
   })
-
+  const { firstName, lastName, email, password, confirmPassword } = formData
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData({
@@ -30,7 +30,10 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    if (password !== confirmPassword) {
+      toast.error('Passwords Do Not Match')
+      return
+    }
     const signupData = {
       ...formData,
     }
@@ -57,86 +60,94 @@ const Signup = () => {
   }
 
   return (
-    <div className='flex h-screen w-screen'>
-      <div className='mt-[8rem] ml-[6rem]'>
+    <div className="flex h-screen w-screen">
+      <div className="mt-[8rem] ml-[6rem]">
         <Image src={image} height={650} width={650}></Image>
       </div>
-      <div className='border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[83%]'>
-        <h2 className='text-[2rem]'>Signup</h2>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-3 mt-2'>
-          <div className='flex gap-3'>
+      <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[83%]">
+        <h2 className="text-[2rem]">Signup</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-2">
+          <div className="flex gap-3">
             <label>
               <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-              First Name <sup className="text-red-500">*</sup>
+                First Name <sup className="text-red-500">*</sup>
               </p>
               <input
+                required
                 type="text"
                 name="firstName"
-                placeholder='Enter first name'
+                placeholder="Enter first name"
                 value={formData.firstName}
                 onChange={handleChange}
-                className='w-[90%] rounded-[0.5rem] p-[5px] border mt-3'
+                className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
               />
             </label>
             <label>
               <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-              Last Name <sup className="text-red-500">*</sup>
+                Last Name <sup className="text-red-500">*</sup>
               </p>
               <input
+                required
                 type="text"
                 name="lastName"
-                placeholder='Enter last name'
+                placeholder="Enter last name"
                 value={formData.lastName}
                 onChange={handleChange}
-                className='w-[90%] rounded-[0.5rem] p-[5px] border mt-3'
+                className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
               />
             </label>
           </div>
           <label>
             <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-            Email <sup className="text-red-500">*</sup>
+              Email <sup className="text-red-500">*</sup>
             </p>
             <input
+              required
               type="email"
               name="email"
-              placeholder='Enter email'
+              placeholder="Enter email"
               value={formData.email}
               onChange={handleChange}
-              className='rounded-[0.5rem] p-[5px] border mt-3 w-full'
+              className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
             />
           </label>
           <label>
             <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-            Password <sup className="text-red-500">*</sup>
+              Password <sup className="text-red-500">*</sup>
             </p>
             <input
+              required
               type="password"
               name="password"
-              placeholder='Enter password'
+              placeholder="Enter password"
               value={formData.password}
               onChange={handleChange}
-              className='rounded-[0.5rem] p-[5px] border mt-3 w-full'
+              className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
             />
           </label>
           <label>
             <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-            Confirm Password <sup className="text-red-500">*</sup>
+              Confirm Password <sup className="text-red-500">*</sup>
             </p>
             <input
+              required
               type="password"
               name="confirmPassword"
-              placeholder='Enter confirm password'
+              placeholder="Enter confirm password"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className='rounded-[0.5rem] p-[5px] border mt-3 w-full'
+              className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
             />
           </label>
-          <button type="submit" className='border bg-green-600 hover:bg-green-900 transition-all text-white p-[8px] rounded-[0.5rem] mt-8'>Sign Up</button>
+          <button
+            type="submit"
+            className="border bg-green-600 hover:bg-green-900 transition-all text-white p-[8px] rounded-[0.5rem] mt-8"
+          >
+            Sign Up
+          </button>
         </form>
       </div>
     </div>
-
-    
   )
 }
 

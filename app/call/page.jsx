@@ -5,17 +5,26 @@ import { useSocket } from "../../context/SocketProvider";
 import { SocketContext } from "../../context/SocketProvider";
 import { useRouter } from 'next/navigation'
 import { useContext } from "react";
+import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
 import React from 'react'
 
 const page = () => {
+    const dispatch = useDispatch();
+  const {roomid} = useSelector( (state) => state.room );
+  const {user} = useSelector( (state) => state.profile );
 
   const {email, setEmail, room, setRoom} = useContext(SocketContext);
   const router = useRouter();
   const socket = useSocket();
-
   const handleSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
+      setEmail(user.email);
+      setRoom(roomid);
+      console.log(email, room);
+      console.log(email, room);
+
       socket.emit("room:join", { email, room });
     },
     [email, room, socket]
@@ -36,7 +45,6 @@ const page = () => {
     },
     []
   );
-
   useEffect(() => {
     socket.on("room:join", handleJoinRoom);
     socket.on("room:full" , handleRoomFull);
@@ -50,28 +58,12 @@ const page = () => {
     <div>
       <h1>Lobby</h1>
       <form onSubmit={handleSubmitForm}>
-        <label htmlFor="email">Email ID</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <label htmlFor="room">Room Number</label>
-        <input
-          type="text"
-          id="room"
-          value={room}
-          onChange={(e) => setRoom(e.target.value)}
-        />
-        <br />
-        <button type="submit">Join</button>
+        <button type="submit">Join the meeting</button>
+       
+        
       </form>
     </div>
   );
 };
 
 export default page;
-
-

@@ -2,6 +2,9 @@ import { endpoints } from '../api'
 import { setLoading, setToken } from '@/frontendservices/slices/authSlice'
 import { apiConnector } from '../apiconnector'
 import { useRouter } from 'next/navigation'
+import { setUser } from "@/frontendservices/slices/profileSlice"
+
+import { toast } from 'react-toastify'
 
 const { SENDOTP_API, SIGNUP_API, SIGNUP_APIi, LOGIN_API, LOGIN_APIi } =
   endpoints
@@ -17,6 +20,8 @@ export function sendotp(email, route) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
+
+      toast.success('OTP Sent Successfully')
       route.push('/verify')
     } catch (err) {
       console.log(err)
@@ -58,6 +63,7 @@ export function signup(
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/studentlogin')
     } catch (err) {
+      toast.error('Signup Failed')
       console.log(err)
     }
     dispatch(setLoading(false))
@@ -113,6 +119,7 @@ export function signupi(
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/expertlogin')
     } catch (err) {
+      toast.error('Signup Failed')
       console.log(err)
     }
     dispatch(setLoading(false))
@@ -129,7 +136,7 @@ export function login(email, password, router) {
       })
       console.log('LOGIN API RESPONSE............', response)
 
-      console.log('User id: ', response.data.user._id)
+      // console.log('User id: ', response.data.user._id)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -139,11 +146,14 @@ export function login(email, password, router) {
 
       // const userImage = response.data?.user?.image ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
       // dispatch(setUser({ ...response.data.user }))
-      console.log(response.data + 'ddeep')
-      localStorage.setItem('token', JSON.stringify(response.data.token))
-      // localStorage.setItem("user", JSON.stringify(response.data.user))
-      // navigate("/")
-      // router.push('/dashboard/studentdashboard')
+      // console.log(response.data + 'ddeep')
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      const userDetail=JSON.stringify(response.data.user);
+     const detail= JSON.parse(userDetail);
+      // console.log(detail);
+      // console.log("sorry but response is "+ JSON.stringify(response.data.user));
+      dispatch(setUser(detail))
+    
       router.push(`/dashboard/studentdashboard/${response.data.user._id}`)
     } catch (error) {
       console.log('LOGIN API ERROR............', error)
@@ -171,7 +181,7 @@ export function logini(email, password, router) {
 
       // const userImage = response.data?.user?.image ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
       // dispatch(setUser({ ...response.data.user }))
-      console.log(response.data + 'ddeep')
+      // console.log(response.data + 'ddeep')
       localStorage.setItem('token', JSON.stringify(response.data.token))
       // localStorage.setItem("user", JSON.stringify(response.data.user))
       // navigate("/")

@@ -6,6 +6,7 @@ import { setSignupData } from '@/frontendservices/slices/authSlice'
 import Image from 'next/image'
 import image from '../../../public/images/signupformimage.svg'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 const Signup = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const Signup = () => {
       end: { hour: '' },
     },
   })
+  const { firstName, lastName, email, password, confirmPassword } = formData
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -44,6 +46,10 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (password !== confirmPassword) {
+      toast.error('Passwords Do Not Match')
+      return
+    }
 
     const signupData = {
       ...formData,
@@ -85,6 +91,7 @@ const Signup = () => {
                 First Name <sup className="text-red-500">*</sup>
               </p>
               <input
+                required
                 type="text"
                 name="firstName"
                 placeholder="Enter first name"
@@ -98,6 +105,7 @@ const Signup = () => {
                 Last Name <sup className="text-red-500">*</sup>
               </p>
               <input
+                required
                 type="text"
                 name="lastName"
                 placeholder="Enter last name"
@@ -112,6 +120,7 @@ const Signup = () => {
               Email <sup className="text-red-500">*</sup>
             </p>
             <input
+              required
               type="email"
               name="email"
               placeholder="Enter email"
@@ -125,6 +134,7 @@ const Signup = () => {
               Password <sup className="text-red-500">*</sup>
             </p>
             <input
+              required
               type="password"
               name="password"
               placeholder="Enter password"
@@ -138,6 +148,7 @@ const Signup = () => {
               Confirm Password <sup className="text-red-500">*</sup>
             </p>
             <input
+              required
               type="password"
               name="confirmPassword"
               placeholder="Enter confirm password"
@@ -152,6 +163,7 @@ const Signup = () => {
                 Start Hour <sup className="text-red-500">*</sup>
               </p>
               <input
+                required
                 type="number"
                 name="Time.start.hour"
                 placeholder="Enter start hour"
@@ -165,6 +177,7 @@ const Signup = () => {
                 End Hour <sup className="text-red-500">*</sup>
               </p>
               <input
+                required
                 type="number"
                 name="Time.end.hour"
                 placeholder="Enter end hour"

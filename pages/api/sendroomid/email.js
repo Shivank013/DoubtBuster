@@ -1,9 +1,11 @@
 import connectDB from '@/utils/db'
 import { Expert } from '@/model/expert'
 import otpGenerator from 'otp-generator'
-
+// import crypto from "crypto";  // it is used to generate crypto
 import mailSender from '@/utils/mailsender'
 import emailTemplate from '@/templates/questiontemp'
+import { compare } from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 // ***********************for time calculation with respect to indian**************************************
 function getCurrentTimeInIndia() {}
@@ -11,17 +13,8 @@ function getCurrentTimeInIndia() {}
 export default async function handler(req, res) {
   // console.log("error is coming ...");
   await connectDB()
-  // hour: {
-  //   type: Number,
-  //   required: true,
-  // },
-  // minute: {
-  //   type: Number,
-  //   required: true,
-  // },
-  // second: {
-  //   type: Number,
-  //   required: true,
+  let ans;
+
   try {
     if (req.method !== 'POST') {
       return res
@@ -39,12 +32,12 @@ export default async function handler(req, res) {
 
     console.log(hour, minute, second)
 
-    const { skills, question, link } = req.body
-    console.log(skills)
+    const { email,skill,doubt} = req.body
+    console.log(email,skill,doubt);
     // const currentTime = new Date()
     console.log(hour, minute, second)
     const experts = await Expert.find({
-      skills: { $in: skills },
+      skills: { $in: skill },
 
       'Time.start.hour': { $lte: hour },
 
@@ -63,14 +56,27 @@ export default async function handler(req, res) {
     for (let expert of experts) {
       // Extract the expert's email
       console.log(expert.email)
-      const email = expert.email
+      const emails = expert.email
+      // tokken generator 
 
+      const payload = {
+        email: emails,
+        skill: skill,
+        doubt: doubt,
+        roomid: roomid,
+      }
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: '1h',
+      })
+      const url = `http://localhost:3000/call/${token}`;
+      ans=url;
       try {
         // Send the email
+          // create url
         const mailResponse = await mailSender(
-          email,
+          emails,
           'Verification Email from DoubtSolver',
-          emailTemplate(question, link)
+          emailTemplate(emails,url)
         )
         console.log('Email sent Successfully: ', mailResponse)
       } catch (error) {
@@ -85,7 +91,9 @@ export default async function handler(req, res) {
 
     res.send({
       success: true,
-      experts,
+      roomid,
+      ans,
+      message: 'result sucessfull'
     })
   } catch (err) {
     console.log(err)
