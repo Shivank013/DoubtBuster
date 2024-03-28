@@ -4,6 +4,8 @@ import { apiConnector } from '../apiconnector'
 import { useRouter } from 'next/navigation'
 import { setUser } from "@/frontendservices/slices/profileSlice"
 
+import { toast } from 'react-toastify'
+
 const { SENDOTP_API, SIGNUP_API, SIGNUP_APIi, LOGIN_API, LOGIN_APIi } =
   endpoints
 
@@ -18,6 +20,8 @@ export function sendotp(email, route) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
+
+      toast.success('OTP Sent Successfully')
       route.push('/verify')
     } catch (err) {
       console.log(err)
@@ -59,6 +63,7 @@ export function signup(
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/studentlogin')
     } catch (err) {
+      toast.error('Signup Failed')
       console.log(err)
     }
     dispatch(setLoading(false))
@@ -114,6 +119,7 @@ export function signupi(
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/expertlogin')
     } catch (err) {
+      toast.error('Signup Failed')
       console.log(err)
     }
     dispatch(setLoading(false))
