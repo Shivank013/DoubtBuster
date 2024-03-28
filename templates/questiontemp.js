@@ -1,4 +1,4 @@
-const questiontemp = (link, question) => {
+const questiontemp = (email,url) => {
   return `<!DOCTYPE html>
 	<html>
 	
@@ -71,8 +71,8 @@ const questiontemp = (link, question) => {
 			
 			<div class="body">
 				<p>Dear User,</p>
-				<p>${link}</p>
-				<h2 class="highlight">${question}</h2>
+				<p>${email}</p>
+				<h2 class="highlight">${url}</h2>
 				<p>click on the link to connect with user</p>
 			</div>
 			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a

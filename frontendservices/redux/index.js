@@ -2,6 +2,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import questionsReducer from '../slices/tages'
 import authReducer from '../slices/authSlice' // importing all reducer which is made into slices;
+import profile from "../slices/profileSlice";
+import room from '../slices/room';
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 /*
@@ -12,7 +14,9 @@ in "rootReducer"  and  this "rootReducer" is added into "store" in index.js now 
 const rootReducer = combineReducers({
   // combining all reducer;
   auth: authReducer,
+  profile:profile,
   questions: questionsReducer,
+  room:room,
 })
 // export const store = createStore(rootReducer, applyMiddleware(thunk))
 

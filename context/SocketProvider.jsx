@@ -15,12 +15,14 @@ export const SocketProvider = (props) => {
   const [email, setEmail] = useState("");
   const [room, setRoom] = useState("");
   const [boarddata, setBoarddata] = useState("");
+  const [codedata, setCodedata] = useState("");
 
   const value ={
     socket,
     room, setRoom,
     email, setEmail,
-    boarddata, setBoarddata
+    boarddata, setBoarddata,
+    codedata, setCodedata,
   }
   
   return (

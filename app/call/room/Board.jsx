@@ -13,6 +13,7 @@ const Board = ({ color, size, eraserstatus }) => {
     const socket = useSocket();
     const [drawingData, setDrawingData] = useState(null);
 
+
     useEffect(() => {
 
         setDrawingData(boarddata);
@@ -40,10 +41,12 @@ const Board = ({ color, size, eraserstatus }) => {
 
     useEffect(() => {
         const ctx = ctxRef.current;
+        console.log("current size: ",size);
+        console.log("current color: ",color);
         if (ctx) {
             if (eraserstatus) {
                 ctx.lineWidth = size;
-                ctx.strokeStyle = '#ffffff'; // Set color to white for eraser
+                ctx.strokeStyle = '#ffffff'; 
             } else {
                 ctx.lineWidth = size;
                 ctx.strokeStyle = color;
@@ -54,16 +57,20 @@ const Board = ({ color, size, eraserstatus }) => {
     const handleMouseMove = (e) => {
         if (!isDrawingRef.current) return;
         const ctx = ctxRef.current;
+        ctx.lineWidth = size;
+        ctx.strokeStyle = eraserstatus ? '#ffffff' : color;
         const { left, top } = canvasRef.current.getBoundingClientRect();
         const x = e.clientX - left;
         const y = e.clientY - top;
         ctx.lineTo(x, y);
         ctx.stroke();
     };
-
+    
     const handleMouseDown = (e) => {
         isDrawingRef.current = true;
         const ctx = ctxRef.current;
+        ctx.lineWidth = size;
+        ctx.strokeStyle = eraserstatus ? '#ffffff' : color;
         const { left, top } = canvasRef.current.getBoundingClientRect();
         const x = e.clientX - left;
         const y = e.clientY - top;

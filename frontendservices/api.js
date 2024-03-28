@@ -17,3 +17,7 @@ export const endpoints = {
 export const tagsEndpoints = {
   GET_TAGS_API: BASE_URL + '/api/tag/alltags',
 }
+export const askQuestion={
+  ask:BASE_URL+'/api/sendroomid/email',
+  fir:BASE_URL+'/api/sendroomid/fir',
+}

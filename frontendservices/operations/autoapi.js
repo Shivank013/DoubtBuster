@@ -2,6 +2,7 @@ import { endpoints } from '../api'
 import { setLoading, setToken } from '@/frontendservices/slices/authSlice'
 import { apiConnector } from '../apiconnector'
 import { useRouter } from 'next/navigation'
+import { setUser } from "@/frontendservices/slices/profileSlice"
 
 import { toast } from 'react-toastify'
 
@@ -135,7 +136,7 @@ export function login(email, password, router) {
       })
       console.log('LOGIN API RESPONSE............', response)
 
-      console.log('User id: ', response.data.user._id)
+      // console.log('User id: ', response.data.user._id)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -145,11 +146,14 @@ export function login(email, password, router) {
 
       // const userImage = response.data?.user?.image ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
       // dispatch(setUser({ ...response.data.user }))
-      console.log(response.data + 'ddeep')
-      localStorage.setItem('token', JSON.stringify(response.data.token))
-      // localStorage.setItem("user", JSON.stringify(response.data.user))
-      // navigate("/")
-      // router.push('/dashboard/studentdashboard')
+      // console.log(response.data + 'ddeep')
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      const userDetail=JSON.stringify(response.data.user);
+     const detail= JSON.parse(userDetail);
+      // console.log(detail);
+      // console.log("sorry but response is "+ JSON.stringify(response.data.user));
+      dispatch(setUser(detail))
+    
       router.push(`/dashboard/studentdashboard/${response.data.user._id}`)
     } catch (error) {
       console.log('LOGIN API ERROR............', error)
@@ -177,7 +181,7 @@ export function logini(email, password, router) {
 
       // const userImage = response.data?.user?.image ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
       // dispatch(setUser({ ...response.data.user }))
-      console.log(response.data + 'ddeep')
+      // console.log(response.data + 'ddeep')
       localStorage.setItem('token', JSON.stringify(response.data.token))
       // localStorage.setItem("user", JSON.stringify(response.data.user))
       // navigate("/")

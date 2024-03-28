@@ -4,12 +4,12 @@ class PeerService {
       if (!this.peer) {
         this.peer = new RTCPeerConnection({
           iceServers: [
-            {
-              urls: 'stun:global.stun.twilio.com:3478',
-            },
-            {
-              urls: 'stun:stun.l.google.com:19302'
-            },
+            // {
+            //   urls: 'stun:global.stun.twilio.com:3478',
+            // },
+            // {
+            //   urls: 'stun:stun.l.google.com:19302'
+            // },
             {
               urls: "turn:relay1.expressturn.com:3478",
               username: "efD08GKZ1QV5X7KPMN",
