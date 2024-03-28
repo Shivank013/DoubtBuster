@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
     console.log(hour, minute, second)
 
-    const { email,skill,doubt } = req.body
+    const { email,skill,doubt} = req.body
     console.log(email,skill,doubt);
     // const currentTime = new Date()
     console.log(hour, minute, second)
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
 
       'Time.end.hour': { $gte: hour },
     })
-    var roomid = otpGenerator.generate(4, {
+    var roomid = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
       specialChars: false,

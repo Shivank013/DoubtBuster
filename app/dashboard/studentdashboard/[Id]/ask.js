@@ -6,6 +6,9 @@ import { useDispatch } from 'react-redux'
 import { useEffect,useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { setRoom } from '@/frontendservices/slices/room';
+import otpGenerator from 'otp-generator'
+
 
 const Form = () => {
 const [skill,setSkills] = useState([]);
@@ -51,10 +54,19 @@ useEffect(() => {
   };
 
   const handleSubmit = (e) => {
+    // var roomid = otpGenerator.generate(6, {
+    //   upperCaseAlphabets: false,
+    //   lowerCaseAlphabets: false,
+    //   specialChars: false,
+    // })
+    // var roomid=18;
+    // console.log('OTP generated: ', roomid)
+    // dispatch(setRoom(roomid));
     e.preventDefault();
     // Handle form submission here, e.g., send data to server
     console.log(formData.skill,formData.doubt);
     console.log(user.email);
+    // route.push("/call");
    dispatch( Doubt(user.email,formData.skill,formData.doubt,route));
     // console.log("output after function call");
 

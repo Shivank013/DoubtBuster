@@ -28,10 +28,8 @@ function Sidebar({ params }) {
       console.log(response)
       if (response.data.success) {
         router.push('/')
-        // If logout was successful, reset the state or perform any necessary actions
-        // For example, redirect to the login page or clear user data
+      
         console.log('Logout successful')
-        // Perform additional actions like redirecting the user or clearing the session
       }
     } catch (error) {
       console.error('Logout failed', error)
