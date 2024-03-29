@@ -12,6 +12,9 @@ import "codemirror/theme/dracula.css";
 import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets";
 import { FaPlay } from "react-icons/fa";
+import { IoSaveSharp } from "react-icons/io5";
+import Loader from "./Loader";
+import { GrPowerReset } from "react-icons/gr";
 
 export default function Ide() {
   const editorRef = useRef(null);
@@ -19,7 +22,8 @@ export default function Ide() {
   const { codedata, setCodedata, language, setLanguage } = useContext(SocketContext);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-
+  const [loading, setloader] = useState(false);
+  
   useEffect(() => {
     if (!editorRef.current) {
       const editorInstance = Codemirror(document.getElementById("realtimeEditor"), {
@@ -80,6 +84,8 @@ export default function Ide() {
 
   const compile = async()=> {
 
+    setloader(true);
+
     let fileName = '';
     switch (language) {
       case 'c':
@@ -101,7 +107,7 @@ export default function Ide() {
         fileName = 'main.go';
         break;
       default:
-        fileName = 'code.txt'; // Default filename if language is not recognized
+        fileName = 'code.txt'; 
     }
 
       const url = 'https://onecompiler-apis.p.rapidapi.com/api/v1/run';
@@ -148,14 +154,66 @@ export default function Ide() {
         console.error(error);
         setOutput(error)
       }
+      setloader(false);
+  }
+
+
+  const inputAlert = () => {
+    const userInput = prompt('Please enter the filename:');
+    if (userInput !== null) {
+      download(userInput);
+    }
+  };
+
+  const download = (fileName) => {
+    let fileExtension = '';
+  
+    switch (language) {
+      case 'c':
+        fileExtension = '.c';
+        break;
+      case 'cpp':
+        fileExtension = '.cpp';
+        break;
+      case 'java':
+        fileExtension = '.java';
+        break;
+      case 'javascript':
+        fileExtension = '.js';
+        break;
+      case 'python':
+        fileExtension = '.py';
+        break;
+      case 'go':
+        fileExtension = '.go';
+        break;
+      default:
+        fileExtension = '.txt'; 
+    }
+  
+    const fileNameWithExtension = `${fileName}${fileExtension}`;
+  
+    const blob = new Blob([codedata], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileNameWithExtension;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  const reset = ()=> {
+    setInput("");
+    setOutput("");
   }
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
 
-      <div className="w-full h-10 z-50 py-2 flex items-center bg-gray-800">
+      <div className="w-full h-10 z-50 py-2 flex items-center ">
         <label htmlFor="language" className="text-white ml-5 text-md font-semibold mr-2">Select Language:</label>
-        <select className=" rounded-md" onChange={handleLanguageChange} id="language" value={language}>
+        <select className="pl-1 rounded-md" onChange={handleLanguageChange} id="language" value={language}>
           <option value="c">c</option>
           <option value="cpp">cpp</option>
           <option value="java">java</option>
@@ -164,17 +222,22 @@ export default function Ide() {
           <option value="go">go</option>
         </select>
 
-        <button onClick={compile} className=" text-green-500 text-xl shadow-2xl shadow-white ml-12"><FaPlay/></button>
+        <button onClick={reset} className=" text-slate-200 text-xl shadow-2xl shadow-white ml-12"><GrPowerReset/></button>
+
+        <button onClick={inputAlert} className=" text-slate-200 text-xl shadow-2xl shadow-white ml-12"><IoSaveSharp/></button>
+
+        <button onClick={compile} className=" text-green-500 text-xl shadow-2xl shadow-white ml-12"> {loading ? <Loader/> : <FaPlay/>}</button>
+
       </div>
 
       <div className="w-full flex justify-center items-center">
         <div className="text-xl z-30" id="realtimeEditor"></div>
 
-        <div className="bg-gray-800 flex flex-col justify-between w-[20vw] h-[79vh] z-30">
-          <label className="text-white text-xl ml-2">Input:</label>
+        <div className=" bg-black flex flex-col justify-between w-[20vw] h-[79vh] z-30">
+          <label className="text-white font-semibold text-xl ml-2">Input:</label>
           <textarea value={input} onChange={handelInput} className="p-1 text-base text-white w-[19vw] bg-black mx-2 mb-2 border-2 rounded-lg h-full"></textarea>
 
-          <label className="text-white text-xl ml-2">Output:</label>
+          <label className="text-white font-semibold text-xl ml-2">Output:</label>
           <textarea value={output} readOnly onChange={handelOutput} className="p-1 text-base text-white w-[19vw] bg-black mx-2 mb-10 border-2 rounded-lg h-full"></textarea>
         </div>
       </div>

@@ -33,34 +33,41 @@ const WhiteBoard = () => {
         setSize(event.target.value);
     };
 
-    const downloadSlide = () => {
+    const inputAlert = () => {
+        const userInput = prompt('Please enter the filename for the slide:');
+        if (userInput !== null) {
+            downloadSlide(userInput);
+        }
+    };
+
+    const downloadSlide = (fileName) => {
         const img = new Image();
-        img.crossOrigin = "anonymous"; 
+        img.crossOrigin = "anonymous";
         img.src = boarddata;
-    
+
         img.onload = () => {
             const canvas = document.createElement('canvas');
             canvas.width = img.width;
             canvas.height = img.height;
             const ctx = canvas.getContext('2d');
-            
+
             ctx.drawImage(img, 0, 0);
-            
+
             const pdfCanvas = document.createElement('canvas');
             pdfCanvas.width = img.width;
             pdfCanvas.height = img.height;
             const pdfCtx = pdfCanvas.getContext('2d');
-    
-            pdfCtx.fillStyle = '#ffffff'; 
+
+            pdfCtx.fillStyle = '#ffffff';
             pdfCtx.fillRect(0, 0, pdfCanvas.width, pdfCanvas.height);
-            
+
             pdfCtx.drawImage(canvas, 0, 0);
-    
+
             const imgData = pdfCanvas.toDataURL('image/jpeg', 1.0);
-    
+
             const pdf = new jsPDF('l', 'mm', 'a4');
             pdf.addImage(imgData, 'JPEG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
-            pdf.save("slide.pdf"); 
+            pdf.save(`${fileName}.pdf`);
         };
     };
     
@@ -106,7 +113,7 @@ const WhiteBoard = () => {
 
                 <div className=' color-picker-container font-bold inline ml-12 text-white'>
                     Download : &nbsp;
-                    <button onClick={downloadSlide} className=' text-xl mt-2'><IoMdDownload/></button>
+                    <button onClick={inputAlert} className=' text-xl mt-2'><IoMdDownload/></button>
                 </div>
 
             </div>
