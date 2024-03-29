@@ -68,6 +68,10 @@ export const checkAuth = async (req, res, next) => {
     })
   }
 }
+// export const cheackIdentity = (token) => {
+//   const decode = jwt.verify(token, process.env.JWT_SECRET)
+//   return decode.role
+// }
 
 export const checkExprt = async (req, res) => {
   const cookie = req.headers.cookie
