@@ -50,6 +50,7 @@ const RoomPage = () => {
   const [ownScreen, setOwnScreen] = useState();
 
   const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
     if (screenfull.isEnabled) {
       screenfull.toggle();
     }
@@ -437,25 +438,25 @@ const RoomPage = () => {
         </div>
 
         {vedio ?
-        <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={handelVedio}><HiOutlineVideoCameraSlash/></button> 
+        <button className="text-white ml-10 bg-red-500 rounded-full text-2xl p-3" onClick={handelVedio}><HiOutlineVideoCameraSlash/></button> 
         : 
         <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={handelVedio}><HiOutlineVideoCamera/></button>
         }
 
         {!audio ?
-        <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={handelAudio}><IoMdMicOff/></button> 
+        <button className="text-white ml-10 bg-red-500 rounded-full text-2xl p-3" onClick={handelAudio}><IoMdMicOff/></button> 
         : 
         <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={handelAudio}><IoMdMic/></button>
         }
 
         {screenshare ?
-        <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={handleScreenShareOff} ><LuScreenShareOff/></button> 
+        <button className="text-white ml-10 bg-red-500 rounded-full text-2xl p-3" onClick={handleScreenShareOff} ><LuScreenShareOff/></button> 
         : 
         <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={handleScreenShareOn} ><LuScreenShare/></button>
         }
 
         {board ?
-        <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3"
+        <button className="text-white ml-10 bg-red-500 rounded-full text-2xl p-3"
           onClick={() => {
             if (screenshare) {
               alert("Screen Sharing need to be Off");
@@ -477,7 +478,7 @@ const RoomPage = () => {
         }
 
         {code ?
-        <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3"
+        <button className="text-white ml-10 bg-red-500 rounded-full text-2xl p-3"
          onClick={() => {
             if (screenshare) {
               alert("Screen Sharing need to be Off");
@@ -499,7 +500,7 @@ const RoomPage = () => {
         }
 
         {isFullscreen ?
-        <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={toggleFullscreen} ><RiFullscreenExitFill/></button> 
+        <button className="text-white ml-10 bg-red-500 rounded-full text-2xl p-3" onClick={toggleFullscreen} ><RiFullscreenExitFill/></button> 
         : 
         <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={toggleFullscreen} ><RiFullscreenFill/></button>
         }
