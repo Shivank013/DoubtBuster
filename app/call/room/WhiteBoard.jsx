@@ -72,7 +72,7 @@ const WhiteBoard = () => {
     };
     
     return (
-        <div className=" bg-gray-900">
+        <div className="">
             <div className="tools-section text-center ">
 
                 <div className=' color-picker-container font-bold inline text-white'>
