@@ -59,23 +59,28 @@ const TagDetailsPage = () => {
   }
 
   return (
-    <div>
-      <h1>Tag Details</h1>
-      <p>Tag: {tag}</p>
+    <div className='bg-gray-50'>
+      <div className='flex justify-evenly'>
+        <h1 className='mt-5 text-[1.3rem]'>Tag Details</h1>
+        <p className='mt-5 text-[1.3rem]'>Tag: {tag}</p>
+      </div>
+      <hr className='mt-6'></hr>
       {submitted && <p>Score: {score}</p>}{' '}
       {/* Display the user's score if answers are submitted */}
       {!submitted && (
         <div>
-          <h2>All Questions</h2>
+          <h2 className='text-[1.3rem] mt-5 text-center'>All Questions</h2>
           <form>
-            <ul>
+            <ul className='mt-[3rem]'>
               {questions.map((question) => (
-                <li key={question._id}>
-                  <p>{question.question}</p>
+                <li key={question._id} className='border ml-10 p-4 rounded-xl shadow mr-10 mb-5 bg-white'>
+                  <h1 className='text-black mb-2'>Question</h1>
+                  <p className='border p-2 text-gray-600 rounded-lg bg-gray-50 bg-[#d8d0d035]'> {question.question}</p>
                   <ul>
+                    <h1 className=' mt-8 '>Choice</h1>
                     {['option1', 'option2', 'option3', 'option4'].map(
                       (optionKey) => (
-                        <li key={optionKey}>
+                        <li className='mb-[2.5rem] mt-[1.2rem] w-full' key={optionKey}>
                           <input
                             type="radio"
                             id={`${question._id}-${optionKey}`}
@@ -93,20 +98,21 @@ const TagDetailsPage = () => {
                               )
                             }
                           />
-                          <label htmlFor={`${question._id}-${optionKey}`}>
+                          <label htmlFor={`${question._id}-${optionKey}`} className='ml-6 mt-[-2.1rem] text-gray-600 border p-2 rounded-lg bg-[#d8d0d035] block'>
                             {question[optionKey]}
                           </label>
                         </li>
                       )
                     )}
                   </ul>
-                  <p>Correct Answer: {question.correctAnswer}</p>
+                  <p className='hidden'>Correct Answer: {question.correctAnswer}</p>
                 </li>
               ))}
             </ul>
-            <button type="button" onClick={handleSubmit}>
+            <button type="button" onClick={handleSubmit} className='mb-5 ml-11 mt-5 border p-2 bg-gray-600 text-white rounded w-[5rem]'>
               Submit
             </button>
+
           </form>
         </div>
       )}

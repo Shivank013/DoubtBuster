@@ -24,11 +24,11 @@ const SkillComponent = () => {
   }, [])
 
   return (
-    <div>
-      <h2>Expert Skills</h2>
-      <ul>
+    <div className='w-full overflow-hidden'>
+      <h2 className='font-semibold text-[1.5rem] mt-5 text-center'>Expert Skills</h2>
+      <ul className='flex flex-wrap mt-[4rem] gap-x-[5rem] gap-y-10 w-full justify-evenly'>
         {skills.map((skill, index) => (
-          <li key={index}>{skill}</li>
+          <li className='border rounded-xl shadow text-gray-600 w-[25%] p-4 text-center bg-[#d8d0d035] text-[1.1rem] ' key={index}>{skill}</li>
         ))}
       </ul>
     </div>
