@@ -7,8 +7,10 @@ import Image from 'next/image'
 import image from '../../../public/images/signupformimage.svg'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
 
 const Signup = () => {
+  const { loading } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const router = useRouter()
   const [formData, setFormData] = useState({
@@ -78,123 +80,129 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex h-screen w-screen">
-      <div className="mt-[8rem] ml-[6rem]">
-        <Image src={image} height={650} width={650}></Image>
-      </div>
-      <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[83%]">
-        <h2 className="text-[2rem]">Signup</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-2">
-          <div className="flex gap-3">
-            <label>
-              <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-                First Name <sup className="text-red-500">*</sup>
-              </p>
-              <input
-                required
-                type="text"
-                name="firstName"
-                placeholder="Enter first name"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
-              />
-            </label>
-            <label>
-              <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-                Last Name <sup className="text-red-500">*</sup>
-              </p>
-              <input
-                required
-                type="text"
-                name="lastName"
-                placeholder="Enter last name"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
-              />
-            </label>
+    <div>
+      {loading ? (
+        <div className="spinner">loging..</div>
+      ) : (
+        <div className="flex h-screen w-screen">
+          <div className="mt-[8rem] ml-[6rem]">
+            <Image src={image} height={650} width={650}></Image>
           </div>
-          <label>
-            <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-              Email <sup className="text-red-500">*</sup>
-            </p>
-            <input
-              required
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={formData.email}
-              onChange={handleChange}
-              className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
-            />
-          </label>
-          <label>
-            <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-              Password <sup className="text-red-500">*</sup>
-            </p>
-            <input
-              required
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              value={formData.password}
-              onChange={handleChange}
-              className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
-            />
-          </label>
-          <label>
-            <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-              Confirm Password <sup className="text-red-500">*</sup>
-            </p>
-            <input
-              required
-              type="password"
-              name="confirmPassword"
-              placeholder="Enter confirm password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
-            />
-          </label>
-          <div className="flex gap-3">
-            <label>
-              <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-                Start Hour <sup className="text-red-500">*</sup>
-              </p>
-              <input
-                required
-                type="number"
-                name="Time.start.hour"
-                placeholder="Enter start hour"
-                value={formData.Time.start.hour}
-                onChange={handleChange}
-                className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
-              />
-            </label>
-            <label>
-              <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-                End Hour <sup className="text-red-500">*</sup>
-              </p>
-              <input
-                required
-                type="number"
-                name="Time.end.hour"
-                placeholder="Enter end hour"
-                value={formData.Time.end.hour}
-                onChange={handleChange}
-                className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
-              />
-            </label>
+          <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[83%]">
+            <h2 className="text-[2rem]">Signup</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-2">
+              <div className="flex gap-3">
+                <label>
+                  <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
+                    First Name <sup className="text-red-500">*</sup>
+                  </p>
+                  <input
+                    required
+                    type="text"
+                    name="firstName"
+                    placeholder="Enter first name"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
+                  />
+                </label>
+                <label>
+                  <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
+                    Last Name <sup className="text-red-500">*</sup>
+                  </p>
+                  <input
+                    required
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter last name"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
+                  />
+                </label>
+              </div>
+              <label>
+                <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
+                  Email <sup className="text-red-500">*</sup>
+                </p>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
+                />
+              </label>
+              <label>
+                <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
+                  Password <sup className="text-red-500">*</sup>
+                </p>
+                <input
+                  required
+                  type="password"
+                  name="password"
+                  placeholder="Enter password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
+                />
+              </label>
+              <label>
+                <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
+                  Confirm Password <sup className="text-red-500">*</sup>
+                </p>
+                <input
+                  required
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Enter confirm password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="rounded-[0.5rem] p-[5px] border mt-3 w-full"
+                />
+              </label>
+              <div className="flex gap-3">
+                <label>
+                  <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
+                    Start Hour <sup className="text-red-500">*</sup>
+                  </p>
+                  <input
+                    required
+                    type="number"
+                    name="Time.start.hour"
+                    placeholder="Enter start hour"
+                    value={formData.Time.start.hour}
+                    onChange={handleChange}
+                    className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
+                  />
+                </label>
+                <label>
+                  <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
+                    End Hour <sup className="text-red-500">*</sup>
+                  </p>
+                  <input
+                    required
+                    type="number"
+                    name="Time.end.hour"
+                    placeholder="Enter end hour"
+                    value={formData.Time.end.hour}
+                    onChange={handleChange}
+                    className="w-[90%] rounded-[0.5rem] p-[5px] border mt-3"
+                  />
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="border bg-green-600 hover:bg-green-900 transition-all text-white p-[8px] rounded-[0.5rem] mt-8"
+              >
+                Sign Up
+              </button>
+            </form>
           </div>
-          <button
-            type="submit"
-            className="border bg-green-600 hover:bg-green-900 transition-all text-white p-[8px] rounded-[0.5rem] mt-8"
-          >
-            Sign Up
-          </button>
-        </form>
-      </div>
+        </div>
+      )}
     </div>
   )
 }

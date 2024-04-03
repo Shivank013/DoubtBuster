@@ -14,6 +14,7 @@ export function middleware(request) {
   if (loggedinuserNotAccessPaths) {
     if (authToken) {
       const decoded = jwtDecode(authToken)
+      console.log(decoded)
       if (decoded.role === 'Instructor') {
         return NextResponse.redirect(
           new URL('/dashboard/expertdashboard', request.url)

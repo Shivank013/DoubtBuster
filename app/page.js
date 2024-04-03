@@ -1,5 +1,5 @@
 // server component
-import "./globals.css"
+import './globals.css'
 import React from 'react'
 
 import Image from 'next/image'
@@ -21,7 +21,8 @@ import { RiFullscreenFill } from 'react-icons/ri'
 import { LuScreenShare } from 'react-icons/lu'
 import { TbChalkboard } from 'react-icons/tb'
 import { TbCode } from 'react-icons/tb'
-import Link from 'next/link';
+import Link from 'next/link'
+import { UseSelector } from 'react-redux'
 import { HiOutlineAcademicCap } from 'react-icons/hi'
 
 const ClientComponent = dynamic(() => import('../app/Typer'), { ssr: false })
@@ -39,10 +40,17 @@ export default function Home() {
           <a className="cursor-pointer mr-10 text-l font-semibold">About</a>
           {signup ? (
             <div>
-                <Link href="/login" className="cursor-pointer mr-10 text-l font-semibold" >Login
-              {/* <a href='Login' className="cursor-pointer mr-10 text-l font-semibold">Login</a> */}
+              <Link
+                href="/login"
+                className="cursor-pointer mr-10 text-l font-semibold"
+              >
+                Login
+                {/* <a href='Login' className="cursor-pointer mr-10 text-l font-semibold">Login</a> */}
               </Link>
-              <Link href="/signup" className="cursor-pointer text-center text-l font-semibold py-2 px-3 rounded-full text-white bg-purple-500">
+              <Link
+                href="/signup"
+                className="cursor-pointer text-center text-l font-semibold py-2 px-3 rounded-full text-white bg-purple-500"
+              >
                 Signup
               </Link>
             </div>
@@ -60,8 +68,9 @@ export default function Home() {
         <div className="text-white text-7xl -ml-[8%] font-bold mt-8 absolute">
           <p className=" font-sans">Expert Guidance,</p>
           <p className=" text-purple-500 font-sans">Right at Your Fingertips</p>
-          <p className=" text-6xl text-red-400 font-sans mt-14"><ClientComponent /></p>
-          
+          <p className=" text-6xl text-red-400 font-sans mt-14">
+            <ClientComponent />
+          </p>
         </div>
         <Image
           src={client}

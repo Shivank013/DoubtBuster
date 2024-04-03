@@ -23,6 +23,7 @@ const Reviews = () => {
     const fetchData = async () => {
       try {
         const response = await axios.post('/api/feedback/expertallrating')
+        console.log(response, 'response dikhao')
         setReviews(response.data)
       } catch (error) {
         console.error('Error fetching reviews:', error)
@@ -39,6 +40,7 @@ const Reviews = () => {
         {reviews.map((review, index) => (
           <li key={index}>
             <p>Feedback: {review.feedback}</p>
+            <p>Feedback: {review.userName}</p>
             {/* Render the star rating component */}
             <StarRating rating={review.rating} />
             {/* If you also need to display the ID, uncomment the line below */}

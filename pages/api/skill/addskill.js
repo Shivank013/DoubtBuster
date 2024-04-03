@@ -29,7 +29,13 @@ export default async function handler(req, res) {
     // Convert newSkills to an array of strings if it's not already in that format
     const skillsToAdd = Array.isArray(newSkills) ? newSkills : [newSkills]
 
-    expert.skills.push(...skillsToAdd) // Push the new skills to the expert's skills array
+    // Check if each skill in skillsToAdd is already present in the expert's skills array
+    for (const skill of skillsToAdd) {
+      if (!expert.skills.includes(skill)) {
+        // If the skill is not already present, add it to the expert's skills array
+        expert.skills.push(skill)
+      }
+    }
 
     await expert.save()
 
