@@ -11,7 +11,7 @@ import Addskill from './addskills'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
-
+import { toast, ToastContainer } from 'react-toastify'
 function page() {
   const { loading } = useSelector((state) => state.auth)
   const [expanded, setExpanded] = useState(true)
@@ -27,7 +27,9 @@ function page() {
       const response = await axios.get('/api/auth/expert/logout')
       console.log(response)
       if (response.data.success) {
+        toast.success('Logout successful')
         router.push('/')
+
         // If logout was successful, reset the state or perform any necessary actions
         // For example, redirect to the login page or clear user data
         console.log('Logout successful')

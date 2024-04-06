@@ -57,8 +57,8 @@ const Form = () => {
   }
 
   return (
-    <div className="w-full h-full font-sans text-gray-700 bg-white flex justify-center items-center">
-      <div className="w-1/3 p-16 bg-[#7c3aed] rounded-3xl shadow-lg shadow-black">
+    <div className="w-full h-full font-sans text-gray-700 bg-gradient-to-r from-rose-100 to-teal-100 flex justify-center items-center">
+      <div className="w-1/2 p-16 bg-[#8b5cf6] rounded-3xl shadow-lg shadow-black">
         <h2 className="text-2xl text-white font-bold mb-4">Skills Form</h2>
         <form onSubmit={handleSubmit}>
           <div className="mt-2 mb-3 ">
@@ -73,7 +73,7 @@ const Form = () => {
               name="skill"
               value={formData.skill}
               onChange={handleInputChange}
-              className="w-full p-2  border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full p-2  border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
             >
               <option value="">Select</option>
               {skill.map((tag, index) => (
@@ -91,17 +91,19 @@ const Form = () => {
             <textarea
               name="doubt"
               rows="5"
-              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full p-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500"
               value={formData.doubt}
               onChange={handleInputChange}
             ></textarea>
           </div>
-          <button
-            type="submit"
-            className="ml-24 bg-[#c026d3] mt-3 font-semibold text-white py-2 px-4 rounded hover:bg-[#e879f9]"
-          >
-            Submit
-          </button>
+          <div className="flex justify-center items-center pt-3">
+            <button
+              type="submit"
+              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-6 py-3 text-center me-2 "
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ColorRing } from 'react-loader-spinner'
 
 const SkillComponent = () => {
   const [skills, setSkills] = useState([])
+  const [isLoading, setIsLoading] = useState(true) // State to manage loading status
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +19,8 @@ const SkillComponent = () => {
         }
       } catch (error) {
         console.error('Error fetching skills:', error)
+      } finally {
+        setIsLoading(false) // Set loading to false when fetching is done (whether successful or not)
       }
     }
 
@@ -25,24 +29,34 @@ const SkillComponent = () => {
 
   return (
     <div className="w-full overflow-hidden">
-      <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl mt-5 text-center font-gaming">
+      <h2 className="font-semibold text-[1.5rem] mt-5 text-center">
         Expert Skills
       </h2>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-4 mt-10">
-        {skills.map((skill, index) => (
-          <li
-            className="rounded-full h-52 w-52 overflow-hidden relative shadow-lg transform transition duration-300 hover:scale-105"
-            key={index}
-          >
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500 opacity-50 rounded-full"></div>
-            <div className="relative z-10 p-6 mt-11">
-              <p className="text-black text-lg font-semibold text-center   text-3xl flex items-center justify-center font-gaming">
-                {skill}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {isLoading ? (
+        <div className="flex justify-center  items-center h-[100vh]">
+          {' '}
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="color-ring-loading"
+            wrapperStyle={{}}
+            wrapperClass="color-ring-wrapper"
+            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+          />
+        </div> // Display loading message while fetching data
+      ) : (
+        <ul className="flex flex-wrap mt-[4rem] gap-x-[5rem] gap-y-10 w-full justify-evenly">
+          {skills.map((skill, index) => (
+            <li
+              className="border rounded-xl shadow text-gray-600 w-[25%] p-4 text-center bg-[#d8d0d035] text-[1.1rem] "
+              key={index}
+            >
+              {skill}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
