@@ -13,10 +13,15 @@ import otpGenerator from 'otp-generator'
 const Form = () => {
 const [skill,setSkills] = useState([]);
 const route = useRouter()
-// use effect 
+const {user} = useSelector( (state) => state.profile );
+let email;
+if(user){
+email=user.email;
+}
 useEffect(() => {
   const fetchData = async () => {
     try {
+     email=user.email;
       const response = await axios.get(
         'http://localhost:3000/api/tag/alltags'
       )
@@ -26,6 +31,7 @@ useEffect(() => {
       } else {
         console.error('Error fetching skills:', response.data.message)
       }
+  
     } catch (error) {
       console.error('Error fetching skills:', error)
     }
@@ -37,9 +43,7 @@ useEffect(() => {
 
 
   const dispatch = useDispatch();
-  const {user} = useSelector( (state) => state.profile );
-
-  // const email = useSelector(selectEmail);
+ 
   const [formData, setFormData] = useState({
     skill: '',
     doubt:'',
@@ -54,20 +58,13 @@ useEffect(() => {
   };
 
   const handleSubmit = (e) => {
-    // var roomid = otpGenerator.generate(6, {
-    //   upperCaseAlphabets: false,
-    //   lowerCaseAlphabets: false,
-    //   specialChars: false,
-    // })
-    // var roomid=18;
-    // console.log('OTP generated: ', roomid)
-    // dispatch(setRoom(roomid));
+ 
     e.preventDefault();
     // Handle form submission here, e.g., send data to server
     console.log(formData.skill,formData.doubt);
-    console.log(user.email);
+    // console.log(user.email);
     // route.push("/call");
-   dispatch( Doubt(user.email,formData.skill,formData.doubt,route));
+   dispatch( Doubt(email,formData.skill,formData.doubt,route));
     // console.log("output after function call");
 
   };
@@ -92,7 +89,7 @@ useEffect(() => {
       </select>
     </div>
         <div className="mb-4">
-          <label htmlFor="doubt" className="block mb-1">Level of Doubt:</label>
+          <label htmlFor="doubt" className="block mb-1">Doubt:</label>
        
           <textarea
             name="doubt"

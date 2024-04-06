@@ -9,13 +9,41 @@ import { useRouter } from 'next/navigation'
 import { useContext } from "react";
 import React from 'react'
 
+
 const page = () => {
+
 
   const {email, setEmail, room, setRoom} = useContext(SocketContext);
   const router = useRouter();
-  const socket = useSocket();
   const {tokken}=useParams();
-  console.log(tokken);
+  // const url=useParams();
+  const socket = useSocket();
+  const route=useRouter();
+  // let flag = 5
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+    // let flag=  localStorage.getItem('flag');
+  if (!token ) {
+    
+    // console.log(tokken);
+    // console.log(token);
+    const url=  `/call/${tokken}`;
+    localStorage.setItem('redirectPath', url);
+    const ans=localStorage.getItem('redirectPath');
+    console.log(ans);
+    // const {  email } = decodedToken;
+    // console.log("oh yes");
+    route.push("/login");
+    // flag=7;
+    // localStorage.setItem('flag', true);
+ 
+  }
+
+
+
+  },[])
+
+  // console.log(tokken);
   const handleSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
@@ -29,6 +57,14 @@ const page = () => {
       const { email, room } = data;
       console.log(email,room);
       router.push("/call/room");
+      let rem= localStorage.getItem('redirectPath');
+      if(rem){
+      localStorage.removeItem('redirectPath'); 
+      }
+      let pqr= localStorage.getItem('flag');
+      if(pqr){
+      localStorage.removeItem('flag'); 
+      }
     },
     []
   );
@@ -58,7 +94,7 @@ const page = () => {
           console.log(roomid);
           console.log(email);
         }
-        console.log("not any ouput tokken "+token)
+        // console.log("not any ouput tokken "+tokken)
       } catch (error) {
         console.error('Error decoding token:', error);
       }
@@ -80,8 +116,9 @@ const page = () => {
   return (
     <div>
       <h1>Lobby</h1>
-      <form onSubmit={handleSubmitForm}>
-        {/* <label htmlFor="email">Email ID</label>
+      <form onSubmit={handleSubmitForm}> 
+     
+         <label htmlFor="email">Email ID</label>
         <input
           type="email"
           id="email"
@@ -96,7 +133,7 @@ const page = () => {
           value={room}
           // onChange={(e) => setRoom(e.target.value)}
         />
-        <br /> */}
+        <br />
         <button type="submit">Join the meeting</button>
        
         

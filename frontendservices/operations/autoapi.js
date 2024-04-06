@@ -15,14 +15,14 @@ export function sendotp(email, route) {
       dispatch(setLoading(true))
       console.log(email)
       const response = await apiConnector('POST', SENDOTP_API, { email }) // Pass email as an object
-      console.log('SENDOTP API RESPONSE............', response)
-      console.log(email)
+      console.log('SENDOTP API RESPONSE ............ ',response)
+      console.log(email);
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
 
-      toast.success('OTP Sent Successfully')
-      route.push('/verify')
+      toast.success('OTP Sent Successfully');
+      route.push('/verify');
     } catch (err) {
       console.log(err)
     }
@@ -112,10 +112,6 @@ export function signupi(
       })
       console.log(response)
       console.log('after sign up')
-      // if (!response.data.success) {
-      //   throw new Error(response.data.message)
-      // }
-
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/expertlogin')
     } catch (err) {
@@ -135,32 +131,23 @@ export function login(email, password, router) {
         password,
       })
       console.log('LOGIN API RESPONSE............', response)
-
-      // console.log('User id: ', response.data.user._id)
-
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-      // toast.success("Login Successful")
       dispatch(setToken(response.data.token))
-
-      // const userImage = response.data?.user?.image ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
-      // dispatch(setUser({ ...response.data.user }))
-      // console.log(response.data + 'ddeep')
       localStorage.setItem('token', JSON.stringify(response.data.token));
       const userDetail=JSON.stringify(response.data.user);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
      const detail= JSON.parse(userDetail);
-      // console.log(detail);
-      // console.log("sorry but response is "+ JSON.stringify(response.data.user));
-      dispatch(setUser(detail))
-    
+     console.log(detail);
+
+      dispatch(setUser(detail))    
       router.push(`/dashboard/studentdashboard/${response.data.user._id}`)
     } catch (error) {
       console.log('LOGIN API ERROR............', error)
       toast.error('Login Failed')
     }
     dispatch(setLoading(false))
-    //   toast.dismiss(toastId)
   }
 }
 export function logini(email, password, router) {
@@ -178,19 +165,44 @@ export function logini(email, password, router) {
       }
       // toast.success("Login Successful")
       dispatch(setToken(response.data.token))
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+     
+      const userDetail=JSON.stringify(response.data.expert);
+      console.log("user details : "+ userDetail);
+      localStorage.setItem('user', JSON.stringify(userDetail));
+      const detail= JSON.parse(userDetail);
+      console.log(detail);
+ 
+       dispatch(setUser(detail))    
+    //  const detail= JSON.parse(userDetail);
 
-      // const userImage = response.data?.user?.image ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
-      // dispatch(setUser({ ...response.data.user }))
-      // console.log(response.data + 'ddeep')
-      localStorage.setItem('token', JSON.stringify(response.data.token))
-      // localStorage.setItem("user", JSON.stringify(response.data.user))
-      // navigate("/")
-      router.push('/dashboard/expertdashboard')
+      const ans=localStorage.getItem('redirectPath');
+      console.log(ans);
+      if(ans){
+        router.push(ans);
+      }
+      else {
+        router.push('/dashboard/expertdashboard');
+      }
+      
     } catch (error) {
       console.log('LOGIN API ERROR............', error)
       toast.error('Login Failed')
     }
     dispatch(setLoading(false))
     //   toast.dismiss(toastId)
+  }
+}
+
+
+export function logout(router) {
+  return (dispatch) => {
+    dispatch(setToken(null))
+    dispatch(setUser(null))
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.clear();
+    toast.success("Logged Out")
+    router.push("/")
   }
 }

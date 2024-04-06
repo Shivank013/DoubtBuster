@@ -9,9 +9,13 @@ import Reviews from './reviews'
 import Profile from './profile'
 import Addskill from './addskills'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
+import {logout} from '@/frontendservices/operations/autoapi'
+import { toast } from 'react-toastify'
 
 function page() {
+  const dispatch = useDispatch()
   const [expanded, setExpanded] = useState(true)
   const [tab, setTab] = useState('profile')
   const router = useRouter()
@@ -24,7 +28,10 @@ function page() {
       const response = await axios.get('/api/auth/expert/logout')
       console.log(response)
       if (response.data.success) {
+        dispatch(logout(router));
         router.push('/')
+        toast.success("Logged Out")
+        // router.push('/')
         // If logout was successful, reset the state or perform any necessary actions
         // For example, redirect to the login page or clear user data
         console.log('Logout successful')

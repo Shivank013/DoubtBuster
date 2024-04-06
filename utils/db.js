@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 // connecting to database
 const connectDB = async () => {
   const connectionUrl =
-    'mongodb+srv://deepsen888:deepsen888@cluster0.mxp3j0e.mongodb.net/?retryWrites=true&w=majority'
+    // 'mongodb+srv://deepsen888:deepsen888@cluster0.mxp3j0e.mongodb.net/?retryWrites=true&w=majority'
+    'mongodb+srv://deepbhai:deepbhai@cluster0.mxp3j0e.mongodb.net/'
   mongoose
     .connect(connectionUrl, {
       dbName: 'work_manager',
