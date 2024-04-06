@@ -12,12 +12,16 @@ export const endpoints = {
   GETEXPERTDATA_API: BASE_URL + 'api/expertdash/getdata',
   GIVETEST_API: BASE_URL + '/api/tag/givetest',
   ADDSKILLS_API: BASE_URL + '/api/skill/addskill',
+  USERTOEXPERTFEED_API: BASE_URL + '/api/feedback/usertoexpertrating',
+  EXPERTTOUSERFEED_API: BASE_URL + '/api/feedback/experttouserrating',
 }
+
 
 export const tagsEndpoints = {
   GET_TAGS_API: BASE_URL + '/api/tag/alltags',
 }
-export const askQuestion={
-  ask:BASE_URL+'/api/sendroomid/email',
-  fir:BASE_URL+'/api/sendroomid/fir',
+
+export const askQuestion = {
+  ask: BASE_URL + '/api/sendroomid/email',
+  fir: BASE_URL + '/api/sendroomid/fir',
 }

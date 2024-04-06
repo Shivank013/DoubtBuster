@@ -1,61 +1,51 @@
-
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Doubt } from '@/frontendservices/operations/askdoubt';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Doubt } from '@/frontendservices/operations/askdoubt'
 import { useDispatch } from 'react-redux'
-import { useEffect,useState } from 'react';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import { setRoom } from '@/frontendservices/slices/room';
-import otpGenerator from 'otp-generator'
-
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
 
 const Form = () => {
-const [skill,setSkills] = useState([]);
-const route = useRouter()
-const {user} = useSelector( (state) => state.profile );
-let email;
-if(user){
-email=user.email;
-}
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-     email=user.email;
-      const response = await axios.get(
-        'http://localhost:3000/api/tag/alltags'
-      )
-      if (response.data.success) {
-        console.log(response.data);
-        setSkills(response.data.tags)
-      } else {
-        console.error('Error fetching skills:', response.data.message)
+  const [skill, setSkills] = useState([])
+  const route = useRouter()
+  // use effect
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:3000/api/tag/alltags'
+        )
+        if (response.data.success) {
+          console.log(response.data)
+          setSkills(response.data.tags)
+        } else {
+          console.error('Error fetching skills:', response.data.message)
+        }
+      } catch (error) {
+        console.error('Error fetching skills:', error)
       }
-  
-    } catch (error) {
-      console.error('Error fetching skills:', error)
     }
-  }
 
-  fetchData()
-}, [])
+    fetchData()
+  }, [])
 
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.profile)
 
-
-  const dispatch = useDispatch();
- 
+  // const email = useSelector(selectEmail);
   const [formData, setFormData] = useState({
     skill: '',
-    doubt:'',
-  });
+    doubt: '',
+  })
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData({
       ...formData,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const handleSubmit = (e) => {
  
@@ -66,8 +56,7 @@ useEffect(() => {
     // route.push("/call");
    dispatch( Doubt(email,formData.skill,formData.doubt,route));
     // console.log("output after function call");
-
-  };
+  }
 
   return (
     <div className="max-w-md mx-auto mt-8">
@@ -105,5 +94,6 @@ useEffect(() => {
   );
 };
 
-export default Form;
+           
 
+export default Form

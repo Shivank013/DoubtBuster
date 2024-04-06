@@ -14,6 +14,7 @@ export function middleware(request) {
   if (loggedinuserNotAccessPaths) {
     if (authToken) {
       const decoded = jwtDecode(authToken)
+      console.log(decoded)
       if (decoded.role === 'Instructor') {
         return NextResponse.redirect(
           new URL('/dashboard/expertdashboard', request.url)
@@ -41,11 +42,10 @@ export function middleware(request) {
   //   return NextResponse.redirect(new URL('/home', request.url))
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: [
     '/dashboard/expertdashboard/:path*',
-    '/',
+
     '/login',
     '/signup',
     '/dashboard/studentdashboard/:path*',

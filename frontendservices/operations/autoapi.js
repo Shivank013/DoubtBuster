@@ -2,7 +2,7 @@ import { endpoints } from '../api'
 import { setLoading, setToken } from '@/frontendservices/slices/authSlice'
 import { apiConnector } from '../apiconnector'
 import { useRouter } from 'next/navigation'
-import { setUser } from "@/frontendservices/slices/profileSlice"
+import { setUser } from '@/frontendservices/slices/profileSlice'
 
 import { toast } from 'react-toastify'
 
@@ -60,6 +60,7 @@ export function signup(
       //   throw new Error(response.data.message)
       // }
 
+      toast.error('account create successfull')
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/studentlogin')
     } catch (err) {
@@ -112,6 +113,11 @@ export function signupi(
       })
       console.log(response)
       console.log('after sign up')
+      // if (!response.data.success) {
+      //   throw new Error(response.data.message)
+      // }
+      toast.error('account create successfull')
+
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/expertlogin')
     } catch (err) {
@@ -135,13 +141,17 @@ export function login(email, password, router) {
         throw new Error(response.data.message)
       }
       dispatch(setToken(response.data.token))
-      localStorage.setItem('token', JSON.stringify(response.data.token));
-      const userDetail=JSON.stringify(response.data.user);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-     const detail= JSON.parse(userDetail);
-     console.log(detail);
 
-      dispatch(setUser(detail))    
+      // const userImage = response.data?.user?.image ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
+      // dispatch(setUser({ ...response.data.user }))
+      // console.log(response.data + 'ddeep')
+      localStorage.setItem('token', JSON.stringify(response.data.token))
+      const userDetail = JSON.stringify(response.data.user)
+      const detail = JSON.parse(userDetail)
+      // console.log(detail);
+      // console.log("sorry but response is "+ JSON.stringify(response.data.user));
+      dispatch(setUser(detail))
+      toast.success('login in succesfully')
       router.push(`/dashboard/studentdashboard/${response.data.user._id}`)
     } catch (error) {
       console.log('LOGIN API ERROR............', error)

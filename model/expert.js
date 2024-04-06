@@ -45,6 +45,7 @@ const expertSchema = new mongoose.Schema(
     ratingAndReviews: [
       {
         feedback: String,
+        Name: String,
         rating: {
           type: Number,
           min: 1,

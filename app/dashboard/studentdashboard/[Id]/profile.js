@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useSelector } from 'react-redux';
-import { useDispatch } from "react-redux";
-
+import Image from 'next/image'
+import bgImage from '../../../../public/images/stdbg.png'
 const UserDetails = () => {
   // const [userData, setUserData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -47,7 +46,7 @@ const UserDetails = () => {
           <img
             src={user.image}
             alt="User"
-            style={{ width: '100px', height: '100px' }}
+            className="w-32 h-32 rounded-full"
           />
           <div>
             <strong>Block:</strong>
@@ -75,5 +74,4 @@ const UserDetails = () => {
     </div>
   )
 }
-
 export default UserDetails

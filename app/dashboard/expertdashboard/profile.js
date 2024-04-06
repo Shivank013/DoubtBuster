@@ -12,6 +12,21 @@ const UserDetails = () => {
   console.log(user);
 
 
+  const DocumentUpload = () => {
+    const [selectedFile, setSelectedFile] = useState(null)
+  }
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0])
+  }
+
+  const handleUpload = () => {
+    // Perform upload logic here (e.g., send file to server)
+    if (selectedFile) {
+      console.log('Uploading file:', selectedFile)
+      // You can implement upload functionality using Axios or Fetch API
+    }
+  }
+
   return (
     <div>
     <h1>User Details</h1>

@@ -23,6 +23,7 @@ export default function Ide() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [loading, setloader] = useState(false);
+  const [error, setError] = useState(false);
   
   useEffect(() => {
     if (!editorRef.current) {
@@ -139,15 +140,23 @@ export default function Ide() {
         console.log(resultJSON); 
 
         if(resultJSON.exception){
-          if(resultJSON.exception === null)
-          setOutput(resultJSON.stdout); 
-          else
-          setOutput(resultJSON.exception); 
+          if(resultJSON.exception === null){
+            setError(false);
+            setOutput(resultJSON.stdout); 
+          }
+          else{
+            setError(true);
+            setOutput(resultJSON.exception); 
+          }
         }else {
-          if(resultJSON.stderr === null)
-          setOutput(resultJSON.stdout); 
-          else
-          setOutput(resultJSON.stderr); 
+          if(resultJSON.stderr === null){
+            setError(false);
+            setOutput(resultJSON.stdout); 
+          }
+          else {
+            setError(true);
+            setOutput(resultJSON.stderr); 
+          }
         }
 
       } catch (error) {
@@ -238,7 +247,7 @@ export default function Ide() {
           <textarea value={input} onChange={handelInput} className="p-1 text-base text-white w-[19vw] bg-black mx-2 mb-2 border-2 rounded-lg h-full"></textarea>
 
           <label className="text-white font-semibold text-xl ml-2">Output:</label>
-          <textarea value={output} readOnly onChange={handelOutput} className="p-1 text-base text-white w-[19vw] bg-black mx-2 mb-10 border-2 rounded-lg h-full"></textarea>
+          <textarea value={output} readOnly onChange={handelOutput} className={`p-1 text-base ${error ? 'text-red-500' : 'text-white'} w-[19vw] bg-black mx-2 mb-10 border-2 rounded-lg h-full`} ></textarea>
         </div>
       </div>
 

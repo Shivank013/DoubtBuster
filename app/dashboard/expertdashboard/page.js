@@ -11,17 +11,17 @@ import Addskill from './addskills'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import {logout} from '@/frontendservices/operations/autoapi'
-import { toast } from 'react-toastify'
-
+import { useSelector } from 'react-redux'
+import { toast, ToastContainer } from 'react-toastify'
 function page() {
-  const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.auth)
   const [expanded, setExpanded] = useState(true)
   const [tab, setTab] = useState('profile')
   const router = useRouter()
   const handelChange = async (choice) => {
     setTab(choice)
   }
+  console.log(loading, 'logding dikhao')
   const handleLogout = async () => {
     try {
       // Make a request to the logout route
@@ -44,9 +44,9 @@ function page() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen ml-[17%]">
       <div
-        className={`bg-[#2563eb] border-r text-white h-full  ${
+        className={`bg-[#2563eb] border-r  fixed top-0 left-0 text-white h-full  ${
           expanded ? 'w-1/6' : 'w-20'
         }`}
       >
