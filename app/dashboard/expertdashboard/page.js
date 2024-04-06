@@ -9,15 +9,18 @@ import Reviews from './reviews'
 import Profile from './profile'
 import Addskill from './addskills'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+
+import {logout} from '@/frontendservices/operations/autoapi'
 function page() {
   const { loading } = useSelector((state) => state.auth)
   const [expanded, setExpanded] = useState(true)
   const [tab, setTab] = useState('profile')
   const router = useRouter()
+  const dispatch=useDispatch();
   const handelChange = async (choice) => {
     setTab(choice)
   }

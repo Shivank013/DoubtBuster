@@ -1,32 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
+import { useSelector } from 'react-redux';
 import bgImage from '../../../../public/images/stdbg.png'
 const UserDetails = () => {
-  // const [userData, setUserData] = useState(null)
   const [loading, setLoading] = useState(true)
   const {user} = useSelector( (state) => state.profile );
   console.log(user);
   console.log(typeof user);
-  // let userData=JSON.parse(user);
-  // console.log(userData);
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const res = await axios.get(
-  //         'http://localhost:3000/api/studentdash/getdata'
-  //       )
-  //       setUserData(res.data.users) ;
-  //       setLoading(false)
-  //     } catch (error) {
-  //       console.error('Error fetching user data:', error)
-  //       setLoading(false)
-  //     }
 
-  //   }
-
-  //   fetchUserData()
-  // }, [])
 
   return (
     <div>

@@ -24,18 +24,14 @@ const page = () => {
     const token = localStorage.getItem('token');
     // let flag=  localStorage.getItem('flag');
   if (!token ) {
-    
-    // console.log(tokken);
-    // console.log(token);
+ 
     const url=  `/call/${tokken}`;
     localStorage.setItem('redirectPath', url);
     const ans=localStorage.getItem('redirectPath');
     console.log(ans);
-    // const {  email } = decodedToken;
-    // console.log("oh yes");
+  
     route.push("/login");
-    // flag=7;
-    // localStorage.setItem('flag', true);
+    
  
   }
 
