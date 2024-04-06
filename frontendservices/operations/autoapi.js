@@ -185,8 +185,11 @@ export function logini(email, password, router) {
  
        dispatch(setUser(detail))    
     //  const detail= JSON.parse(userDetail);
-
-      const ans=localStorage.getItem('redirectPath');
+    let ans=null;
+    if(typeof window !== 'undefined'){
+       ans=localStorage.getItem('redirectPath');
+      }
+   
       console.log(ans);
       if(ans){
         router.push(ans);

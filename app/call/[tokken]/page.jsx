@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect,useMemo } from "react";
 import { useParams } from "next/navigation";
 import jwt from 'jsonwebtoken';
 import { useSocket } from "../../../context/SocketProvider";
@@ -18,26 +18,53 @@ const page = () => {
   const {tokken}=useParams();
   // const url=useParams();
   const socket = useSocket();
-  const route=useRouter();
+  // const route=useRouter();
   // let flag = 5
-  useEffect(()=>{
-    const token = localStorage.getItem('token');
-    // let flag=  localStorage.getItem('flag');
-  if (!token ) {
+  // useEffect(()=>{
+  //   console.log("first");
+  //   const token = localStorage.getItem('user');
+  //   console.log("it is tokken "+ token);
  
-    const url=  `/call/${tokken}`;
-    localStorage.setItem('redirectPath', url);
-    const ans=localStorage.getItem('redirectPath');
-    console.log(ans);
+  // if (!token ) {
+  //   console.log("first");
+  //   const url=  `/call/${tokken}`;
+  //   localStorage.setItem('redirectPath', url);
+  //   // const ans=localStorage.getItem('redirectPath');
+  //   // console.log(ans);
   
-    route.push("/login");
-    
- 
-  }
+  //   route.push("/login");
+  //   console.log("first");
+     
+  // }
+
+  // },[])
+  let token = null;
 
 
+  useEffect(() => {
+    console.log("first");
+    // const token = localStorage.getItem('token');
+    if (typeof window !== 'undefined') {
 
-  },[])
+      token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
+      
+    }
+    console.log("it is token " + token);
+
+    if (!token ) {
+      console.log("first");
+      const url = `/call/${tokken}`;
+      if(typeof window !== 'undefined'){
+      localStorage.setItem('redirectPath', url);
+      }
+      // const ans=localStorage.getItem('redirectPath');
+      // console.log(ans);
+
+      router.push("/login");
+      console.log("first");
+
+    }
+  }, []);
 
   // console.log(tokken);
   const handleSubmitForm = useCallback(
@@ -53,14 +80,14 @@ const page = () => {
       const { email, room } = data;
       console.log(email,room);
       router.push("/call/room");
-      let rem= localStorage.getItem('redirectPath');
+      let rem=null;
+      if (typeof window !== 'undefined') {
+      rem= localStorage.getItem('redirectPath');
+      }
       if(rem){
       localStorage.removeItem('redirectPath'); 
       }
-      let pqr= localStorage.getItem('flag');
-      if(pqr){
-      localStorage.removeItem('flag'); 
-      }
+     
     },
     []
   );
