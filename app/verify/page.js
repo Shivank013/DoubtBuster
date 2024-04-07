@@ -73,17 +73,17 @@ function VerifyEmail() {
   }
 
   return (
-    <div className="min-h-[calc(106vh-3.5rem)] grid place-items-center  bg-black">
+    <div className="min-h-[calc(106vh-3.5rem)] grid place-items-center bg-gray-950">
       {loading ? (
         <div className="spinner"></div>
       ) : (
         <div>
           <div className="max-w-[500px] p-4 lg:p-8">
-            <h1 className="  text-gray-100 font-semibold text-[1.875rem] leading-[2.375rem]">
+            <h1 className="   text-slate-200 font-semibold text-[1.875rem] leading-[2.375rem]">
               {' '}
               Verify Email{' '}
             </h1>
-            <p className="text-[1.125rem] leading-[1.625rem] my-4  text-gray-100">
+            <p className="text-[1.125rem] leading-[1.625rem] my-4 text-slate-200 ">
               {' '}
               A verification code has been sent to you. Enter the code below{' '}
             </p>
@@ -100,7 +100,7 @@ function VerifyEmail() {
                     style={{
                       boxShadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.18)',
                     }}
-                    className="w-[48px] lg:w-[60px] border-0   bg-slate-950 rounded-[0.5rem]  text-gray-100 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
+                    className="w-[48px] lg:w-[60px] border-0    bg-cyan-200 rounded-[0.5rem]     text-gray-900 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
                   />
                 )}
                 containerStyle={{
@@ -110,7 +110,7 @@ function VerifyEmail() {
               />
               <button
                 type="submit"
-                className="w-full   bg-yellow-300 py-[12px] px-[12px] rounded-[8px] mt-6 font-medium text-richblack-900"
+                className="w-full    bg-cyan-400 py-[12px] px-[12px] rounded-[8px] mt-6 font-medium  text-slate-900"
               >
                 {' '}
                 Verify Email{' '}
@@ -119,7 +119,7 @@ function VerifyEmail() {
 
             <div className="mt-6 flex items-center justify-between">
               <Link href="/signup">
-                <p className="  text-gray-100 flex items-center gap-x-2">
+                <p className="  text-slate-200 flex items-center gap-x-2">
                   {' '}
                   <BiArrowBack /> Back To Signup{' '}
                 </p>

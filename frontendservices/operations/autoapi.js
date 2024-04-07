@@ -60,7 +60,7 @@ export function signup(
       //   throw new Error(response.data.message)
       // }
 
-      toast.error('account create successfull')
+      toast.success('account create successfull')
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/studentlogin')
     } catch (err) {
@@ -116,7 +116,7 @@ export function signupi(
       // if (!response.data.success) {
       //   throw new Error(response.data.message)
       // }
-      toast.error('account create successfull')
+      toast.success('account create successfull')
 
       console.log('acocoutn create  ho gya to jaoo na login pe')
       router.push('/login/expertlogin')

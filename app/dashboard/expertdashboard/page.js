@@ -50,7 +50,7 @@ function page() {
   return (
     <div className="flex h-screen ml-[17%]">
       <div
-        className={`bg-[#2563eb] border-r  fixed top-0 left-0 text-white h-full  ${
+        className={` bg-gradient-to-b from-slate-900 to-gray-700 border-r  fixed top-0 left-0 text-white h-full  ${
           expanded ? 'w-1/6' : 'w-20'
         }`}
       >
@@ -79,7 +79,7 @@ function page() {
               </div>
               <button
                 onClick={() => handelChange('profile')}
-                className={`overflow-hidden transition-all ${
+                className={`overflow-hidden transition-all   font-sans ${
                   expanded ? 'w-52 text-start ml-4' : 'w-0'
                 }`}
               >
