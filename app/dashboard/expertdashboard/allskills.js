@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ColorRing } from 'react-loader-spinner'
 import Image from 'next/image'
-import image from '../../../public/images/skills.jpg'
+import image from '../../../public/images/skill1.jpg'
 
 const SkillComponent = () => {
   const [skills, setSkills] = useState([])
@@ -36,7 +36,7 @@ const SkillComponent = () => {
       <h2 className="font-semibold text-[1.5rem] mt-5 text-center">
         Expert Skills
       </h2>
-      <div className="flex w-full mt-[4rem] gap-x-5 ">
+      <div className='flex w-full mt-[4rem] gap-x-5 '>
         {isLoading ? (
           <div className="flex justify-center items-center h-[100vh]">
             {' '}
@@ -62,10 +62,11 @@ const SkillComponent = () => {
             ))}
           </ul>
         )}
-        <div className="w-[50%] flex items-center mr-3 justify-center">
-          <Image src={image} className="" height={700} width={700}></Image>
+        <div className='w-[50%] flex items-center mr-3 justify-center'>
+          <Image src={image} className='' height={700} width={700}></Image>
         </div>
       </div>
+      
     </div>
   )
 }
