@@ -37,7 +37,7 @@ const Board = ({ color, size, eraserstatus }) => {
             canvas.removeEventListener('mousedown', handleMouseDown);
             canvas.removeEventListener('mouseup', handleMouseUp);
         };
-    }, [boarddata]);
+    }, [boarddata,handleMouseDown,handleMouseMove,handleMouseUp,socket]);
 
     useEffect(() => {
         const ctx = ctxRef.current;
@@ -103,7 +103,7 @@ const Board = ({ color, size, eraserstatus }) => {
         return () => {
             socket.off('canvas-data', receiveCanvasData);
         };
-    }, [socket]);
+    }, [socket, setBoarddata]);
 
     useEffect(() => {
         if (drawingData) {

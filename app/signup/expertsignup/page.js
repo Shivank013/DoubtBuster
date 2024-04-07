@@ -97,7 +97,7 @@ const Signup = () => {
       ) : (
         <div className="flex h-screen w-screen">
           <div className="mt-[8rem] ml-[6rem]">
-            <Image src={image} height={650} width={650}></Image>
+            <Image alt='' src={image} height={650} width={650}></Image>
           </div>
           <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[83%]">
             <h2 className="text-[2rem]">Signup</h2>

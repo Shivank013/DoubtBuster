@@ -6,10 +6,10 @@ import { SocketContext } from "../../context/SocketProvider";
 import { useRouter } from 'next/navigation'
 import { useContext } from "react";
 import { useSelector } from 'react-redux';
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import React, { useRef, } from 'react'
 
-const page = () => {
+const Faltu = () => {
     const dispatch = useDispatch();
     const {roomid} = useSelector((state) => state.room);
     const {user} = useSelector((state) => state.profile);
@@ -80,4 +80,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Faltu;

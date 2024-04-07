@@ -63,7 +63,7 @@ const SkillComponent = () => {
           </ul>
         )}
         <div className='w-[50%] flex items-center mr-3 justify-center'>
-          <Image src={image} className='' height={700} width={700}></Image>
+          <Image alt='' src={image} className='' height={700} width={700}></Image>
         </div>
       </div>
       

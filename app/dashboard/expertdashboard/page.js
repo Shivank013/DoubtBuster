@@ -16,7 +16,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import {logout} from '@/frontendservices/operations/autoapi'
 
-function page() {
+function Page() {
   const { loading } = useSelector((state) => state.auth)
   const [expanded, setExpanded] = useState(true)
   const [tab, setTab] = useState('profile')
@@ -56,6 +56,7 @@ function page() {
       >
         <div className="flex items-center pt-6 pl-2">
           <Image
+            alt=''
             src={LOGO}
             className={`overflow-hidden transition-all ${
               expanded ? 'w-36 pl-2 mr-4' : 'w-0 mr-0'
@@ -169,4 +170,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

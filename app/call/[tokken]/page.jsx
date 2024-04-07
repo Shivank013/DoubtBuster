@@ -1,34 +1,33 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import jwt from 'jsonwebtoken';
 import { useSocket } from "../../../context/SocketProvider";
 import { SocketContext } from "../../../context/SocketProvider";
 import { useRouter } from 'next/navigation'
 import { useContext } from "react";
-import React from 'react'
 
 const Page = () => {
     const {email, setEmail, room, setRoom} = useContext(SocketContext);
     const router = useRouter();
     const {tokken}=useParams();
     const socket = useSocket();
-    let token = null;
+    const tokenRef = useRef(null);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
+            tokenRef.current = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
         }
 
-        if (!token) {
+        if (!tokenRef.current) {
             const url = `/call/${tokken}`;
             if (typeof window !== 'undefined') {
                 localStorage.setItem('redirectPath', url);
             }
             router.push("/login");
         }
-    }, []);
+    }, [tokken, router]);
 
     const handleSubmitForm = useCallback(
         (e) => {
@@ -49,7 +48,7 @@ const Page = () => {
                 }
             }
         },
-        []
+        [router]
     );
 
     const handleRoomFull = useCallback(
@@ -73,7 +72,7 @@ const Page = () => {
                 console.error('Error decoding token:', error);
             }
         }
-    }, [tokken]);
+    }, [tokken, setEmail, setRoom]);
 
     useEffect(() => {
         socket.on("room:join", handleJoinRoom);
@@ -82,7 +81,7 @@ const Page = () => {
             socket.off("room:join", handleJoinRoom);
             socket.off("room:full" , handleRoomFull);
         };
-    }, [socket, handleJoinRoom]);
+    }, [socket, handleJoinRoom, handleRoomFull]);
 
     return (
         <div>

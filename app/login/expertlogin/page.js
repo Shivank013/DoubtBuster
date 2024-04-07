@@ -55,7 +55,7 @@ function LoginForm() {
         <div className="lg:flex h-screen w-screen">
           <nav className="flex z-50 justify-between items-center h-[3rem] fixed w-[98.9%] top-0 bg-white shadow-md">
             <div>
-              <Image src={logo} className="ml-16 w-[14rem]" />
+              <Image alt='' src={logo} className="ml-16 w-[14rem]" />
             </div>
             <div className="mr-16 font-sans flex justify-center items-center">
               <a href="" className="cursor-pointer mr-10 text-l font-semibold">
@@ -75,7 +75,7 @@ function LoginForm() {
             </div>
           </nav>
           <div className="mt-[5rem] ml-[5rem]">
-            <Image src={image1} className="lg:h-[90%] w-[90%]"></Image>
+            <Image alt='' src={image1} className="lg:h-[90%] w-[90%]"></Image>
           </div>
           <form
             onSubmit={handleOnSubmit}

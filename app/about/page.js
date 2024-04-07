@@ -10,7 +10,7 @@ const page = () => {
     <div>
         <nav className="flex z-50 justify-between items-center h-[4rem] fixed w-[98.9%] top-0 shadow-md bg-white">
           <div>
-            <Image src={logo} className="ml-16 w-[14rem]" />
+            <Image alt='' src={logo} className="ml-16 w-[14rem]" />
           </div>
           <div className="mr-16 font-sans flex justify-center items-center">
             <a className="cursor-pointer mr-10 text-l font-semibold rounded-full text-white py-2 px-3 bg-purple-500">About</a>
@@ -30,14 +30,14 @@ const page = () => {
 
         <div className='w-10/12 m-auto'>
             <h1 className='mt-[7rem] text-center font-sans text-[40px] font-bold text-[#333843] pb-[36px] leading-[150%]'>About Us</h1>
-            <Image src={img} className='border rounded-[2rem] w-full h-[33rem] mt-5'></Image>
+            <Image src={img} alt='' className='border rounded-[2rem] w-full h-[33rem] mt-5'></Image>
             <p className='text-center mt-[7rem] font-sans text-[32px] font-semibold leading-[150%] text-[#333843]'><span className='text-purple-500'>Our</span> Mission</p>
             <p className='w-8/12 text-center m-auto text-[16px] mt-[3rem] text-[#333843] pb-[12px] leading-[180%]'>
             Our mission is to revolutionize the world of invoice processing by providing innovative, efficient, and secure solutions that streamline and automate the exchange of invoice data. 
             We are dedicated to simplifying operations for companies of all sizes and industries, reducing manual processes, and eliminating communication overheads.
             </p>
             <div className='mt-[7rem] flex gap-x-8'>
-                <Image src={pic} className='rounded-[1.6rem] border'></Image>
+                <Image alt='' src={pic} className='rounded-[1.6rem] border'></Image>
                 <div>
                 <p className='mt-[5rem] font-sans text-[32px] font-semibold leading-[150%] text-[#333843]'><span className='text-purple-500'>Our</span> Vision</p>
                 <p className='w-9/12 text-[16px] mt-[3rem] text-[#333843] pb-[12px] leading-[180%]'>

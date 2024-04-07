@@ -34,7 +34,7 @@ export default function Home() {
     <div className="w-full">
       <nav className="flex z-50 bg-white justify-between items-center h-[3rem] fixed w-full">
         <div>
-          <Image src={logo} className="ml-16 w-[14rem]" />
+          <Image alt='' src={logo} className="ml-16 w-[14rem]" />
         </div>
         <div className="mr-16 font-sans flex justify-center items-center">
           <Link href="/about" className="cursor-pointer mr-10 text-l font-semibold">About</Link>
@@ -74,6 +74,7 @@ export default function Home() {
           </p>
         </div>
         <Image
+          alt=''
           src={client}
           className="absolute z-10 w-[20rem] mt-[20%] ml-[30%]"
         />
@@ -194,16 +195,16 @@ export default function Home() {
         </h1>
         <div className=" text-7xl text-white font-bold font-sans">Journey</div>
         <p className=" text-2xl px-40 font-semibold font-sans text-white pt-8 pb-2 ">
-          Welcome to our platform! We're excited to help you on your learningv
+          Welcome to our platform! Were excited to help you on your learningv
           journey.
         </p>
         <p className=" text-2xl px-40 font-semibold font-sans text-white pb-2">
           {' '}
-          Whether you're a student looking to clarify doubts or an expert ready
+          Whether you are a student looking to clarify doubts or an expert ready
           to share your knowledge,
         </p>
         <p className=" text-2xl px-40 font-semibold font-sans text-white ">
-          we're here to support you every step of the way.
+          we are here to support you every step of the way.
         </p>
         <div className=" flex gap-10 justify-center items-center mt-14">
           <button className=" bg-white text-purple-500 py-2 px-4 rounded-full text-xl font-bold ">
@@ -244,7 +245,7 @@ export default function Home() {
               </h3>
               <p className="text-gray-700">
                 Answer: To get started, simply sign up for an account on our
-                website. Once you're logged in, you can start asking your doubts
+                website. Once you are logged in, you can start asking your doubts
                 and get expert guidance from our community of experts.
               </p>
             </div>

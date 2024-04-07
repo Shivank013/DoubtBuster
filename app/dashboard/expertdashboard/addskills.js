@@ -57,7 +57,7 @@ const TagsPage = () => {
   return (
     <div className="">
       <div className="relative">
-        <Image className="absolute top-[7rem] h-[30rem]" src={image3}></Image>
+        <Image alt='' className="absolute top-[7rem] h-[30rem]" src={image3}></Image>
       </div>
       <div className="flex w-[100%] relative justify-center items-center">
         <div className="w-[50%] flex flex-col gap-5 mt-[8rem]">
@@ -75,8 +75,9 @@ const TagsPage = () => {
           accurate and reliable assistance in your designated area of expertise.
           </p>
         </div>
-        <Image className="w-[50%]" src={image1}></Image>
+        <Image alt='' className="w-[50%]" src={image1}></Image>
         <Image
+          alt=''
           className="absolute top-[14rem] right-[7.5rem]"
           src={image2}
         ></Image>
@@ -117,7 +118,7 @@ const TagsPage = () => {
       )}
 
       <div className="relative">
-        <Image className="absolute top-[-7rem] -z-10" src={image4}></Image>
+        <Image alt='' className="absolute top-[-7rem] -z-10" src={image4}></Image>
       </div>
       <div className="flex flex-col">
         <h1 className="mt-[6.5rem] text-center text-[2rem] text-[#000000c6]">
@@ -125,7 +126,7 @@ const TagsPage = () => {
         </h1>
         <div className="flex gap-3 mt-[3rem] ml-5">
           <div className="flex flex-col justify-center items-center">
-            <Image src={img1}></Image>
+            <Image alt='' src={img1}></Image>
             <h1 className="mt-5 font-extrabold text-[1.2rem] text-[#444444]">
               Most Updated Questions
             </h1>
@@ -135,7 +136,7 @@ const TagsPage = () => {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <Image className="text-center" src={img2}></Image>
+            <Image alt='' className="text-center" src={img2}></Image>
             <h1 className="font-extrabold mt-5 text-[1.2rem] text-[#444444]">
               Most Updated Questions
             </h1>
@@ -145,7 +146,7 @@ const TagsPage = () => {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <Image className="" src={img3}></Image>
+            <Image alt='' className="" src={img3}></Image>
             <h1 className="mt-5 font-extrabold text-[1.2rem] text-[#444444]">
               Most Updated Questions
             </h1>
@@ -155,7 +156,7 @@ const TagsPage = () => {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <Image className="" src={img4}></Image>
+            <Image alt='' className="" src={img4}></Image>
             <h1 className="mt-5 font-extrabold text-[1.2rem] text-[#444444]">
               Most Updated Questions
             </h1>
