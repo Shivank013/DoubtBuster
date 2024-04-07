@@ -13,6 +13,7 @@ import { useContext } from "react";
 
 import otpGenerator from 'otp-generator'
 const {ask} =askQuestion;
+
 export function Doubt(emails,skill,doubt,route) {
 
     console.log(emails);
@@ -20,7 +21,7 @@ export function Doubt(emails,skill,doubt,route) {
     // const {email, setEmail, room, setRoom} = useContext(SocketContext);
     return async (dispatch) => {
         try{
-           
+
         console.log("it is output :"+emails,skill,doubt);
         const response = await apiConnector('POST', ask, {emails,skill,doubt }) // Pass email as an object
         console.log(' API RESPONSE............', response.data.roomid);
@@ -32,7 +33,6 @@ export function Doubt(emails,skill,doubt,route) {
         dispatch(setRoom(response.data.roomid));
         // setEmail(emails);
         // setRoom(response.data.roomid);
-
         route.push('/call');
     }
     catch(err){

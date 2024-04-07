@@ -157,10 +157,14 @@ const RoomPage = () => {
       setStart(false);
 
       socket.emit("room:call:end", { roomCreator, room: room });
-      router.push("/");
       setcallend(true);
+      change();
     }
   }, [callend, myStream, roomCreator, remoteSocketId, socket, router, room]);
+
+  const change = async() => {
+      router.push("/callend");
+  }
 
   const handelVedio = useCallback(async () => {
     console.log("vedio status: ", !vedio);
