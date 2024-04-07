@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
@@ -27,6 +29,7 @@ const TagsPage = () => {
           'http://localhost:3000/api/expertdash/gettagdata'
         )
         setTags(response.data.tags)
+        console.log(response.data.tags);
         setLoading(false)
       } catch (error) {
         console.error('Error fetching tags:', error)
@@ -59,13 +62,17 @@ const TagsPage = () => {
       <div className="flex w-[100%] relative justify-center items-center">
         <div className="w-[50%] flex flex-col gap-5 mt-[8rem]">
           <p className="p-5 text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+          Your ability to effectively address the inquiries and uncertainties of 
+          students within your area of expertise is crucial to providing them with 
+          the support and guidance they need. To ensure that you possess the necessary
+          proficiency and expertise, we require you to undergo a comprehensive 
+          proficiency test. This test serves as a means to formally integrate the
+          specific skills into your profile, indicating to students that you have
+          met the standards of competence and reliability necessary to assist them
+          effectively. By completing this test, you not only demonstrate your
+          commitment to maintaining a high level of quality in your interactions
+          with students but also ensure that you are equipped to provide 
+          accurate and reliable assistance in your designated area of expertise.
           </p>
         </div>
         <Image className="w-[50%]" src={image1}></Image>
@@ -92,19 +99,17 @@ const TagsPage = () => {
         <ul className="mt-8 flex gap-x-2 gap-y-8 flex-wrap">
           {tags.map((tag, index) => (
             <li
-              className="border rounded bg-white shadow-lg p-4 flex flex-col gap-y-8 ml-7 h-[14rem] w-[24rem]"
+              className="border rounded bg-white shadow-xl p-4 flex flex-col gap-y-8 ml-7 h-[14rem] mb-2 w-[22rem]"
               key={index}
             >
-              <p className="border bg-[#b8acac3e] rounded-2xl font-normal text-[1.2rem] pl-3">
+              <p className="border bg-[#b8acac3e] rounded-2xl font-normal text-xl pl-3">
                 {tag}
               </p>
               <p className="text-[14px] text-[#666666]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
-                lectus vitae odio tincidunt malesuada.
+              Before you can add this skill to your profile, we ask that experts undergo a proficiency test to ensure accuracy and competence.
               </p>
-              {/* <button onClick={() => handleTagClick(tag)}>{tag}</button> */}
-              <button className="uppercase" onClick={() => handleTagClick(tag)}>
-                View All Questions
+              <button className="uppercase bg-red-500 mx-16 text-white font-semibold rounded-lg py-1" onClick={() => handleTagClick(tag)}>
+                Start Test
               </button>
             </li>
           ))}

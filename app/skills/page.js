@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { getalltags } from '@/frontendservices/operations/tags'
 // const skills=

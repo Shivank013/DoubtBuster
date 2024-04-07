@@ -1,5 +1,6 @@
 // pages/components/Sidebar.js
 'use client'
+
 import React, { useState } from 'react'
 import { LayoutDashboard, Menu, UserCircle } from 'lucide-react'
 import LOGO from '../../../public/images/LOGO.png'
@@ -13,8 +14,8 @@ import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-
 import {logout} from '@/frontendservices/operations/autoapi'
+
 function page() {
   const { loading } = useSelector((state) => state.auth)
   const [expanded, setExpanded] = useState(true)

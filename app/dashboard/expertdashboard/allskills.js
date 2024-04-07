@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ColorRing } from 'react-loader-spinner'
@@ -29,7 +31,7 @@ const SkillComponent = () => {
 
   return (
     <div className="w-full overflow-hidden">
-      <h2 className="font-semibold text-[1.5rem] mt-5 text-center">
+      <h2 className="font-bold text-[1.5rem] mt-5 text-center">
         Expert Skills
       </h2>
       {isLoading ? (
