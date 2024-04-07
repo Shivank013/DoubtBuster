@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ColorRing } from 'react-loader-spinner'
+import Image from 'next/image'
+import image from '../../../public/images/skills.jpg'
 
 const SkillComponent = () => {
   const [skills, setSkills] = useState([])
@@ -28,35 +30,40 @@ const SkillComponent = () => {
   }, [])
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full mb-10">
       <h2 className="font-semibold text-[1.5rem] mt-5 text-center">
         Expert Skills
       </h2>
-      {isLoading ? (
-        <div className="flex justify-center  items-center h-[100vh]">
-          {' '}
-          <ColorRing
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="color-ring-loading"
-            wrapperStyle={{}}
-            wrapperClass="color-ring-wrapper"
-            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-          />
-        </div> // Display loading message while fetching data
-      ) : (
-        <ul className="flex flex-wrap mt-[4rem] gap-x-[5rem] gap-y-10 w-full justify-evenly">
-          {skills.map((skill, index) => (
-            <li
-              className="border rounded-xl shadow text-gray-600 w-[25%] p-4 text-center bg-[#d8d0d035] text-[1.1rem] "
-              key={index}
-            >
-              {skill}
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="flex w-full mt-[4rem] gap-x-5 ">
+        {isLoading ? (
+          <div className="flex justify-center items-center h-[100vh]">
+            {' '}
+            <ColorRing
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+            />
+          </div> // Display loading message while fetching data
+        ) : (
+          <ul className="flex flex-wrap justify-evenly gap-x-10 gap-y-5 w-[50%]">
+            {skills.map((skill, index) => (
+              <li
+                className="border mt-8 mb-8 uppercase rounded-xl shadow-black shadow-lg text-gray-600 w-[40%] p-4 text-center bg-[#d8d0d035] text-[1.1rem] "
+                key={index}
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="w-[50%] flex items-center mr-3 justify-center">
+          <Image src={image} className="" height={700} width={700}></Image>
+        </div>
+      </div>
     </div>
   )
 }
