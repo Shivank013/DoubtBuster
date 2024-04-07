@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect,useMemo } from "react";
 import { useParams } from "next/navigation";
 import jwt from 'jsonwebtoken';
 import { useSocket } from "../../../context/SocketProvider";
@@ -9,13 +9,64 @@ import { useRouter } from 'next/navigation'
 import { useContext } from "react";
 import React from 'react'
 
+
 const page = () => {
+
 
   const {email, setEmail, room, setRoom} = useContext(SocketContext);
   const router = useRouter();
-  const socket = useSocket();
   const {tokken}=useParams();
-  console.log(tokken);
+  // const url=useParams();
+  const socket = useSocket();
+  // const route=useRouter();
+  // let flag = 5
+  // useEffect(()=>{
+  //   console.log("first");
+  //   const token = localStorage.getItem('user');
+  //   console.log("it is tokken "+ token);
+ 
+  // if (!token ) {
+  //   console.log("first");
+  //   const url=  `/call/${tokken}`;
+  //   localStorage.setItem('redirectPath', url);
+  //   // const ans=localStorage.getItem('redirectPath');
+  //   // console.log(ans);
+  
+  //   route.push("/login");
+  //   console.log("first");
+     
+  // }
+
+  // },[])
+  let token = null;
+
+
+  useEffect(() => {
+    console.log("first");
+    // const token = localStorage.getItem('token');
+    if (typeof window !== 'undefined') {
+
+      token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
+      
+    }
+    console.log("it is token " + token);
+
+    if (!token ) {
+      console.log("first");
+      const url = `/call/${tokken}`;
+      if(typeof window !== 'undefined'){
+      localStorage.setItem('redirectPath', url);
+      }
+      // const ans=localStorage.getItem('redirectPath');
+      // console.log(ans);
+
+      router.push("/login");
+      console.log("first");
+
+    }
+  }, []);
+
+  // console.log(tokken);
   const handleSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
@@ -29,6 +80,14 @@ const page = () => {
       const { email, room } = data;
       console.log(email,room);
       router.push("/call/room");
+      let rem=null;
+      if (typeof window !== 'undefined') {
+      rem= localStorage.getItem('redirectPath');
+      }
+      if(rem){
+      localStorage.removeItem('redirectPath'); 
+      }
+     
     },
     []
   );
@@ -58,7 +117,7 @@ const page = () => {
           console.log(roomid);
           console.log(email);
         }
-        console.log("not any ouput tokken "+token)
+        // console.log("not any ouput tokken "+tokken)
       } catch (error) {
         console.error('Error decoding token:', error);
       }
@@ -80,8 +139,9 @@ const page = () => {
   return (
     <div>
       <h1>Lobby</h1>
-      <form onSubmit={handleSubmitForm}>
-        {/* <label htmlFor="email">Email ID</label>
+      <form onSubmit={handleSubmitForm}> 
+     
+         <label htmlFor="email">Email ID</label>
         <input
           type="email"
           id="email"
@@ -96,7 +156,7 @@ const page = () => {
           value={room}
           // onChange={(e) => setRoom(e.target.value)}
         />
-        <br /> */}
+        <br />
         <button type="submit">Join the meeting</button>
        
         
