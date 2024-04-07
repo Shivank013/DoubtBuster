@@ -13,6 +13,7 @@ const page = () => {
     const dispatch = useDispatch();
   const {roomid} = useSelector( (state) => state.room );
   const {user} = useSelector( (state) => state.profile );
+  // const useremail=user.email;
 
   const {email, setEmail, room, setRoom} = useContext(SocketContext);
   const router = useRouter();

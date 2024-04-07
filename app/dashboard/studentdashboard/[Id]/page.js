@@ -6,11 +6,14 @@ import LOGO from '../../../../public/images/LOGO.png'
 import Image from 'next/image'
 import Ask from './ask'
 import Reviews from './reviews'
+import { useRouter } from 'next/navigation';
 import Profile from './profile'
 import { useDispatch } from 'react-redux'
 import axios from 'axios' // Import axios for making HTTP requests
+import {logout} from '@/frontendservices/operations/autoapi'
+import { toast } from 'react-toastify'
 
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 
 function Sidebar({ params }) {
   const [expanded, setExpanded] = useState(true)
@@ -27,8 +30,9 @@ function Sidebar({ params }) {
       const response = await axios.get('/api/auth/user/logout')
       console.log(response)
       if (response.data.success) {
+        dispatch(logout(router));
         router.push('/')
-      
+        toast.success("Logged Out")
         console.log('Logout successful')
       }
     } catch (error) {
@@ -121,14 +125,17 @@ function Sidebar({ params }) {
               <div className="">
                 <LayoutDashboard size={20} />
               </div>
-              <button
-                onClick={handleLogout} // Call handleLogout function on button click
+              {/* <button
+                onClick={dispatch(logout(router))} // Call handleLogout function on button click
                 className={`overflow-hidden ${
                   expanded ? 'w-52 text-start ml-4' : 'w-0'
                 }`}
               >
                 Logout
-              </button>
+              </button> */}
+              {/* <button onClick={()=>dispatch(logout(router))}>Logout</button>
+               */}
+               <button onClick={handleLogout}>Logout</button>
             </div>
           </div>
         }

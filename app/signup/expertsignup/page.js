@@ -8,6 +8,7 @@ import image from '../../../public/images/signupformimage.svg'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
+import { ColorRing } from 'react-loader-spinner'
 
 const Signup = () => {
   const { loading } = useSelector((state) => state.auth)
@@ -82,7 +83,17 @@ const Signup = () => {
   return (
     <div>
       {loading ? (
-        <div className="spinner">loging..</div>
+        <div className=" flex justify-center  items-center h-[100vh]">
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="color-ring-loading"
+            wrapperStyle={{}}
+            wrapperClass="color-ring-wrapper"
+            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+          />
+        </div>
       ) : (
         <div className="flex h-screen w-screen">
           <div className="mt-[8rem] ml-[6rem]">

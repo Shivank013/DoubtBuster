@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import logo from '../../../public/images/LOGO.png'
+import { ColorRing } from 'react-loader-spinner'
 
 import { useRouter } from 'next/navigation'
 import { login, sendotp, logini } from '@/frontendservices/operations/autoapi'
@@ -39,7 +40,17 @@ function LoginForm() {
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
       {loading ? (
-        <div className="spinner"></div>
+        <div className=" flex justify-center  items-center h-[100vh]">
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="color-ring-loading"
+            wrapperStyle={{}}
+            wrapperClass="color-ring-wrapper"
+            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+          />
+        </div>
       ) : (
         <div className="lg:flex h-screen w-screen">
           <nav className="flex z-50 justify-between items-center h-[3rem] fixed w-[98.9%] top-0 bg-white shadow-md">

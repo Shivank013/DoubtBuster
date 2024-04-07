@@ -11,12 +11,16 @@ import Addskill from './addskills'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
+import { toast, ToastContainer } from 'react-toastify'
+import { useDispatch } from 'react-redux'
 
+import {logout} from '@/frontendservices/operations/autoapi'
 function page() {
   const { loading } = useSelector((state) => state.auth)
   const [expanded, setExpanded] = useState(true)
   const [tab, setTab] = useState('profile')
   const router = useRouter()
+  const dispatch=useDispatch();
   const handelChange = async (choice) => {
     setTab(choice)
   }
@@ -27,7 +31,10 @@ function page() {
       const response = await axios.get('/api/auth/expert/logout')
       console.log(response)
       if (response.data.success) {
+        dispatch(logout(router));
         router.push('/')
+        toast.success("Logged Out")
+        // router.push('/')
         // If logout was successful, reset the state or perform any necessary actions
         // For example, redirect to the login page or clear user data
         console.log('Logout successful')

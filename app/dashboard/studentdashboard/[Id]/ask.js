@@ -48,64 +48,52 @@ const Form = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+ 
+    e.preventDefault();
     // Handle form submission here, e.g., send data to server
-    console.log(formData.skill, formData.doubt)
-    console.log(user.email)
-    dispatch(Doubt(user.email, formData.skill, formData.doubt, route))
+    console.log(formData.skill,formData.doubt);
+    // console.log(user.email);
+    // route.push("/call");
+   dispatch( Doubt(user.email,formData.skill,formData.doubt,route));
     // console.log("output after function call");
   }
 
   return (
-    <div className="w-full h-full font-sans text-gray-700 bg-white flex justify-center items-center">
-      <div className="w-1/3 p-16 bg-[#7c3aed] rounded-3xl shadow-lg shadow-black">
-        <h2 className="text-2xl text-white font-bold mb-4">Skills Form</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mt-2 mb-3 ">
-            <label
-              htmlFor="skill"
-              className="block text-white font-semibold mb-2"
-            >
-              Select Skill:
-            </label>
-            <select
-              id="skill"
-              name="skill"
-              value={formData.skill}
-              onChange={handleInputChange}
-              className="w-full p-2  border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-            >
-              <option value="">Select</option>
-              {skill.map((tag, index) => (
-                <option key={index} value={tag.tagName}>
-                  {tag.tagName}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="mb-4 font-semibold">
-            <label htmlFor="doubt" className="block text-white mb-2">
-              Level of Doubt:
-            </label>
-
-            <textarea
-              name="doubt"
-              rows="5"
-              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-              value={formData.doubt}
-              onChange={handleInputChange}
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="ml-24 bg-[#c026d3] mt-3 font-semibold text-white py-2 px-4 rounded hover:bg-[#e879f9]"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+    <div className="max-w-md mx-auto mt-8">
+      <h2 className="text-xl font-semibold mb-4">Skills Form</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+        <label htmlFor="skill" className="block mb-1">Select Skill:</label>
+      <select
+        id="skill"
+        name="skill"
+        value={formData.skill}
+        onChange={handleInputChange}
+        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+      >
+        <option value="">Select</option>
+        {skill.map((tag, index) => (
+          <option key={index} value={tag.tagName}>{tag.tagName}</option>
+        ))}
+      </select>
     </div>
-  )
-}
+        <div className="mb-4">
+          <label htmlFor="doubt" className="block mb-1">Doubt:</label>
+       
+          <textarea
+            name="doubt"
+            rows="5"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+            value={formData.doubt}
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+        <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+           
 
 export default Form

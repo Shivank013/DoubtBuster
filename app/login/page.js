@@ -5,6 +5,8 @@ import Link from 'next/link'
 import logo from '../../public/images/LOGO.png'
 import teacher from '../../public/images/teacher2.webp'
 import pic from '../../public/images/student1.png'
+import { useSelector } from 'react-redux'
+import { ColorRing } from 'react-loader-spinner'
 
 const login = () => {
   return (
