@@ -37,7 +37,8 @@ export default function Home() {
           <Image src={logo} className="ml-16 w-[14rem]" />
         </div>
         <div className="mr-16 font-sans flex justify-center items-center">
-          <a className="cursor-pointer mr-10 text-l font-semibold">About</a>
+          <Link href="/about" className="cursor-pointer mr-10 text-l font-semibold">About</Link>
+          
           {signup ? (
             <div>
               <Link
