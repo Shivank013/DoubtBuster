@@ -45,18 +45,18 @@ const UserDetails = () => {
     <div className="w-full h-full m-0 p-0">
       <div className="flex font-sans ... bg-white w-full h-1/2 justify-between">
         {/* User Details */}
-        <div className=" my-14 mx-16 flex flex-col gap-2">
-          <h1 className="text-4xl text-red-500 font-bold">User Details</h1>
+        <div className="w-1/2 m-14 flex flex-col gap-2">
+          <h1 className="text-3xl font-bold">User Details</h1>
           {loading ? (
             <p className="m-1">Loading...</p>
           ) : expertdata ? (
             <div className="flex flex-col font-semibold mt-8 gap-1">
               <p>
-                <strong className="text-xl text-blue-500 font-semibold">Name:</strong>{' '}
+                <strong className="text-xl font-semibold">Name:</strong>{' '}
                 {expertdata.firstName} {expertdata.lastName}
               </p>
               <p>
-                <strong className="text-xl text-blue-500 font-semibold">Email:</strong>{' '}
+                <strong className="text-xl font-semibold">Email:</strong>{' '}
                 {expertdata.email}
               </p>
               {/* Add more details here as needed */}
@@ -77,7 +77,7 @@ const UserDetails = () => {
             <img
               src={expertdata.image}
               alt="User"
-              className=" w-28 h-28 rounded-full"
+              className="w-20 h-20 rounded-full"
             />
           )}
         </div>
