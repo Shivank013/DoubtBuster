@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 const UserDetails = () => {
-  const { user } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.profile)
 
   // Ensure user data is available before rendering
-  if (!user) return <div>No user data available</div>;
+  if (!user) return <div>No user data available</div>
 
   return (
     <div>
@@ -38,7 +38,7 @@ const UserDetails = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserDetails;
+export default UserDetails
