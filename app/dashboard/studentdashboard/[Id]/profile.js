@@ -1,8 +1,11 @@
+"use client"
+
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 import { useSelector } from 'react-redux';
 import bgImage from '../../../../public/images/stdbg.png'
+
 const UserDetails = () => {
   const [loading, setLoading] = useState(true)
   const {user} = useSelector( (state) => state.profile );
@@ -25,7 +28,7 @@ const UserDetails = () => {
           <p>
             <strong>Account Type:</strong> {user.accountType}
           </p>
-          <img
+          <Image
             src={user.image}
             alt="User"
             className="w-32 h-32 rounded-full"

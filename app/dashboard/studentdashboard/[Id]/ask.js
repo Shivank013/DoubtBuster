@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Doubt } from '@/frontendservices/operations/askdoubt'
@@ -54,7 +56,7 @@ const Form = () => {
     console.log(formData.skill,formData.doubt);
     // console.log(user.email);
     // route.push("/call");
-   dispatch( Doubt(user.email,formData.skill,formData.doubt,route));
+    dispatch( Doubt(user.email,formData.skill,formData.doubt,route));
     // console.log("output after function call");
   }
 

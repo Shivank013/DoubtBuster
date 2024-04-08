@@ -26,7 +26,7 @@ function VerifyEmail() {
     if (!signupData) {
       router.push('/signup')
     }
-  }, [])
+  }, [router,signupData])
 
   const handleVerifyAndSignup = (e) => {
     e.preventDefault()
