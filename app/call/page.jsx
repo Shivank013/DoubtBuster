@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import React from 'react'
 
-function page() {
+function Page() {
     const dispatch = useDispatch();
     const {roomid} = useSelector((state) => state.room);
     const {user} = useSelector((state) => state.profile);
@@ -82,4 +82,4 @@ function page() {
     );
 };
 
-export default page;
+export default Page;
