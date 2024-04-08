@@ -1,4 +1,4 @@
-const BASE_URL = 'doubt-buster-aoor-lpfczqmuh-shivank013s-projects.vercel.app'
+const BASE_URL = 'https://doubt-buster.vercel.app'
 
 export const endpoints = {
   SENDOTP_API: BASE_URL + '/api/auth/user/otp',

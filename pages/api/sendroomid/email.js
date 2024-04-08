@@ -68,7 +68,7 @@ export default async function handler(req, res) {
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: '1h',
       })
-      const url = `doubt-buster-aoor-lpfczqmuh-shivank013s-projects.vercel.app/call/${token}`;
+      const url = `https://doubt-buster.vercel.app/call/${token}`;
       ans=url;
       try {
         // Send the email
