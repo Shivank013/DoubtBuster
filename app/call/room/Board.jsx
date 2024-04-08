@@ -1,6 +1,4 @@
-"use client"
-
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useSocket } from '../../../context/SocketProvider';
 import { useContext } from "react";
 import { SocketContext } from '../../../context/SocketProvider';
@@ -13,6 +11,38 @@ const Board = ({ color, size, eraserstatus }) => {
     const socket = useSocket();
     const [drawingData, setDrawingData] = useState(null);
 
+    const handleMouseMove = useCallback((e) => {
+        if (!isDrawingRef.current) return;
+        const ctx = ctxRef.current;
+        ctx.lineWidth = size;
+        ctx.strokeStyle = eraserstatus ? '#ffffff' : color;
+        const { left, top } = canvasRef.current.getBoundingClientRect();
+        const x = e.clientX - left;
+        const y = e.clientY - top;
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    }, [color, size, eraserstatus]);
+
+    const handleMouseDown = useCallback((e) => {
+        isDrawingRef.current = true;
+        const ctx = ctxRef.current;
+        ctx.lineWidth = size;
+        ctx.strokeStyle = eraserstatus ? '#ffffff' : color;
+        const { left, top } = canvasRef.current.getBoundingClientRect();
+        const x = e.clientX - left;
+        const y = e.clientY - top;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    }, [color, size, eraserstatus]);
+
+    const handleMouseUp = useCallback(() => {
+        isDrawingRef.current = false;
+        const canvas = canvasRef.current;
+        const base64ImageData = canvas.toDataURL("image/png");
+        setDrawingData(base64ImageData);
+        setBoarddata(base64ImageData);
+        socket.emit("canvas-data", base64ImageData);
+    }, [setBoarddata, socket]);
 
     useEffect(() => {
 
@@ -37,7 +67,7 @@ const Board = ({ color, size, eraserstatus }) => {
             canvas.removeEventListener('mousedown', handleMouseDown);
             canvas.removeEventListener('mouseup', handleMouseUp);
         };
-    }, [boarddata,handleMouseDown,handleMouseMove,handleMouseUp,socket]);
+    }, [boarddata, handleMouseDown, handleMouseMove, handleMouseUp, socket]);
 
     useEffect(() => {
         const ctx = ctxRef.current;
@@ -53,39 +83,6 @@ const Board = ({ color, size, eraserstatus }) => {
             }
         }
     }, [color, size, eraserstatus]);
-
-    const handleMouseMove = (e) => {
-        if (!isDrawingRef.current) return;
-        const ctx = ctxRef.current;
-        ctx.lineWidth = size;
-        ctx.strokeStyle = eraserstatus ? '#ffffff' : color;
-        const { left, top } = canvasRef.current.getBoundingClientRect();
-        const x = e.clientX - left;
-        const y = e.clientY - top;
-        ctx.lineTo(x, y);
-        ctx.stroke();
-    };
-    
-    const handleMouseDown = (e) => {
-        isDrawingRef.current = true;
-        const ctx = ctxRef.current;
-        ctx.lineWidth = size;
-        ctx.strokeStyle = eraserstatus ? '#ffffff' : color;
-        const { left, top } = canvasRef.current.getBoundingClientRect();
-        const x = e.clientX - left;
-        const y = e.clientY - top;
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-    };
-
-    const handleMouseUp = () => {
-        isDrawingRef.current = false;
-        const canvas = canvasRef.current;
-        const base64ImageData = canvas.toDataURL("image/png");
-        setDrawingData(base64ImageData);
-        setBoarddata(base64ImageData);
-        socket.emit("canvas-data", base64ImageData);
-    };
 
     useEffect(() => {
         const receiveCanvasData = (data) => {
