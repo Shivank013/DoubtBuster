@@ -53,15 +53,13 @@ const page = () => {
 
     if (!token ) {
       console.log("first");
+      
       const url = `/call/${tokken}`;
       if(typeof window !== 'undefined'){
       localStorage.setItem('redirectPath', url);
       }
-      // const ans=localStorage.getItem('redirectPath');
-      // console.log(ans);
-
       router.push("/login");
-      console.log("first");
+     
 
     }
   }, []);
@@ -98,18 +96,14 @@ const page = () => {
     },
     []
   );
-  // email: email,
-  // skill: skill,
-  // doubt: doubt,
-  // roomid: roomid,
+ 
   useEffect(() => {
     if (tokken) {
       try {
-        // Decode the token
-        // const token=JSON.stringify(router.query);
+        
         const decodedToken = jwt.decode(tokken);
 
-        // Extract roomId and email from decoded token
+        
         if (decodedToken) {
           const {  email,roomid } = decodedToken;
           setRoom(roomid);
