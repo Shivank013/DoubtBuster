@@ -54,6 +54,7 @@ function Sidebar({ params }) {
       >
         <div className="flex items-center pt-6 pl-2">
           <Image
+            alt=''
             src={LOGO}
             className={`overflow-hidden transition-all ${
               expanded ? 'w-36 pl-2 mr-4' : 'w-0 mr-0'

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { getstudentdata } from '@/frontendservices/operations/studentdash'
 import { useDispatch } from 'react-redux'
 import { endpoints } from '@/frontendservices/api'
+import Image from "next/image";
 
 const UserDetails = () => {
   const dispatch = useDispatch()
@@ -66,7 +67,7 @@ const UserDetails = () => {
           )}
         </div>
         <div className="w-full">
-          <img
+          <Image
             src="https://img.freepik.com/free-vector/business-teamwork-concept-teamwork-leadership-effort-hard-work-team-strategy-concept-brainstorm-workshop-management-skills-vector-cartoon-illustration-flat-design_1150-56223.jpg?w=740"
             alt="banner"
           />
@@ -74,7 +75,7 @@ const UserDetails = () => {
         {/* User Image */}
         <div className="w-1/2 p-10 pt-7 flex justify-end items-start">
           {expertdata && (
-            <img
+            <Image
               src={expertdata.image}
               alt="User"
               className="w-20 h-20 rounded-full"

@@ -1,14 +1,19 @@
-"use client";
+"use client"
 
-import { useState, useCallback, useEffect,useMemo } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import jwt from 'jsonwebtoken';
 import { useSocket } from "../../../context/SocketProvider";
 import { SocketContext } from "../../../context/SocketProvider";
 import { useRouter } from 'next/navigation'
 import { useContext } from "react";
-import React from 'react'
 
+const Page = () => {
+    const {email, setEmail, room, setRoom} = useContext(SocketContext);
+    const router = useRouter();
+    const {tokken}=useParams();
+    const socket = useSocket();
+    const tokenRef = useRef(null);
 
 const page = () => {
 
@@ -53,15 +58,13 @@ const page = () => {
 
     if (!token ) {
       console.log("first");
+      
       const url = `/call/${tokken}`;
       if(typeof window !== 'undefined'){
       localStorage.setItem('redirectPath', url);
       }
-      // const ans=localStorage.getItem('redirectPath');
-      // console.log(ans);
-
       router.push("/login");
-      console.log("first");
+     
 
     }
   }, []);
@@ -98,18 +101,14 @@ const page = () => {
     },
     []
   );
-  // email: email,
-  // skill: skill,
-  // doubt: doubt,
-  // roomid: roomid,
+ 
   useEffect(() => {
     if (tokken) {
       try {
-        // Decode the token
-        // const token=JSON.stringify(router.query);
+        
         const decodedToken = jwt.decode(tokken);
 
-        // Extract roomId and email from decoded token
+        
         if (decodedToken) {
           const {  email,roomid } = decodedToken;
           setRoom(roomid);
@@ -117,54 +116,91 @@ const page = () => {
           console.log(roomid);
           console.log(email);
         }
-        // console.log("not any ouput tokken "+tokken)
-      } catch (error) {
-        console.error('Error decoding token:', error);
-      }
-    }
-    // console.log("not any ouput tokken "+token);
-  }, [router.query]);
 
+        if (!tokenRef.current) {
+            const url = `/call/${tokken}`;
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('redirectPath', url);
+            }
+            router.push("/login");
+        }
+    }, [tokken, router]);
 
+    const handleSubmitForm = useCallback(
+        (e) => {
+            e.preventDefault();
+            socket.emit("room:join", { email, room });
+        },
+        [email, room, socket]
+    );
 
-  useEffect(() => {
-    socket.on("room:join", handleJoinRoom);
-    socket.on("room:full" , handleRoomFull);
-    return () => {
-      socket.off("room:join", handleJoinRoom);
-      socket.off("room:full" , handleRoomFull);
-    };
-  }, [socket, handleJoinRoom]);
+    const handleJoinRoom = useCallback(
+        (data) => {
+            const { email, room } = data;
+            router.push("/call/room");
+            if (typeof window !== 'undefined') {
+                let rem = localStorage.getItem('redirectPath');
+                if (rem) {
+                    localStorage.removeItem('redirectPath');
+                }
+            }
+        },
+        [router]
+    );
 
-  return (
-    <div>
-      <h1>Lobby</h1>
-      <form onSubmit={handleSubmitForm}> 
-     
-         <label htmlFor="email">Email ID</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          // onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <label htmlFor="room">Room Number</label>
-        <input
-          type="text"
-          id="room"
-          value={room}
-          // onChange={(e) => setRoom(e.target.value)}
-        />
-        <br />
-        <button type="submit">Join the meeting</button>
-       
-        
-      </form>
-    </div>
-  );
+    const handleRoomFull = useCallback(
+        async (message) => {
+            console.log("Sorry Room Full");
+            console.log(message);
+        },
+        []
+    );
+
+    useEffect(() => {
+        if (tokken) {
+            try {
+                const decodedToken = jwt.decode(tokken);
+                if (decodedToken) {
+                    const { email, roomid } = decodedToken;
+                    setRoom(roomid);
+                    setEmail(email);
+                }
+            } catch (error) {
+                console.error('Error decoding token:', error);
+            }
+        }
+    }, [tokken, setEmail, setRoom]);
+
+    useEffect(() => {
+        socket.on("room:join", handleJoinRoom);
+        socket.on("room:full" , handleRoomFull);
+        return () => {
+            socket.off("room:join", handleJoinRoom);
+            socket.off("room:full" , handleRoomFull);
+        };
+    }, [socket, handleJoinRoom, handleRoomFull]);
+
+    return (
+        <div>
+            <h1>Lobby</h1>
+            <p>Email ID</p>
+            <input
+                type="email"
+                id="email"
+                value={email}
+                readOnly
+            />
+            <p>Room Number</p>
+            <input
+                type="text"
+                id="room"
+                value={room}
+                readOnly
+            />
+            <br />
+            <button onClick={handleSubmitForm}>Join the meeting</button>
+        </div>
+    );
 };
 
-export default page;
-
-
+export default Page;

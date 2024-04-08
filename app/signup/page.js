@@ -12,7 +12,7 @@ const signup = () => {
       <div className="flex justify-center items-center">
         <nav className="flex z-50 justify-between items-center h-[3rem] fixed w-[98.9%] top-0 bg-white shadow-md">
           <div>
-            <Image src={logo} className="ml-16 w-[14rem]" />
+            <Image alt='' src={logo} className="ml-16 w-[14rem]" />
           </div>
           <div className="mr-16 font-sans flex justify-center items-center">
             <Link href="" className="cursor-pointer mr-10 text-l font-semibold">
@@ -33,7 +33,7 @@ const signup = () => {
         </nav>
 
         <div className="flex flex-col justify-center items-center gap-6 h-screen w-screen bg-[#34b9411e]">
-          <Image src={teacher} height={250} width={250} />
+          <Image alt='' src={teacher} height={250} width={250} />
           <p className="text-[2rem] text-black">
             For &nbsp;
             <span className="bg-gradient-to-r from-[#6127ff] to-[#6127ff] font-bold text-transparent bg-clip-text">
@@ -59,7 +59,7 @@ const signup = () => {
         </div>
 
         <div className="flex flex-col justify-center items-center gap-6 h-screen w-screen">
-          <Image src={pic} height={250} width={250} />
+          <Image alt='' src={pic} height={250} width={250} />
           <p className="text-[2rem]">
             For &nbsp;
             <span className="bg-gradient-to-r from-[#6127ff] to-[#6127ff] font-bold text-transparent bg-clip-text">
