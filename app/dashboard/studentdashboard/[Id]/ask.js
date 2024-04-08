@@ -16,7 +16,7 @@ const Form = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3000/api/tag/alltags'
+          '/api/tag/alltags'
         )
         if (response.data.success) {
           console.log(response.data)

@@ -14,7 +14,7 @@ const SkillComponent = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3000/api/skill/getskill/expertskills'
+          '/api/skill/getskill/expertskills'
         )
         if (response.data.success) {
           setSkills(response.data.tag)

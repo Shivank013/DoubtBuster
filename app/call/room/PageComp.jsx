@@ -145,8 +145,6 @@ function PageComp() {
     });
   }, []);
 
-  
-
   const handlecallend = useCallback(async () => {
     if (!callend) {
       myStream.getTracks().forEach((track) => track.stop());
