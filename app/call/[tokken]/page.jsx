@@ -15,27 +15,13 @@ const Page = () => {
     const socket = useSocket();
     const tokenRef = useRef(null);
 
-    // useEffect(() => {
-    //     if (typeof window !== 'undefined') {
-    //         tokenRef.current = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
-    //     }
-
-    //     if (!tokenRef.current) {
-    //         const url = `/call/${tokken}`;
-    //         if (typeof window !== 'undefined') {
-    //             localStorage.setItem('redirectPath', url);
-    //         }
-    //         router.push("/login");
-    //     }
-    // }, [tokken, router]);
-
     useEffect(() => {
         const tokenFromStorage = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
 
         if (!tokenFromStorage) {
             const url = `/call/${tokken}`;
             localStorage.setItem('redirectPath', url);
-            window.location.href = "https://doubt-buster.vercel.app/login";
+            window.location.href = "https://doubt-buster.vercel.app/login/expertlogin";
         }
     }, [tokken]);
 
