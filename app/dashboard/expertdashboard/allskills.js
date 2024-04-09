@@ -32,14 +32,14 @@ const SkillComponent = () => {
   }, [])
 
   return (
-    <div className="w-full mb-10">
-      <h2 className="font-semibold text-[1.5rem] mt-5 text-center">
+    <div className="w-full flex flex-col items-center mb-10">
+      <h2 className="font-bold text-[1.5rem] mt-5 text-center">
         Expert Skills
       </h2>
       <div className='flex w-full mt-[4rem] gap-x-5 '>
         {isLoading ? (
-          <div className="flex justify-center items-center h-[100vh]">
-            {' '}
+          <div className="flex justify-center items-center w-[50%]">
+      
             <ColorRing
               visible={true}
               height="80"

@@ -82,7 +82,7 @@ export function signupi(
   startHour, // Change start to startHour
   endHour // Change end to endHour
 ) {
-  console.log('ritika')
+  
   return async (dispatch) => {
     try {
       dispatch(setLoading(true))

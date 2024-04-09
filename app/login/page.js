@@ -37,7 +37,7 @@ const login = () => {
           <p className="text-[2rem] text-black">
             For &nbsp;
             <span className="bg-gradient-to-r from-[#6127ff] to-[#6127ff] font-bold text-transparent bg-clip-text">
-              Instructor
+              Expert
             </span>
           </p>
           <p className="max-w-[415px] text-[#050c1bc7] text-[18px] leading-6 font-normal [text-align-last:center] text-center ">

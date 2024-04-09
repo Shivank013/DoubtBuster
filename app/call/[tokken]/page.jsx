@@ -80,24 +80,25 @@ const Page = () => {
     }, [socket, handleJoinRoom, handleRoomFull]);
 
     return (
-        <div>
-            <h1>Lobby</h1>
-            <p>Email ID</p>
-            <input
+        <div className=" bg-slate-800  w-[100vw] flex justify-center items-center h-[100vh]">
+        <div className=' shadow-2xl flex py-20 px-40 text-red-500 font-mono font-semibold flex-col justify-center  bg-black border-2 border-red-800 rounded-2xl'>
+            {/* <p className="font-semibold text-xl mx-5 mt-2 mb-7 text-red-500"></p> */}
+            {/* <input
                 type="email"
                 id="email"
                 value={email}
                 readOnly
             />
-            <p>Room Number</p>
+            <p className="font-semibold text-xl mx-5 mt-2 mb-7 text-red-500">Room Number:</p>
             <input
                 type="text"
                 id="room"
                 value={room}
                 readOnly
             />
-            <br />
-            <button onClick={handleSubmitForm}>Join the meeting</button>
+            <br /> */}
+            <button className=" bg-red-500 hover:bg-red-700 text-xl font-semibold px-4 py-2 rounded-xl text-white" onClick={handleSubmitForm}>Join Room</button>
+        </div>
         </div>
     );
 };

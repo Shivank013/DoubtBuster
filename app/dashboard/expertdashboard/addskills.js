@@ -117,55 +117,11 @@ const TagsPage = () => {
         </ul>
       )}
 
-      <div className="relative">
+      <div className=" -mt-60 relative">
         <Image alt='' className="absolute top-[-7rem] -z-10" src={image4}></Image>
       </div>
       <div className="flex flex-col">
-        <h1 className="mt-[6.5rem] text-center text-[2rem] text-[#000000c6]">
-          <span className="text-[#444444]">Key</span> Features
-        </h1>
-        <div className="flex gap-3 mt-[3rem] ml-5">
-          <div className="flex flex-col justify-center items-center">
-            <Image alt='' src={img1}></Image>
-            <h1 className="mt-5 font-extrabold text-[1.2rem] text-[#444444]">
-              Most Updated Questions
-            </h1>
-            <p className="text-gray-500 text-[13px] text-center">
-              Get all the new pattern based questions available for practice at
-              the earlies
-            </p>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <Image alt='' className="text-center" src={img2}></Image>
-            <h1 className="font-extrabold mt-5 text-[1.2rem] text-[#444444]">
-              Most Updated Questions
-            </h1>
-            <p className="text-gray-500 text-[13px] text-center">
-              Get all the new pattern based questions available for practice at
-              the earlies
-            </p>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <Image alt='' className="" src={img3}></Image>
-            <h1 className="mt-5 font-extrabold text-[1.2rem] text-[#444444]">
-              Most Updated Questions
-            </h1>
-            <p className="text-gray-500 text-[13px] text-center">
-              Get all the new pattern based questions available for practice at
-              the earlies
-            </p>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <Image alt='' className="" src={img4}></Image>
-            <h1 className="mt-5 font-extrabold text-[1.2rem] text-[#444444]">
-              Most Updated Questions
-            </h1>
-            <p className="text-gray-500 text-[13px] text-center">
-              Get all the new pattern based questions available for practice at
-              the earlies
-            </p>
-          </div>
-        </div>
+        
       </div>
     </div>
   )

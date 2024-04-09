@@ -3,7 +3,11 @@
 
 import React, { useState } from 'react'
 import { LayoutDashboard, Menu, UserCircle } from 'lucide-react'
-import LOGO from '../../../public/images/LOGO.png'
+import LOGO from '../../../public/images/whitelogo.png'
+import { HiHome } from 'react-icons/hi2'
+import { VscPreview } from 'react-icons/vsc'
+import { GiBroadDagger } from 'react-icons/gi'
+import { IoLogOut } from 'react-icons/io5'
 import Image from 'next/image'
 import Ask from './allskills'
 import Reviews from './reviews'
@@ -14,14 +18,15 @@ import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import {logout} from '@/frontendservices/operations/autoapi'
+import { logout } from '@/frontendservices/operations/autoapi'
+import { FaFreeCodeCamp } from "react-icons/fa";
 
 function Page() {
   const { loading } = useSelector((state) => state.auth)
   const [expanded, setExpanded] = useState(true)
   const [tab, setTab] = useState('profile')
   const router = useRouter()
-  const dispatch=useDispatch();
+  const dispatch = useDispatch()
   const handelChange = async (choice) => {
     setTab(choice)
   }
@@ -32,9 +37,9 @@ function Page() {
       const response = await axios.get('/api/auth/expert/logout')
       console.log(response)
       if (response.data.success) {
-        dispatch(logout(router));
+        dispatch(logout(router))
         router.push('/')
-        toast.success("Logged Out")
+        toast.success('Logged Out')
         // router.push('/')
         // If logout was successful, reset the state or perform any necessary actions
         // For example, redirect to the login page or clear user data
@@ -56,7 +61,7 @@ function Page() {
       >
         <div className="flex items-center pt-6 pl-2">
           <Image
-            alt=''
+            alt=""
             src={LOGO}
             className={`overflow-hidden transition-all ${
               expanded ? 'w-36 pl-2 mr-4' : 'w-0 mr-0'
@@ -76,7 +81,7 @@ function Page() {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
+                <HiHome size={20} />
               </div>
               <button
                 onClick={() => handelChange('profile')}
@@ -93,7 +98,7 @@ function Page() {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
+                <FaFreeCodeCamp size={20} />
               </div>
               <button
                 onClick={() => handelChange('ask')}
@@ -110,7 +115,7 @@ function Page() {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
+                <VscPreview size={20} />
               </div>
               <button
                 onClick={() => handelChange('review')}
@@ -126,7 +131,7 @@ function Page() {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
+                <GiBroadDagger size={20} />
               </div>
               <button
                 onClick={() => handelChange('addskills')}
@@ -142,7 +147,7 @@ function Page() {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
+                <IoLogOut size={20} />
               </div>
               <button
                 onClick={handleLogout} // Call handleLogout function on button click

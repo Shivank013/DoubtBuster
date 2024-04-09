@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import { ColorRing } from 'react-loader-spinner'
 
 const Signup = () => {
-  const { loading } = useSelector((state) => state.auth)
+  
   const dispatch = useDispatch()
   const router = useRouter()
   const [formData, setFormData] = useState({

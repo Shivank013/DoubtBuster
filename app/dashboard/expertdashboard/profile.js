@@ -4,6 +4,7 @@ import { getstudentdata } from '@/frontendservices/operations/studentdash'
 import { useDispatch } from 'react-redux'
 import { endpoints } from '@/frontendservices/api'
 import Image from "next/image";
+import banner from "../../../public/images/ban.avif"
 
 const UserDetails = () => {
   const dispatch = useDispatch()
@@ -68,20 +69,13 @@ const UserDetails = () => {
         </div>
         <div className="w-full">
           <Image
-            src="https://img.freepik.com/free-vector/business-teamwork-concept-teamwork-leadership-effort-hard-work-team-strategy-concept-brainstorm-workshop-management-skills-vector-cartoon-illustration-flat-design_1150-56223.jpg?w=740"
+            src={banner}
             alt="banner"
+            width={500}
+            height={500}
           />
         </div>
         {/* User Image */}
-        <div className="w-1/2 p-10 pt-7 flex justify-end items-start">
-          {expertdata && (
-            <Image
-              src={expertdata.image}
-              alt="User"
-              className="w-20 h-20 rounded-full"
-            />
-          )}
-        </div>
       </div>
       <div className="bg-white">
         <h1 className="ml-14 pt-6 mb-4 text-3xl font-bold">Documents</h1>

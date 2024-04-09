@@ -6,9 +6,12 @@ import { Doubt } from '@/frontendservices/operations/askdoubt'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
+import axios from 'axios';
+import { ColorRing } from 'react-loader-spinner'
+
 
 const Form = () => {
+  const { loading } = useSelector((state) => state.room)
   const [skill, setSkills] = useState([])
   const route = useRouter()
   // use effect
@@ -59,16 +62,30 @@ const Form = () => {
   }
 
   return (
+    <div  className=" w-full h-full font-sans text-gray-700 bg-gradient-to-r from-rose-100 to-teal-100 flex justify-center items-center" >
+     {loading ? (
+        <div className=" flex justify-center  items-center h-[100vh]">
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="color-ring-loading"
+            wrapperStyle={{}}
+            wrapperClass="color-ring-wrapper"
+            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+          />
+        </div>
+      ) : (
     <div className="w-full h-full font-sans text-gray-700 bg-gradient-to-r from-rose-100 to-teal-100 flex justify-center items-center">
       <div className="w-1/2 p-16 bg-[#8b5cf6] rounded-3xl shadow-lg shadow-black">
-        <h2 className="text-2xl text-white font-bold mb-4">Skills Form</h2>
+        <h2 className="text-2xl text-white font-bold mb-4">Doubt Form</h2>
         <form onSubmit={handleSubmit}>
           <div className="mt-2 mb-3 ">
             <label
               htmlFor="skill"
               className="block text-white font-semibold mb-2"
             >
-              Select Skill:
+              Select Skill Area:
             </label>
             <select
               id="skill"
@@ -87,7 +104,7 @@ const Form = () => {
           </div>
           <div className="mb-4 font-semibold">
             <label htmlFor="doubt" className="block text-white mb-2">
-              Level of Doubt:
+              Your Doubt:
             </label>
 
             <textarea
@@ -108,6 +125,8 @@ const Form = () => {
           </div>
         </form>
       </div>
+    </div>
+      )}
     </div>
   )
 }

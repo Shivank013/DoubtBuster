@@ -39,11 +39,10 @@ const Reviews = () => {
   }, [])
 
   return (
-    <div className=''>
+    <div className=' w-full h-[100vh] flex items-center flex-col'>
       <h1 className='text-center font-bold text-[1.5rem] mt-5'>Expert Reviews</h1>
       {isLoading ? (
-        <div className="">
-          {' '}
+        <div className=" mt-[40vh]">
           <ColorRing
             visible={true}
             height="80"

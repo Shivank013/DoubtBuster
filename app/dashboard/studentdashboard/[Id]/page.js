@@ -2,7 +2,7 @@
 'use client'
 import React, { useState } from 'react'
 import { LayoutDashboard, Menu, UserCircle } from 'lucide-react'
-import LOGO from '../../../../public/images/LOGO.png'
+import LOGO from '../../../../public/images/whitelogo.png'
 import Image from 'next/image'
 import Ask from './ask'
 import Reviews from './reviews'
@@ -12,6 +12,10 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios' // Import axios for making HTTP requests
 import { logout } from '@/frontendservices/operations/autoapi'
 import { toast } from 'react-toastify'
+import { HiHome } from 'react-icons/hi2'
+import { IoLogOut } from 'react-icons/io5'
+import { FaRegQuestionCircle } from "react-icons/fa";
+
 
 // import { useRouter } from 'next/navigation'
 
@@ -74,7 +78,7 @@ function Sidebar({ params }) {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
+                <HiHome size={20} />
               </div>
               <button
                 onClick={() => handleChange('profile')}
@@ -91,7 +95,7 @@ function Sidebar({ params }) {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
+                <FaRegQuestionCircle size={20} />
               </div>
               <button
                 onClick={() => handleChange('ask')}
@@ -102,29 +106,12 @@ function Sidebar({ params }) {
                 Ask Doubts
               </button>
             </div>
-
             <div
               className="flex items-center text-white pt-1.5 pb-1.5 pl-4 pr-4 transition-all hover:bg-[#1d4ed8] hover:transition-all"
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <LayoutDashboard size={20} />
-              </div>
-              <button
-                onClick={() => handleChange('review')}
-                className={`overflow-hidden transition-all ${
-                  expanded ? 'w-52 text-start ml-4' : 'w-0'
-                }`}
-              >
-                Reviews
-              </button>
-            </div>
-            <div
-              className="flex items-center text-white pt-1.5 pb-1.5 pl-4 pr-4 transition-all hover:bg-[#1d4ed8] hover:transition-all"
-              activeClassName="bg-[#1d4ed8] text-white"
-            >
-              <div className="">
-                <LayoutDashboard size={20} />
+                <IoLogOut size={20} />
               </div>
               <button
                 onClick={handleLogout} // Call handleLogout function on button click
@@ -134,9 +121,7 @@ function Sidebar({ params }) {
               >
                 Logout
               </button>
-              {/* <button onClick={()=>dispatch(logout(router))}>Logout</button>
-               */}
-              {/* <button onClick={handleLogout}>Logout</button> */}
+              
             </div>
           </div>
         }

@@ -67,17 +67,16 @@ function Page() {
     }, [socket, handleJoinRoom, handleRoomFull]);
 
     useEffect(() => {
-        // Automatically submit the form when the component mounts
         handleSubmitForm({ preventDefault: () => {} });
     }, [handleSubmitForm]);
 
     return (
-        <div>
-            <h1>Joining...</h1>
-            {/* Remove the submit button from the form */}
-            <form>
-                {/* <button type="submit">Join the meeting</button> */}
-            </form>
+        <div className=" bg-slate-800  w-[100vw] flex justify-center items-center h-[100vh]">
+         <div className=' shadow-2xl flex text-4xl py-20 px-40 text-red-500 font-mono font-semibold flex-col justify-center  bg-black border-2 border-red-800 rounded-2xl'>
+
+         Wait Joining...
+          
+         </div>
         </div>
     );
 };
