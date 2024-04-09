@@ -10,7 +10,7 @@ const UserDetails = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          'http://localhost:3000/api/studentdash/getdata'
+          'https://doubt-buster.vercel.app/api/studentdash/getdata'
         )
         setUserData(res.data.users) // Assuming users is the key containing user data
         setLoading(false)
