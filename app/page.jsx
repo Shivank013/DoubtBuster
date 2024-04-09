@@ -1,7 +1,6 @@
 // server component
 import './globals.css'
 import React from 'react'
-
 import Image from 'next/image'
 import laptop from '../public/images/laptop.png'
 import logo from '../public/images/LOGO.png'
@@ -25,10 +24,10 @@ import Link from 'next/link'
 import { UseSelector } from 'react-redux'
 import { HiOutlineAcademicCap } from 'react-icons/hi'
 
-const ClientComponent = dynamic(() => import('../app/Typer'), { ssr: false })
+const ClientComponent = dynamic(() => import('./Typer'), { ssr: false })
 
 export default function Home() {
-  let signup = true
+  let signup = true;
 
   return (
     <div className="w-full">

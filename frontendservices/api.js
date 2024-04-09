@@ -1,5 +1,7 @@
 const BASE_URL = 'https://doubt-buster.vercel.app'
 
+// const BASE_URL = 'http://localhost:3000'
+
 export const endpoints = {
   SENDOTP_API: BASE_URL + '/api/auth/user/otp',
   SIGNUP_API: BASE_URL + '/api/auth/user/register',

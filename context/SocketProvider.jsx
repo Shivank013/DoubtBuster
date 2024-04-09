@@ -17,6 +17,7 @@ export const SocketProvider = (props) => {
   const [boarddata, setBoarddata] = useState("");
   const [codedata, setCodedata] = useState("");
   const [language, setLanguage] = useState("c");
+  const [callendflag, setcallendflag] = useState("false");
 
   const value ={
     socket,
@@ -24,7 +25,8 @@ export const SocketProvider = (props) => {
     email, setEmail,
     boarddata, setBoarddata,
     codedata, setCodedata,
-    language, setLanguage
+    language, setLanguage,
+    callendflag, setcallendflag
   }
   
   return (

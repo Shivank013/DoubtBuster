@@ -156,10 +156,9 @@ function PageComp() {
       setCalldone(false);
       setStart(false);
 
-      socket.emit("room:call:end", { roomCreator, room: room });
+      await socket.emit("room:call:end", { roomCreator, room: room });
       setcallend(true);
-
-      router.push("/");
+      router.push("/call/room/feedback");
     }
   }, [callend, myStream, roomCreator, socket, router, room]);
 
