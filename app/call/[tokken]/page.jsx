@@ -25,7 +25,7 @@ const Page = () => {
             if (typeof window !== 'undefined') {
                 localStorage.setItem('redirectPath', url);
             }
-            router.push("/login");
+            router.push("https://doubt-buster.vercel.app/login");
         }
     }, [tokken, router]);
 
