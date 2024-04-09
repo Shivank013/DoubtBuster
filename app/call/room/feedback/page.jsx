@@ -6,7 +6,7 @@ const page = () => {
 
   return (
     <div>feedback lelo gyss
-    <a href='http://localhost:3000/' >Home</a>
+    <a href='https://doubt-buster.vercel.app/' >Home</a>
     </div>
   )
 }
