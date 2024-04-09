@@ -82,7 +82,7 @@ const Signup = () => {
 
   return (
     <div>
-      {loading ? (
+      {/* {loading ? (
         <div className=" flex justify-center  items-center h-[100vh]">
           <ColorRing
             visible={true}
@@ -94,7 +94,7 @@ const Signup = () => {
             colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
           />
         </div>
-      ) : (
+      ) : ( */}
         <div className="flex h-screen w-screen">
           <div className="mt-[8rem] ml-[6rem]">
             <Image alt='' src={image} height={650} width={650}></Image>
@@ -213,7 +213,7 @@ const Signup = () => {
             </form>
           </div>
         </div>
-      )}
+      {/* )} */}
     </div>
   )
 }
