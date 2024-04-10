@@ -6,11 +6,13 @@ import { Expert } from '../../../model/expert' // Adjust the path accordingly
 
 export default async function handler(req, res) {
   try {
+      
     if (req.method !== 'POST') {
       return res
         .status(405)
         .json({ success: false, message: 'Method Not Allowed' })
     }
+    console.log(req.body);
 
     // Extract data from the request body
     const { userId, expertEmail, feedback, rating } = req.body
