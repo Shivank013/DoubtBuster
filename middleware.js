@@ -34,7 +34,7 @@ export function middleware(request) {
       //   )
     }
   } else {
-    if (authToken) {
+    if (!authToken) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
   }
