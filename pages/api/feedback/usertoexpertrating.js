@@ -13,11 +13,11 @@ export default async function handler(req, res) {
     }
 
     // Extract data from the request body
-    const { userId, expertId, feedback, rating } = req.body
+    const { userId, expertEmail, feedback, rating } = req.body
 
     // Validate data (you can add more validation logic as needed)
 
-    if (!userId || !expertId || !feedback || !rating) {
+    if (!userId || !expertEmail || !feedback || !rating) {
       return res
         .status(400)
         .json({ success: false, message: 'Missing required fields' })
@@ -29,8 +29,8 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'User not found' })
     }
 
-    // Find the expert by expertId
-    const expert = await Expert.findById(expertId)
+    // Find the expert by expertEmail
+    const expert = await Expert.findOne({ email: expertEmail })
     if (!expert) {
       return res.status(404).json({ error: 'Expert not found' })
     }

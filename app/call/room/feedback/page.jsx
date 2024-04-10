@@ -27,18 +27,18 @@ const RatingForm = () => {
   const [rvalue, setRvalue] = useState(0)
   const [tval, settval] = useState('')
 
-  // console.log(expert, 'dikhao bhai expert')
-  // useEffect(() => {
-  //   if (!token) {
-  //     // Handle case where token is missing
-  //     console.error('Token is missing')
-  //     // Optionally, redirect the user to the login page
-  //   } else {
-  //     var decoded = jwtDecode(token)
-  //     console.log(decoded.id, 'bhai token yha h')
-  //     settval(decoded.id)
-  //   }
-  // }, [token])
+  console.log(expert, 'dikhao bhai expert')
+  useEffect(() => {
+    if (!token) {
+      // Handle case where token is missing
+      console.error('Token is missing')
+      // Optionally, redirect the user to the login page
+    } else {
+      var decoded = jwtDecode(token)
+      console.log(decoded.id, 'bhai token yha h')
+      settval(decoded.id)
+    }
+  }, [token])
 
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value)
@@ -69,31 +69,21 @@ const RatingForm = () => {
 
     console.log("Le aa gai email :",remoteEmail);
 
-  //   console.log(typeof tval, 'studentid')
-  //   console.log(typeof expertId, 'expertId')
-  //   console.log(typeof feedback, 'feedbackId')
-  //   console.log(rvalue, 'rvalue')
-  //   console.log('bhai ky ho rha h')
-  //   console.log(rvalue)
-  //   let rating = rvalue
-  //   let userId = tval
-  //   let parsedData;
-  //   if (localStorage.getItem('expert')) {
-      
-  //     var data = localStorage.getItem('expert');
-      
-     
-  //      parsedData = JSON.parse(data);
-      
-  //     // Use the extracted data
-  //     console.log(parsedData);
-  // } else {
-  //     console.log('No data found in local storage.');
-  // }
+    console.log(typeof tval, 'studentid')
+    console.log(typeof expertId, 'expertId')
+    console.log(typeof feedback, 'feedbackId')
+    console.log(rvalue, 'rvalue')
+    console.log('bhai ky ho rha h')
+    console.log(rvalue)
+    let rating = rvalue
+    let userId = tval
+    // let parsedData;
+   
   //  let expertId = parsedData.id;
   //  console.log(expertId );
-  //   dispatch(submitRating({ userId, expertId, feedback, rating }))
-  //   // Optionally, you can reset the form fields here
+    const expertEmail = remoteEmail;
+    dispatch(submitRating({ userId, expertEmail, feedback, rating }))
+    // Optionally, you can reset the form fields here
   }
 
   return (

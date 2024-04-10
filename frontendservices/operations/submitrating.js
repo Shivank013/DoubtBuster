@@ -15,14 +15,14 @@ const {
   EXPERTTOUSERFEED_API,
 } = endpoints
 
-export function submitRating(userId, expertId, feedback, rating) {
+export function submitRating(userId, expertEmail, feedback, rating) {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true))
 
       const response = await apiConnector('POST', USERTOEXPERTFEED_API, {
         userId,
-        expertId,
+        expertEmail,
         feedback,
         rating,
       })
