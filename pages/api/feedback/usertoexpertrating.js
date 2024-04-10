@@ -17,10 +17,25 @@ export default async function handler(req, res) {
 
     // Validate data (you can add more validation logic as needed)
 
-    if (!userId || !expertEmail || !feedback || !rating) {
+    if (!userId ) {
       return res
         .status(400)
-        .json({ success: false, message: 'Missing required fields' })
+        .json({ success: false, message: 'user id is miising' })
+    }
+    if(!expertEmail){
+      return res
+      .status(400)
+      .json({ success: false, message: 'expert email is miising' })
+    }
+    if(!feedback){
+      return res
+      .status(400)
+      .json({ success: false, message: 'feedback is miising' })
+    }
+    if(!rating){
+      return res
+      .status(400)
+      .json({ success: false, message: 'rating is miising' })
     }
 
     // Find the user by userId
