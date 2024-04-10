@@ -9,7 +9,7 @@ import { RxCross2 } from 'react-icons/rx'
 import { submitRating } from '@/frontendservices/operations/submitrating'
 
 import { jwtDecode } from 'jwt-decode'
-// let expertId = '660124d78b7941a941ae8fb9'
+let expertId = '660124d78b7941a941ae8fb9'
 // let userId = '66027051a54e727f5371ed40'
 let rating = 3
 
@@ -17,14 +17,14 @@ let rating = 3
 
 const RatingForm = () => {
   const { token } = useSelector((state) => state.auth)
-  const { expert } = useSelector((state) => state.expert)
+  // const { expert } = useSelector((state) => state.expert)
 
   const dispatch = useDispatch()
   const [feedback, setFeedback] = useState('')
   const [rvalue, setRvalue] = useState(0)
   const [tval, settval] = useState('')
 
-  console.log(expert, 'dikhao bhai expert')
+  // console.log(expert, 'dikhao bhai expert')
   useEffect(() => {
     if (!token) {
       // Handle case where token is missing
@@ -72,7 +72,21 @@ const RatingForm = () => {
     console.log(rvalue)
     let rating = rvalue
     let userId = tval
-    let expertId = expert.id
+    let parsedData;
+    if (localStorage.getItem('expert')) {
+      
+      var data = localStorage.getItem('expert');
+      
+     
+       parsedData = JSON.parse(data);
+      
+      // Use the extracted data
+      console.log(parsedData);
+  } else {
+      console.log('No data found in local storage.');
+  }
+   let expertId = parsedData.id;
+   console.log(expertId );
     dispatch(submitRating({ userId, expertId, feedback, rating }))
     // Optionally, you can reset the form fields here
   }
