@@ -98,7 +98,9 @@ const RatingForm = () => {
 
   return (
     <div className=" bg-slate-800  w-[100vw] flex justify-center items-center h-[100vh]">
-      <div className=" px-10 shadow-2xl flex flex-col justify-center  bg-black border-2 border-red-800 rounded-2xl">
+    {
+      remoteEmail !== "" ? (
+        <div className=" px-10 shadow-2xl flex flex-col justify-center  bg-black border-2 border-red-800 rounded-2xl">
         <div className="w-full h-10 flex py-4 flex-row-reverse">
           <button className=" text-3xl text-white">
             <RxCross2 />
@@ -169,6 +171,14 @@ const RatingForm = () => {
           </button>
         </div>
       </div>
+      ) : (
+        <div className=' shadow-2xl flex py-20 px-40 text-red-500 font-mono font-semibold flex-col justify-center items-center bg-black border-2 border-red-800 rounded-2xl'>
+              <p className=" text-red-500 text-2xl font-medium">Thank you for your invaluable expertise in resolving the student's doubt,</p>
+              <p className=" text-red-500 text-2xl font-medium">your dedication and knowledge are truly appreciated.</p>
+              <a href="https://doubt-buster.vercel.app/" className=" text-center mt-5  bg-red-500 hover:bg-red-700 text-xl font-semibold px-4 py-2 rounded-xl text-white">Go Home</a>
+        </div>
+      )
+    }
     </div>
   )
 }
