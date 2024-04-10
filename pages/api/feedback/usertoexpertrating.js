@@ -15,48 +15,47 @@ export default async function handler(req, res) {
     console.log(req.body);
 
     // Extract data from the request body
-    const { userId, expertEmail, feedback, rating } = req.body
+    const { userId} = req.body
     
     console.log("yaha dhek rtah hu");
     console.log(userId);
-    console.log(expertEmail);
-    console.log(feedback);
-    console.log(rating);
+    
 
-    // Validate data (you can add more validation logic as needed)
-
-    if (!userId ) {
+    if (!userId.userId ) {
       return res
         .status(400)
         .json({ success: false, message: 'user id is miising' })
     }
-    // if(!expertEmail){
-    //   return res
-    //   .status(400)
-    //   .json({ success: false, message: 'expert email is miising' })
-    // }
-    if(!feedback){
+    if(!userId.expertEmail){
+      return res
+      .status(400)
+      .json({ success: false, message: 'expert email is miising' })
+    }
+    if(!userId.feedback){
       return res
       .status(400)
       .json({ success: false, message: 'feedback is miising' })
     }
-    if(!rating){
+    if(!userId.rating){
       return res
       .status(400)
       .json({ success: false, message: 'rating is miising' })
     }
 
     // Find the user by userId
-    const user = await User.findById(userId)
+    const user = await User.findById(userId.userId)
     if (!user) {
       return res.status(404).json({ error: 'User not found' })
     }
 
     // Find the expert by expertEmail
-    const expert = await Expert.findOne({ email: expertEmail })
+    const expert = await Expert.findOne({ email: userId.expertEmail })
     if (!expert) {
       return res.status(404).json({ error: 'Expert not found' })
     }
+
+    const rating = userId.rating;
+    const feedback = userId.feedback;
 
     // Add rating, review, and user's name to the expert's profile
     expert.ratingAndReviews.push({ feedback, rating, Name: user.firstName })

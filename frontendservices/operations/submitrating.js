@@ -29,9 +29,11 @@ export function submitRating(userId, expertEmail, feedback, rating) {
       })
       console.log('SENDOTP API RESPONSE............', response)
 
-      if (!response.data.success) {
-        throw new Error(response.data.message)
-      }
+      // if (!response.data.success) {
+      //   throw new Error(response.data.message)
+      // }
+      // route.push("/");
+      window.location.href = "https://doubt-buster.vercel.app/";
     } catch (err) {
       console.log(err)
     }
@@ -54,6 +56,7 @@ export function submitRatingtoUser(userId, expertId, feedback, rating) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
+     
     } catch (err) {
       console.log(err)
     }

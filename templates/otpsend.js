@@ -1,17 +1,17 @@
-import whitelogo from "@/public/images/whitelogo.png";
 const otpTemplate = (otp) => {
-	return  `<html>
+	return  `<!DOCTYPE html
+	<html>
 	
 	<head>
 		<meta charset="UTF-8">
 		<title>OTP Verification Email</title>
 		<style>
 			body {
-				background-color: #121111;
+				background-color: #000000;
 				font-family: Arial, sans-serif;
 				font-size: 16px;
 				line-height: 1.4;
-				color: #f9f6f6;
+				color: #ffffff;
 				margin: 0;
 				padding: 0;
 			}
@@ -65,9 +65,10 @@ const otpTemplate = (otp) => {
 	</head>
 	
 	<body>
-		<div class="container">
+	<div style="background: linear-gradient(to bottom, black, white); color: white;">
+		<div class="container body" >
 			<a href="https://doubt-buster.vercel.app"><img class="logo"
-					src=${whitelogo} alt="StudyNotion Logo"></a>
+					src="https://imgtr.ee/images/2024/04/10/dd742a3be79d04a6a6276a88508b9a72.png" alt="DoubtBuster"></a>
 			<div class="message">OTP Verification Email</div>
 			<div class="body">
 				<p>Dear User,</p>
@@ -79,6 +80,7 @@ const otpTemplate = (otp) => {
 			</div>
 			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
 					href="mailto:adarsh220884@gmail.com">info@DoubtBuster.com</a>. We are here to help!</div>
+		</div>
 		</div>
 	</body>
 	

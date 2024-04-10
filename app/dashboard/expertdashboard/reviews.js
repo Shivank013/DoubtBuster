@@ -58,8 +58,9 @@ const Reviews = () => {
           {reviews.map((review, index) => (
             <li className='bg-[#d8d0d035] border p-5 mb-8 w-[30%] flex flex-col gap-5 hover:scale-110 hover:shadow-gray-600 transition rounded-lg shadow-black shadow-xl' key={index}>
               <RiDoubleQuotesL className='text-[#b6cfc6]' size={50}/>
-              <p className='text-gray-500 -mt-8 ml-11 font-semibold text-[1.1rem]'>{review.feedback}</p>
+              <p className=' text-black font-bold opacity-90 mb-5 uppercase text-center'>User Name: {review.Name}</p>
               <p className='text-black font-bold opacity-90 uppercase text-center'>Feedback: {review.userName}</p>
+              <p className='text-gray-500 -mt-8 ml-11 font-semibold text-[1.1rem]'>{review.feedback}</p>
               {/* Render the star rating component */}
               <StarRating rating={review.rating} />
               {/* If you also need to display the ID, uncomment the line below */}

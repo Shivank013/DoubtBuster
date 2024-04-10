@@ -78,7 +78,7 @@ export default async function handler(req, res) {
         const mailResponse = await mailSender(
           emails,
           'Verification Email from DoubtSolver',
-          emailTemplate(emails,url)
+          emailTemplate(emails,url,doubt)
         )
         console.log('Email sent Successfully: ', mailResponse)
       } catch (error) {
