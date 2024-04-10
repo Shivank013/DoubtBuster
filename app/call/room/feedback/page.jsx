@@ -27,7 +27,7 @@ const RatingForm = () => {
   const [rvalue, setRvalue] = useState(0)
   const [tval, settval] = useState('')
 
-  console.log(expert, 'dikhao bhai expert')
+  // console.log(expert, 'dikhao bhai expert')
   useEffect(() => {
     if (!token) {
       // Handle case where token is missing
@@ -70,7 +70,7 @@ const RatingForm = () => {
     console.log("Le aa gai email :",remoteEmail);
 
     console.log(typeof tval, 'studentid')
-    console.log(typeof expertId, 'expertId')
+    // console.log(typeof expertId, 'expertId')
     console.log(typeof feedback, 'feedbackId')
     console.log(rvalue, 'rvalue')
     console.log('bhai ky ho rha h')
