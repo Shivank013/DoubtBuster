@@ -102,9 +102,9 @@ const RatingForm = () => {
       remoteEmail !== "" ? (
         <div className=" px-10 shadow-2xl flex flex-col justify-center  bg-black border-2 border-red-800 rounded-2xl">
         <div className="w-full h-10 flex py-4 flex-row-reverse">
-          <button className=" text-3xl text-white">
+          <a href='https://doubt-buster.vercel.app/' className=" text-3xl text-white">
             <RxCross2 />
-          </button>
+          </a>
         </div>
         <p className=" font-semibold text-xl mx-5 mt-2 mb-7 text-red-500">
           Expert Rating:
