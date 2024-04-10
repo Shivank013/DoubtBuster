@@ -60,7 +60,7 @@ function PageComp() {
     console.log(`Email ${email} joined room`);
     setremoteEmail(email);
     setRemoteSocketId(id);
-  }, []);
+  }, [setremoteEmail]);
 
   const handleCallUser = useCallback(async () => {
     const stream = await navigator.mediaDevices.getUserMedia({
