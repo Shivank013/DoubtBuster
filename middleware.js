@@ -12,7 +12,7 @@ export function middleware(request) {
     request.nextUrl.pathname === '/signup'
 
   if (loggedinuserNotAccessPaths) {
-    if (authToken) {
+    if (authToken !== null) {
       const decoded = jwtDecode(authToken)
       console.log(decoded)
       if (decoded.role === 'Instructor') {
@@ -34,9 +34,9 @@ export function middleware(request) {
       //   )
     }
   } else {
-    if (!authToken) {
+    // if (authToken) {
       return NextResponse.redirect(new URL('/login', request.url))
-    }
+    // }
   }
 
   //   return NextResponse.redirect(new URL('/home', request.url))
