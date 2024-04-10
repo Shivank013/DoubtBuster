@@ -14,6 +14,7 @@ const Page = () => {
     const {tokken}=useParams();
     const socket = useSocket();
     const tokenRef = useRef(null);
+    const [roomf, setroomf] = useState(false);
 
     useEffect(() => {
         const tokenFromStorage = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
@@ -49,8 +50,9 @@ const Page = () => {
 
     const handleRoomFull = useCallback(
         async (message) => {
+            setroomf(true);
             console.log("Sorry Room Full");
-            console.log(message);
+            console.log(message); 
         },
         []
     );
@@ -81,24 +83,19 @@ const Page = () => {
 
     return (
         <div className=" bg-slate-800  w-[100vw] flex justify-center items-center h-[100vh]">
-        <div className=' shadow-2xl flex py-20 px-40 text-red-500 font-mono font-semibold flex-col justify-center  bg-black border-2 border-red-800 rounded-2xl'>
-            {/* <p className="font-semibold text-xl mx-5 mt-2 mb-7 text-red-500"></p> */}
-            {/* <input
-                type="email"
-                id="email"
-                value={email}
-                readOnly
-            />
-            <p className="font-semibold text-xl mx-5 mt-2 mb-7 text-red-500">Room Number:</p>
-            <input
-                type="text"
-                id="room"
-                value={room}
-                readOnly
-            />
-            <br /> */}
-            <button className=" bg-red-500 hover:bg-red-700 text-xl font-semibold px-4 py-2 rounded-xl text-white" onClick={handleSubmitForm}>Join Room</button>
-        </div>
+        {
+            roomf ? (
+                <div className=' shadow-2xl flex py-20 px-40 text-red-500 font-mono font-semibold flex-col justify-center items-center bg-black border-2 border-red-800 rounded-2xl'>
+                  <p className=" text-red-500 text-2xl font-medium">Sorry, the doubt has been solved,</p>
+                  <p className=" text-red-500 text-2xl font-medium">Gear up for the next one.</p>
+                  <a href="https://doubt-buster.vercel.app/" className=" text-center mt-5  bg-red-500 hover:bg-red-700 text-xl font-semibold px-4 py-2 rounded-xl text-white">Go Home</a>
+                </div>
+            ) : (
+                <div className=' shadow-2xl flex py-20 px-40 text-red-500 font-mono font-semibold flex-col justify-center  bg-black border-2 border-red-800 rounded-2xl'>
+                  <button className=" bg-red-500 hover:bg-red-700 text-xl font-semibold px-4 py-2 rounded-xl text-white" onClick={handleSubmitForm}>Join Room</button>
+                </div>
+            )
+        }
         </div>
     );
 };
