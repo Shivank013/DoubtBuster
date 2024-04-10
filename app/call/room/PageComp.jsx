@@ -35,7 +35,7 @@ function PageComp() {
   const [roomCreator, setRoomCreator] = useState();
   const [calldone, setCalldone] = useState(false);
   const [start, setStart] = useState(false);
-  const {room} = useContext(SocketContext);
+  const {room, setremoteEmail} = useContext(SocketContext);
   const router = useRouter();
   const [callend,setcallend] = useState(false);
   const [vedio, setvedio] = useState(false); 
@@ -58,6 +58,7 @@ function PageComp() {
 
   const handleUserJoined = useCallback(({ email, id }) => {
     console.log(`Email ${email} joined room`);
+    setremoteEmail(email);
     setRemoteSocketId(id);
   }, []);
 

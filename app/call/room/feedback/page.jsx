@@ -4,20 +4,23 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FaStar } from 'react-icons/fa6'
 import { RxCross2 } from 'react-icons/rx'
+import { SocketContext } from '@/context/SocketProvider'
+import { useContext } from 'react'
 
 // Adjust the path accordingly
 import { submitRating } from '@/frontendservices/operations/submitrating'
 
 import { jwtDecode } from 'jwt-decode'
-let expertId = '660124d78b7941a941ae8fb9'
+// let expertId = '660124d78b7941a941ae8fb9'
 // let userId = '66027051a54e727f5371ed40'
-let rating = 3
+// let rating = 3
 
 // let userId = '6608f706df8ab8cc1225fa19'
 
 const RatingForm = () => {
   const { token } = useSelector((state) => state.auth)
   // const { expert } = useSelector((state) => state.expert)
+  const {remoteEmail} = useContext(SocketContext);
 
   const dispatch = useDispatch()
   const [feedback, setFeedback] = useState('')
@@ -25,17 +28,17 @@ const RatingForm = () => {
   const [tval, settval] = useState('')
 
   // console.log(expert, 'dikhao bhai expert')
-  useEffect(() => {
-    if (!token) {
-      // Handle case where token is missing
-      console.error('Token is missing')
-      // Optionally, redirect the user to the login page
-    } else {
-      var decoded = jwtDecode(token)
-      console.log(decoded.id, 'bhai token yha h')
-      settval(decoded.id)
-    }
-  }, [token])
+  // useEffect(() => {
+  //   if (!token) {
+  //     // Handle case where token is missing
+  //     console.error('Token is missing')
+  //     // Optionally, redirect the user to the login page
+  //   } else {
+  //     var decoded = jwtDecode(token)
+  //     console.log(decoded.id, 'bhai token yha h')
+  //     settval(decoded.id)
+  //   }
+  // }, [token])
 
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value)
@@ -64,31 +67,33 @@ const RatingForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    console.log(typeof tval, 'studentid')
-    console.log(typeof expertId, 'expertId')
-    console.log(typeof feedback, 'feedbackId')
-    console.log(rvalue, 'rvalue')
-    console.log('bhai ky ho rha h')
-    console.log(rvalue)
-    let rating = rvalue
-    let userId = tval
-    let parsedData;
-    if (localStorage.getItem('expert')) {
+    console.log("Le aa gai email :",remoteEmail);
+
+  //   console.log(typeof tval, 'studentid')
+  //   console.log(typeof expertId, 'expertId')
+  //   console.log(typeof feedback, 'feedbackId')
+  //   console.log(rvalue, 'rvalue')
+  //   console.log('bhai ky ho rha h')
+  //   console.log(rvalue)
+  //   let rating = rvalue
+  //   let userId = tval
+  //   let parsedData;
+  //   if (localStorage.getItem('expert')) {
       
-      var data = localStorage.getItem('expert');
+  //     var data = localStorage.getItem('expert');
       
      
-       parsedData = JSON.parse(data);
+  //      parsedData = JSON.parse(data);
       
-      // Use the extracted data
-      console.log(parsedData);
-  } else {
-      console.log('No data found in local storage.');
-  }
-   let expertId = parsedData.id;
-   console.log(expertId );
-    dispatch(submitRating({ userId, expertId, feedback, rating }))
-    // Optionally, you can reset the form fields here
+  //     // Use the extracted data
+  //     console.log(parsedData);
+  // } else {
+  //     console.log('No data found in local storage.');
+  // }
+  //  let expertId = parsedData.id;
+  //  console.log(expertId );
+  //   dispatch(submitRating({ userId, expertId, feedback, rating }))
+  //   // Optionally, you can reset the form fields here
   }
 
   return (
