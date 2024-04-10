@@ -16,6 +16,12 @@ export default async function handler(req, res) {
 
     // Extract data from the request body
     const { userId, expertEmail, feedback, rating } = req.body
+    
+    console.log("yaha dhek rtah hu");
+    console.log(userId);
+    console.log(expertEmail);
+    console.log(feedback);
+    console.log(rating);
 
     // Validate data (you can add more validation logic as needed)
 
@@ -24,11 +30,11 @@ export default async function handler(req, res) {
         .status(400)
         .json({ success: false, message: 'user id is miising' })
     }
-    if(!expertEmail){
-      return res
-      .status(400)
-      .json({ success: false, message: 'expert email is miising' })
-    }
+    // if(!expertEmail){
+    //   return res
+    //   .status(400)
+    //   .json({ success: false, message: 'expert email is miising' })
+    // }
     if(!feedback){
       return res
       .status(400)
