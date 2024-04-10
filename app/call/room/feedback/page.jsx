@@ -81,7 +81,7 @@ const RatingForm = () => {
    
   //  let expertId = parsedData.id;
   //  console.log(expertId );
-    const expertEmail = JSON.stringify(remoteEmail);
+    let expertEmail = String(remoteEmail);
     console.log(userId,expertEmail, feedback, rating ,"all the data");
     dispatch(submitRating({ userId, expertEmail, feedback, rating }))
     // Optionally, you can reset the form fields here
