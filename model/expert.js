@@ -90,7 +90,8 @@ const expertSchema = new mongoose.Schema(
 
     count: {
       type: Number,
-    },
+      default: 0, // Default count value
+    },
     satisfyStudent: {
       type: Number,
     },

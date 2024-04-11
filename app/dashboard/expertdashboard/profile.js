@@ -58,6 +58,10 @@ const UserDetails = () => {
                 {expertdata.firstName} {expertdata.lastName}
               </p>
               <p>
+                <strong className="text-xl font-semibold">Name:</strong>{' '}
+                {expertdata.count}
+              </p>
+              <p>
                 <strong className="text-xl font-semibold">Email:</strong>{' '}
                 {expertdata.email}
               </p>

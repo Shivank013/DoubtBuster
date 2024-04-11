@@ -66,7 +66,7 @@ export default function Ide() {
     if (editorRef.current && codedata) {
       editorRef.current.setValue(codedata);
     }
-  }, [codedata,setCodedata,setLanguage,socket]);
+  }, [editorRef.current]);
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);

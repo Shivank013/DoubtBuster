@@ -7,8 +7,9 @@ import { RxCross2 } from 'react-icons/rx'
 import { SocketContext } from '@/context/SocketProvider'
 import { useContext } from 'react'
 
+
 // Adjust the path accordingly
-import { submitRating } from '@/frontendservices/operations/submitrating'
+import { submitRating,incount } from '@/frontendservices/operations/submitrating'
 
 import { jwtDecode } from 'jwt-decode'
 // let expertId = '660124d78b7941a941ae8fb9'
@@ -83,6 +84,7 @@ const RatingForm = () => {
   //  console.log(expertId );
     let expertEmail = String(remoteEmail);
     console.log(userId,expertEmail, feedback, rating ,"all the data");
+    dispatch(incount(expertEmail))
     dispatch(submitRating({ userId, expertEmail, feedback, rating }))
     // Optionally, you can reset the form fields here
   }

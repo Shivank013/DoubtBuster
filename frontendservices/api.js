@@ -16,6 +16,7 @@ export const endpoints = {
   ADDSKILLS_API: BASE_URL + '/api/skill/addskill',
   USERTOEXPERTFEED_API: BASE_URL + '/api/feedback/usertoexpertrating',
   EXPERTTOUSERFEED_API: BASE_URL + '/api/feedback/experttouserrating',
+  COUNTNUMBER_API: BASE_URL + '/api/questioncount',
 }
 
 

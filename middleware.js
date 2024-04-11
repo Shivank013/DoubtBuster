@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { jwtDecode } from 'jwt-decode'
-// This function can be marked `async` if using `await` inside
+// This function can be marked async if using await inside
 export function middleware(request) {
   console.log('middleware executed')
 
@@ -8,8 +8,8 @@ export function middleware(request) {
   console.log(authToken, 'lsdkfm')
 
   const loggedinuserNotAccessPaths =
-    request.nextUrl.pathname === '/login'
-    // request.nextUrl.pathname === '/signup'
+    request.nextUrl.pathname === '/login' ||
+    request.nextUrl.pathname === '/signup'
 
   if (loggedinuserNotAccessPaths) {
     if (authToken) {
@@ -38,7 +38,7 @@ export function middleware(request) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
   }
-
+  return NextResponse.next()
   //   return NextResponse.redirect(new URL('/home', request.url))
 }
 

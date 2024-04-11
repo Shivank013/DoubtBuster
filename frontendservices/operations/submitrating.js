@@ -13,6 +13,7 @@ const {
   GETSTUDENTDATA_API,
   USERTOEXPERTFEED_API,
   EXPERTTOUSERFEED_API,
+  COUNTNUMBER_API
 } = endpoints
 
 export function submitRating(userId, expertEmail, feedback, rating) {
@@ -57,6 +58,25 @@ export function submitRatingtoUser(userId, expertId, feedback, rating) {
         throw new Error(response.data.message)
       }
      
+    } catch (err) {
+      console.log(err)
+    }
+    dispatch(setLoading(false))
+  }
+}
+export function incount(email) {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading(true))
+
+      const response = await apiConnector('POST', COUNTNUMBER_API, {
+        email,
+      })
+      console.log('SENDOTP API RESPONSE............', response)
+
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
     } catch (err) {
       console.log(err)
     }

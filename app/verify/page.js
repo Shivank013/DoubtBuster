@@ -9,6 +9,7 @@ import { sendotp, signup, signupi } from '@/frontendservices/operations/autoapi'
 import logo from '../../public/images/LOGO.png'
 import router from 'next/navigation'
 import Image from 'next/image'
+// import whitelogo from '@/public/images/whitelogo.png'
 
 // import { useNavigate } from "react-router-dom";
 // import { sendotp } from '@/frontendservices/operations/autoapi'
@@ -73,11 +74,13 @@ function VerifyEmail() {
   }
 
   return (
-    <div className="min-h-[calc(106vh-3.5rem)] grid place-items-center bg-gray-950">
+    // <div className=' bg-gray-950 overflow-hidden'><img src="https://imgtr.ee/images/2024/04/10/dd742a3be79d04a6a6276a88508b9a72.png" alt='doubtbuster' className='w-[800px] p-4 mx-auto '></img>
+    <div className="min-h-[calc(106vh-3.5rem)] grid place-items-center bg-gray-950 ">
       {loading ? (
         <div className="spinner"></div>
       ) : (
         <div>
+        // <div className=' bg-gray-950 overflow-hidden flex justify-center  mb-24'><img src="https://imgtr.ee/images/2024/04/10/dd742a3be79d04a6a6276a88508b9a72.png" alt='doubtbuster' className='   w-80  h-30'></img></div>
           <div className="max-w-[500px] p-4 lg:p-8">
             <h1 className="   text-slate-200 font-semibold text-[1.875rem] leading-[2.375rem]">
               {' '}
@@ -134,8 +137,9 @@ function VerifyEmail() {
             </div>
           </div>
         </div>
-      )}
+       )}
     </div>
+    
   )
 }
 
