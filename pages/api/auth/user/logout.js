@@ -5,6 +5,7 @@ import { OTP } from '@/model/otp'
 import { hash } from 'bcryptjs'
 import { errorHandler } from '@/middlewares/error'
 import { cookieSetter } from '@/utils/feature'
+import { serialize } from 'cookie'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -12,7 +13,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    cookieSetter(res, null, false)
+   
+        res.setHeader(
+          'Set-Cookie',
+          serialize('token', '', {
+            path: '/',
+            httpOnly: true,
+            maxAge: 0,
+          })
+        )
+      
+    // cookieSetter(res, null, false)
 
     res.status(200).json({
       success: true,
