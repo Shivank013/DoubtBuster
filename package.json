@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "codemirror": "^5.65.16",
     "cookie": "^0.6.0",
+    "cookies": "^0.9.1",
     "date-fns-tz": "^2.0.0",
     "dotenv": "^16.4.1",
     "jsdom": "^24.0.0",

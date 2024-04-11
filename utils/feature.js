@@ -3,6 +3,7 @@ import { User } from '@/model/user'
 import mongoose from 'mongoose'
 import { serialize } from 'cookie'
 import jwt from 'jsonwebtoken'
+import cookie from 'cookie'
 
 export const cookieSetter = (res, token, set) => {
   res.setHeader(
@@ -17,17 +18,42 @@ export const cookieSetter = (res, token, set) => {
 }
 
 export const cookieS = (res, token, set) => {
-  res.setHeader(
-    'Set-Cookie',
-    serialize('token', '', {
-      path: '/',
-      httpOnly: true,
-      maxAge: 0,
-    })
-  )
+  if (set) {
+    res.setHeader(
+      'Set-Cookie',
+      cookie.serialize('token', token, {
+        path: '/',
+        httpOnly: true,
+        maxAge: 15 * 24 * 60 * 60, // 15 days in seconds
+      })
+    )
+  } else {
+    // Clear the cookie by setting its value to null and expiry to a past date
+    res.setHeader(
+      'Set-Cookie',
+      cookie.serialize('token', '', {
+        path: '/',
+        httpOnly: true,
+        expires: new Date(0),
+      })
+    )
+  }
 
   console.log(token)
 }
+
+// export const cookieS = (res, token, set) => {
+//   res.setHeader(
+//     'Set-Cookie',
+//     serialize('token', '', {
+//       path: '/',
+//       httpOnly: true,
+//       maxAge: 0,
+//     })
+//   )
+
+//   console.log(token)
+// }
 
 export const generateToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET)

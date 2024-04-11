@@ -208,7 +208,7 @@ export function logini(email, password, router) {
 }
 
 
-export function logout(router) {
+export function logout() {
   return (dispatch) => {
     dispatch(setToken(null))
     dispatch(setUser(null))
@@ -216,6 +216,6 @@ export function logout(router) {
     localStorage.removeItem("user");
     localStorage.clear();
     toast.success("Logged Out")
-    router.push("/")
+   
   }
 }
