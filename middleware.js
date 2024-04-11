@@ -8,7 +8,8 @@ export function middleware(request) {
   console.log(authToken, 'lsdkfm')
 
   const loggedinuserNotAccessPaths =
-    request.nextUrl.pathname === '/login'
+    request.nextUrl.pathname === '/login'||
+    request.nextUrl.pathname === '/signup'
 
   if (loggedinuserNotAccessPaths) {
     if (authToken) {
@@ -32,6 +33,11 @@ export function middleware(request) {
       //     new URL('/dashboard/expertdashboard', request.url)
       //   )
     }
+    // else{
+    //   if (!authToken) {
+    //     return NextResponse.redirect(new URL('/login', request.url))
+    //   }
+    // }
     
   } else {
     if (!authToken) {

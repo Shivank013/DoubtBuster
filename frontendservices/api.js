@@ -17,7 +17,8 @@ export const endpoints = {
   USERTOEXPERTFEED_API: BASE_URL + '/api/feedback/usertoexpertrating',
   EXPERTTOUSERFEED_API: BASE_URL + '/api/feedback/experttouserrating',
   COUNTNUMBER_API: BASE_URL + '/api/questioncount',
-  LOGOUTEXPERT_API:BASE_URL+'/api/auth/expert/logout'
+  LOGOUTEXPERT_API:BASE_URL+'/api/auth/expert/logout',
+  LOGOUTSTUDENT_API:BASE_URL+'/api/auth/user/logout'
 }
 
 

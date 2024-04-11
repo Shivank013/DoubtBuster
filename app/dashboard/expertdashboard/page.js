@@ -20,6 +20,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { logout } from '@/frontendservices/operations/autoapi'
 import { FaFreeCodeCamp } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 function Page() {
   const { loading } = useSelector((state) => state.auth)
@@ -53,6 +54,10 @@ function Page() {
     }
   }
 
+  const handelHome = async () => {
+    window.location.href = "https://doubt-buster.vercel.app/";
+  }
+
   return (
     <div className="flex h-screen ml-[17%]">
       <div
@@ -82,7 +87,7 @@ function Page() {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <HiHome size={20} />
+                <CgProfile size={20} />
               </div>
               <button
                 onClick={() => handelChange('profile')}
@@ -157,6 +162,22 @@ function Page() {
                 }`}
               >
                 Logout
+              </button>
+            </div>
+            <div
+              className="flex items-center text-white pt-1.5 pb-1.5 pl-4 pr-4 transition-all hover:bg-[#1d4ed8] hover:transition-all"
+              activeClassName="bg-[#1d4ed8] text-white"
+            >
+              <div className="">
+                <HiHome size={20} />
+              </div>
+              <button
+                onClick={handelHome}
+                className={`overflow-hidden transition-all   font-sans ${
+                  expanded ? 'w-52 text-start ml-4' : 'w-0'
+                }`}
+              >
+                Home
               </button>
             </div>
           </div>

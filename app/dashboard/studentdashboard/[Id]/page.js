@@ -15,6 +15,8 @@ import { toast } from 'react-toastify'
 import { HiHome } from 'react-icons/hi2'
 import { IoLogOut } from 'react-icons/io5'
 import { FaRegQuestionCircle } from "react-icons/fa";
+import { logouts } from '@/frontendservices/operations/autoapi'
+import { CgProfile } from "react-icons/cg";
 
 
 // import { useRouter } from 'next/navigation'
@@ -27,18 +29,19 @@ function Sidebar({ params }) {
   const router = useRouter()
 
   console.log('User Id: ', params.Id)
+  let email="ujfdfj"
 
   const handleLogout = async () => {
     try {
       // Make a request to the logout route
-      const response = await axios.get('/api/auth/user/logout')
-      console.log(response)
-      if (response.data.success) {
-        dispatch(logout(router))
+      // const response = await axios.get('/api/auth/user/logout')
+      // console.log(response)
+      // if (response.data.success) {
+        dispatch(logouts(email))
         router.push('/')
         // toast.success('Logged Out')
         console.log('Logout successful')
-      }
+      // }
     } catch (error) {
       console.error('Logout failed', error)
       // Handle logout failure, maybe show an error message to the user
@@ -47,6 +50,10 @@ function Sidebar({ params }) {
 
   const handleChange = (choice) => {
     setTab(choice)
+  }
+
+  const handelHome = async () => {
+    window.location.href = "https://doubt-buster.vercel.app/";
   }
 
   return (
@@ -78,7 +85,7 @@ function Sidebar({ params }) {
               activeClassName="bg-[#1d4ed8] text-white"
             >
               <div className="">
-                <HiHome size={20} />
+                <CgProfile size={20} />
               </div>
               <button
                 onClick={() => handleChange('profile')}
@@ -122,6 +129,22 @@ function Sidebar({ params }) {
                 Logout
               </button>
               
+            </div>
+            <div
+              className="flex items-center text-white pt-1.5 pb-1.5 pl-4 pr-4 transition-all hover:bg-[#1d4ed8] hover:transition-all"
+              activeClassName="bg-[#1d4ed8] text-white"
+            >
+              <div className="">
+                <HiHome size={20} />
+              </div>
+              <button
+                onClick={handelHome}
+                className={`overflow-hidden transition-all   font-sans ${
+                  expanded ? 'w-52 text-start ml-4' : 'w-0'
+                }`}
+              >
+                Home
+              </button>
             </div>
           </div>
         }
