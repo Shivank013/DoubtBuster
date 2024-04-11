@@ -80,7 +80,7 @@ function VerifyEmail() {
         <div className="spinner"></div>
       ) : (
         <div>
-        // <div className=' bg-gray-950 overflow-hidden flex justify-center  mb-24'><img src="https://imgtr.ee/images/2024/04/10/dd742a3be79d04a6a6276a88508b9a72.png" alt='doubtbuster' className='   w-80  h-30'></img></div>
+         <div className=' bg-gray-950 overflow-hidden flex justify-center  mb-24'><Image src="https://imgtr.ee/images/2024/04/10/dd742a3be79d04a6a6276a88508b9a72.png" alt='doubtbuster' className='   w-80  h-30'></Image></div>
           <div className="max-w-[500px] p-4 lg:p-8">
             <h1 className="   text-slate-200 font-semibold text-[1.875rem] leading-[2.375rem]">
               {' '}
