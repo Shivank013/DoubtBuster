@@ -3,7 +3,7 @@ import { errorHandler } from '@/middlewares/error'
 import { cookieS } from '@/utils/feature'
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
+  if (req.method !== 'POST') {
     return errorHandler(res, null, false)
   }
 

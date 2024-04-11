@@ -6,7 +6,7 @@ import { setUser } from '@/frontendservices/slices/profileSlice'
 
 import { toast } from 'react-toastify'
 
-const { SENDOTP_API, SIGNUP_API, SIGNUP_APIi, LOGIN_API, LOGIN_APIi } =
+const { SENDOTP_API, SIGNUP_API, SIGNUP_APIi, LOGIN_API, LOGIN_APIi,LOGOUTEXPERT_API } =
   endpoints
 
 export function sendotp(email, route) {
@@ -208,14 +208,30 @@ export function logini(email, password, router) {
 }
 
 
-export function logout() {
-  return (dispatch) => {
-    dispatch(setToken(null))
-    dispatch(setUser(null))
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.clear();
-    toast.success("Logged Out")
-   
+export function logout(email) {
+  return  async (dispatch) => {
+    try {
+      dispatch(setLoading(true))
+
+      const response = await apiConnector('POST', LOGOUTEXPERT_API, {
+        email
+      })
+      console.log('SENDOTP API RESPONSE............', response)
+
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+    dispatch(setLoading(false))
   }
+  //   dispatch(setToken(null))
+  //   dispatch(setUser(null))
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("user");
+  //   localStorage.clear();
+  //   toast.success("Logged Out")
+   
+  // }
 }

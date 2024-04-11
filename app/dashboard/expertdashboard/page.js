@@ -30,14 +30,15 @@ function Page() {
   const handelChange = async (choice) => {
     setTab(choice)
   }
+  let email="hdfhj";
   console.log(loading, 'logding dikhao')
   const handleLogout = async () => {
     try {
       // Make a request to the logout route
-      const response = await axios.get('/api/auth/expert/logout')
-      console.log(response)
-      if (response.data.success) {
-        dispatch(logout(router))
+      // const response = await axios.get('/api/auth/expert/logout')
+      // console.log(response)
+      // if (response.data.success) {
+        dispatch(logout(email))
         router.push('/')
         // toast.success('Logged Out')
         // router.push('/')
@@ -45,7 +46,7 @@ function Page() {
         // For example, redirect to the login page or clear user data
         console.log('Logout successful')
         // Perform additional actions like redirecting the user or clearing the session
-      }
+      
     } catch (error) {
       console.error('Logout failed', error)
       // Handle logout failure, maybe show an error message to the user

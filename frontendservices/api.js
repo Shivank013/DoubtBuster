@@ -1,6 +1,6 @@
 const BASE_URL = 'https://doubt-buster.vercel.app'
 
-// const BASE_URL = 'http://localhost:3000'/
+// const BASE_URL = 'http://localhost:3000'
 
 export const endpoints = {
   SENDOTP_API: BASE_URL + '/api/auth/user/otp',
@@ -17,6 +17,7 @@ export const endpoints = {
   USERTOEXPERTFEED_API: BASE_URL + '/api/feedback/usertoexpertrating',
   EXPERTTOUSERFEED_API: BASE_URL + '/api/feedback/experttouserrating',
   COUNTNUMBER_API: BASE_URL + '/api/questioncount',
+  LOGOUTEXPERT_API:BASE_URL+'/api/auth/expert/logout'
 }
 
 
