@@ -26,6 +26,7 @@ import Chat from "./Chat";
 import screenfull from "screenfull";
 import WhiteBoard from "./WhiteBoard";
 import Ide from "./Ide";
+import { IoExitOutline } from "react-icons/io5";
 
 function PageComp() {
   const socket = useSocket();
@@ -162,6 +163,26 @@ function PageComp() {
       router.push("/call/room/feedback");
     }
   }, [callend, myStream, roomCreator, socket, router, room]);
+
+  const handlecallexit = useCallback(async () => {
+    if (remoteSocketId == null) {
+      // myStream.getTracks().forEach((track) => track.stop());
+  
+      // setRemoteSocketId(null);
+      // setMyStream(null);
+      // setRemoteStream(null);
+      // setRoomCreator(null);
+      // setCalldone(false);
+      // setStart(false);
+
+      await socket.emit("room:call:end", { roomCreator, room: room });
+
+      window.location.href = 'https://doubt-buster.vercel.app/';
+      // setcallend(true);
+      // router.push("/call/room/feedback");
+      
+    }
+  }, [roomCreator, room, remoteSocketId]);
 
   const handelVedio = useCallback(async () => {
     console.log("vedio status: ", !vedio);
@@ -506,6 +527,11 @@ function PageComp() {
         <button className="text-white ml-10 bg-red-500 rounded-full text-2xl p-3" onClick={toggleFullscreen} ><RiFullscreenExitFill/></button> 
         : 
         <button className="text-white ml-10 bg-gray-800 rounded-full text-2xl p-3" onClick={toggleFullscreen} ><RiFullscreenFill/></button>
+        }
+
+        {
+          remoteSocketId == null && 
+          <button onClick={handlecallexit} button className=" text-white ml-10 bg-red-400 text-2xl rounded-full p-4"><IoExitOutline/></button>
         }
         
        {!start && myStream && !roomCreator && <button className=" text-white ml-10 bg-green-400 text-2xl rounded-full p-4" onClick={sendStreams}><LuPhoneCall/></button>}

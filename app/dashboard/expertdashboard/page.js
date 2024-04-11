@@ -39,7 +39,7 @@ function Page() {
       if (response.data.success) {
         dispatch(logout(router))
         router.push('/')
-        toast.success('Logged Out')
+        // toast.success('Logged Out')
         // router.push('/')
         // If logout was successful, reset the state or perform any necessary actions
         // For example, redirect to the login page or clear user data

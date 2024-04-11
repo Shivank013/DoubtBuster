@@ -36,7 +36,7 @@ function Sidebar({ params }) {
       if (response.data.success) {
         dispatch(logout(router))
         router.push('/')
-        toast.success('Logged Out')
+        // toast.success('Logged Out')
         console.log('Logout successful')
       }
     } catch (error) {
