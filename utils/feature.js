@@ -16,6 +16,19 @@ export const cookieSetter = (res, token, set) => {
   // console.log(token)
 }
 
+export const cookieS = (res, token, set) => {
+  res.setHeader(
+    'Set-Cookie',
+    serialize('token', '', {
+      path: '/',
+      httpOnly: true,
+      maxAge: 0,
+    })
+  )
+
+  console.log(token)
+}
+
 export const generateToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET)
 }

@@ -1,5 +1,6 @@
 import { errorHandler } from '@/middlewares/error'
-import { cookieSetter } from '@/utils/feature'
+// import { cookieSetter } from '@/utils/feature'
+import { cookieS } from '@/utils/feature'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -7,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    cookieSetter(res, null, false)
+    cookieS(res, null, false)
 
     res.status(200).json({
       success: true,
