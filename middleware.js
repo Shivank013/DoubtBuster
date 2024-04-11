@@ -8,8 +8,7 @@ export function middleware(request) {
   console.log(authToken, 'lsdkfm')
 
   const loggedinuserNotAccessPaths =
-    request.nextUrl.pathname === '/login' ||
-    request.nextUrl.pathname === '/signup'
+    request.nextUrl.pathname === '/loginp'
 
   if (loggedinuserNotAccessPaths) {
     if (authToken) {
