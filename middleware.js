@@ -33,10 +33,7 @@ export function middleware(request) {
       //     new URL('/dashboard/expertdashboard', request.url)
       //   )
     }
-    else{
-      return NextResponse.redirect(new URL('/login', request.url))
-
-    }
+    
   } else {
     if (!authToken) {
       return NextResponse.redirect(new URL('/login', request.url))
