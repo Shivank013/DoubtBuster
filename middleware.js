@@ -10,6 +10,14 @@ export function middleware(request) {
     const decoded = jwtDecode(authToken);
     console.log(decoded);
 
+    if (
+      (decoded.role === 'Instructor' && request.nextUrl.pathname === '/dashboard/expertdashboard') ||
+      (decoded.role !== 'Instructor' && request.nextUrl.pathname.startsWith('/dashboard/studentdashboard'))
+    ) {
+      // User is already on the correct dashboard, no need to redirect again
+      return NextResponse.next();
+    }
+
     if (decoded.role === 'Instructor') {
       return NextResponse.redirect(
         new URL('/dashboard/expertdashboard', request.url)
