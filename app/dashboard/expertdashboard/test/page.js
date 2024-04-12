@@ -1,74 +1,86 @@
-"use client"
-
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useSearchParams } from 'next/router';
+'use client'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'next/navigation'
 import {
   fetchQuestionsByTag,
   addskills,
-} from '@/frontendservices/operations/tags';
-import { ColorRing } from 'react-loader-spinner';
-import Timer from '../timer';
-import { toast } from 'react-toastify';
+} from '@/frontendservices/operations/tags' // Import your action
+import { Router } from 'next/router'
+import { useRouter } from 'next/navigation'
+import { ColorRing } from 'react-loader-spinner'
+import Timer from '../timer'
+import { toast } from 'react-toastify'
 
 const TagDetailsPage = () => {
-  const { loading } = useSelector((state) => state.questions);
-  const searchParams = useSearchParams();
-  const tag = searchParams.get('tag');
-  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.questions)
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const tag = searchParams.get('tag')
+  const dispatch = useDispatch()
 
-  const questions = useSelector((state) => state.questions.questions);
-  console.log(questions, 'frontend');
+  // Select questions from Redux store state
+  const questions = useSelector((state) => state.questions.questions)
+  console.log(questions, 'frontend')
 
-  const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [score, setScore] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
-  const [timeUp, setTimeUp] = useState(false); // State to manage time-up popup
+  const [selectedAnswers, setSelectedAnswers] = useState({})
+  const [score, setScore] = useState(0) // State to store the user's score
+  const [submitted, setSubmitted] = useState(false) // State to track whether the user has submitted the answers
+  const [timeUp, setTimeUp] = useState(false) // State to track if time is up
+  const [showPopup, setShowPopup] = useState(false) // State to control the visibility of the popup
 
   useEffect(() => {
     if (tag) {
-      dispatch(fetchQuestionsByTag(tag));
+      dispatch(fetchQuestionsByTag(tag)) // Dispatch the action to fetch data
     }
-  }, [tag, dispatch]);
+  }, [tag, dispatch])
+
+  useEffect(() => {
+    if (timeUp && !submitted) {
+      setShowPopup(true) // Display the popup when time is up
+      setTimeout(() => {
+        setShowPopup(false) // Hide the popup after 3 seconds
+        handleSubmit() // Call handleSubmit function after 3 seconds
+      }, 3000)
+    }
+  }, [timeUp, submitted])
 
   const handleOptionSelect = (questionId, option, question) => {
+    console.log(option, question[option], 'dikhao bhai option')
     setSelectedAnswers({
       ...selectedAnswers,
       [questionId]: question[option],
-    });
-  };
+    })
+  }
 
   const handleSubmit = () => {
-    let userScore = 0;
+    let userScore = 0
+    // Iterate through each question to calculate the score
     questions.forEach((question) => {
+      console.log(selectedAnswers)
+      // Check if the selected option matches the correct answer
       if (selectedAnswers[question._id] === question.correctAnswer) {
-        userScore++;
+        userScore++ // Increment the score if the answer is correct
       }
-    });
-    setScore(userScore);
-    setSubmitted(true);
+    })
+    setScore(userScore) // Update the user's score
+    setSubmitted(true) // Set submitted to true to indicate that the user has submitted their answers
     if (userScore > 4) {
-      toast.success('Skills added successfully');
-      dispatch(addskills(tag));
+      console.log('dekho yha se atg ja rha h ')
+      console.log(tag)
+      toast.success('Skills  added successfully')
+      // Dispatch an action to fetch the specific route using Redux
+      dispatch(addskills(tag))
     } else {
-      toast.error('Skills not added');
+      toast.error('Skills not added ')
     }
-    // Assuming `Router` is imported from 'next/router'
-    Router.push('/dashboard/expertdashboard');
-  };
-
-  const handleTimeUp = () => {
-    setTimeUp(true);
-    setTimeout(() => {
-      setTimeUp(false);
-      handleSubmit(); // Automatically submit when time is up after showing the popup
-    }, 3000); // Adjust the duration of popup display as needed (3000 milliseconds = 3 seconds)
-  };
+    router.push('/dashboard/expertdashboard')
+  }
 
   return (
     <div>
       {loading ? (
-        <div className="flex justify-center items-center h-[100vh]">
+        <div className=" flex justify-center  items-center h-[100vh]">
           <ColorRing
             visible={true}
             height="80"
@@ -85,12 +97,14 @@ const TagDetailsPage = () => {
             <h1 className="mt-5 text-[1.3rem]">Tag Details</h1>
             <p className="mt-5 text-[1.3rem]">Tag: {tag}</p>
             <Timer
-              timeLimit={20}
-              onTimeUp={handleTimeUp} // Handle time-up event
-            />
+              timeLimit={600}
+              onTimeUp={() => setTimeUp(true)} // Set timeUp to true when time is up
+            />{' '}
+            {/* 20 minutes timer */}
           </div>
           <hr className="mt-6"></hr>
-          {submitted && <p>Score: {score}</p>}
+          {submitted && <p>Score: {score}</p>}{' '}
+          {/* Display the user's score if answers are submitted */}
           {!submitted && (
             <div>
               <h2 className="text-[1.3rem] mt-5 text-center">All Questions</h2>
@@ -103,10 +117,11 @@ const TagDetailsPage = () => {
                     >
                       <h1 className="text-black mb-2">Question</h1>
                       <p className="border p-2 text-gray-600 rounded-lg bg-gray-50 bg-[#d8d0d035]">
+                        {' '}
                         {question.question}
                       </p>
                       <ul>
-                        <h1 className="mt-8">Choice</h1>
+                        <h1 className=" mt-8 ">Choice</h1>
                         {['option1', 'option2', 'option3', 'option4'].map(
                           (optionKey) => (
                             <li
@@ -115,7 +130,7 @@ const TagDetailsPage = () => {
                             >
                               <input
                                 type="radio"
-                                id={`${question._id}-${optionKey}`} 
+                                id={`${question._id}-${optionKey}`}
                                 name={question._id}
                                 value={optionKey}
                                 checked={
@@ -131,7 +146,7 @@ const TagDetailsPage = () => {
                                 }
                               />
                               <label
-                                htmlFor={`${question._id}-${optionKey}`}
+                                 htmlFor={`${question._id}-${optionKey}`}
                                 className="ml-6 mt-[-2.1rem] text-gray-600 border p-2 rounded-lg bg-[#d8d0d035] block"
                               >
                                 {question[optionKey]}
@@ -156,18 +171,11 @@ const TagDetailsPage = () => {
               </form>
             </div>
           )}
-        </div>
-      )}
-      {timeUp && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-md shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Time is up!</h2>
-            <p>Your test has been submitted automatically.</p>
-          </div>
+          {showPopup && !submitted && <p>Time&aposs up!</p>}
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default TagDetailsPage;
+export default TagDetailsPage
