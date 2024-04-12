@@ -15,16 +15,20 @@ const UserDetails = () => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get('/api/expertdash/getdata')
-        console.log(res.data)
+        console.log(res)
         console.log('datadikhao')
         setexpertdata(res.data.experts) // Assuming users is the key containing user data
+        // if(expertdata){
+        //   console.log("Kya iske andar aa raha he madharchod");
+        //   window.location.reload();
+        // }
         setLoading(false)
       } catch (error) {
         console.error('Error fetching user data:', error)
+        window.location.reload();
         setLoading(false)
       }
     }
-
     fetchUserData()
   }, [])
 

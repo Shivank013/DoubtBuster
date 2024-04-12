@@ -16,6 +16,7 @@ const UserDetails = () => {
         setLoading(false)
       } catch (error) {
         console.error('Error fetching user data:', error)
+        window.location.reload();
         setLoading(false)
       }
     }

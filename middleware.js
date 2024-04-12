@@ -13,13 +13,11 @@ export function middleware(request) {
   const isLoginOrSignup = pathname === '/login'||pathname === '/signup'  ;
 
   if (!authToken) {
-    // if (isLoginOrSignup==='/signup') {
-    //   return NextResponse.redirect(new URL('/signup', request.url));
-    // }
-    // If there's no authToken and user is not trying to access login/signup, redirect to login
+
     if (!isLoginOrSignup) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
+
     
     
   } else {
@@ -28,7 +26,7 @@ export function middleware(request) {
     console.log(decoded);
 
     // Redirect to respective dashboards based on role
-    if (pathname === '/login' || pathname === '/signup') {
+    if (pathname === '/login' || pathname === '/signup'  ) {
       if (decoded.role === 'Instructor') {
         return NextResponse.redirect(new URL('/dashboard/expertdashboard', request.url));
       } else {
@@ -44,7 +42,7 @@ export const config = {
   // Define the paths to be matched by the middleware
   matcher: [
     '/dashboard/expertdashboard/:path*',
-     
+    
     '/login',
     '/signup',
     '/dashboard/studentdashboard/:path*',
