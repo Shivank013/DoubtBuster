@@ -53,7 +53,7 @@ function LoginForm() {
         </div>
       ) : (
         <div className="lg:flex h-screen w-screen">
-          <nav className="flex z-50 justify-between items-center h-[3rem] fixed w-[98.9%] top-0 bg-white shadow-md">
+          <nav className="flex z-50 justify-between items-center h-[3rem] fixed w-[100vw] top-0 bg-white shadow-md">
             <div>
               <Image alt='' src={logo} className="ml-16 w-[14rem]" />
             </div>

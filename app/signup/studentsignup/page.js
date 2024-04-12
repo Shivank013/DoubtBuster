@@ -81,7 +81,7 @@ const Signup = () => {
           <div className="mt-[8rem] ml-[6rem]">
             <Image alt='' src={image} height={650} width={650}></Image>
           </div>
-          <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[83%]">
+          <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[80%]">
             <h2 className="text-[2rem]">Signup</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-2">
               <div className="flex gap-3">

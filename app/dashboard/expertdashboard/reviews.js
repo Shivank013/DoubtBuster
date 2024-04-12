@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { ColorRing } from 'react-loader-spinner'
 import { RiDoubleQuotesL } from "react-icons/ri";
+import { FaStar } from "react-icons/fa6";
 
 // Function to render star icons based on the rating value
 const StarRating = ({ rating }) => {
@@ -9,10 +10,10 @@ const StarRating = ({ rating }) => {
   const stars = Array.from({ length: rating }, (_, index) => index + 1)
 
   return (
-    <div className=' text-yellow-400 flex items-center justify-center -mt-1 gap-x-3 text-[1.4rem]'>
+    <div className=' text-yellow-400 flex items-center justify-center gap-x-3 text-3xl'>
       {/* Render star icons */}
       {stars.map((_, index) => (
-        <span key={index}>★</span>
+        <span key={index}><FaStar/></span>
       ))}
     </div>
   )
@@ -54,19 +55,18 @@ const Reviews = () => {
           />
         </div> 
       ) : (
-        <ul className=' flex gap-5 flex-wrap w-full justify-evenly mt-[2.5rem] mb-[5rem]'>
+        <ul className=' flex gap-2 flex-wrap w-full justify-evenly mt-[2.5rem] mb-[6rem]'>
           {reviews.map((review, index) => (
-            <li className='bg-[#d8d0d035] border p-5 mb-8 w-[30%] flex flex-col gap-5 hover:scale-110 hover:shadow-gray-600 transition rounded-lg shadow-black shadow-xl' key={index}>
-              <RiDoubleQuotesL className='text-[#b6cfc6]' size={50}/>
-              <p className=' text-black font-bold opacity-90 mb-5 uppercase text-center'>User Name: {review.Name}</p>
-              <p className='text-black font-bold opacity-90 uppercase text-center'>Feedback: {review.userName}</p>
-              <p className='text-gray-500 -mt-8 ml-11 font-semibold text-[1.1rem]'>{review.feedback}</p>
-              {/* Render the star rating component */}
+            <li className=' bg-gradient-to-r from-orange-600 to-orange-500 rounded-lg p-5 mb-8 w-[30%] flex flex-col gap-5 hover:scale-110  transition shadow-xl' key={index}>
+              <RiDoubleQuotesL className=' absolute' size={50}/>
+              <p className=' text-white font-bold pt-11 text-center text-2xl opacity-90 uppercase '>{review.Name}</p>
+              {/* <p className='text-black font-semibold opacity-90 text-center uppercase '>{review.userName}</p> */}
               <StarRating rating={review.rating} />
+              <p className=' text-slate-800 font-semibold text-center text-xl'>{review.feedback}</p>
+              {/* Render the star rating component */}
               {/* If you also need to display the ID, uncomment the line below */}
               {/* <p>ID: {review._id}</p> */}
             </li>
-            
           ))}
         </ul>
       )}

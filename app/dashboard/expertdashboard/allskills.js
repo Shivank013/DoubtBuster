@@ -51,10 +51,10 @@ const SkillComponent = () => {
             />
           </div> // Display loading message while fetching data
         ) : (
-          <ul className="flex flex-wrap justify-evenly gap-x-10 gap-y-5 w-[50%]">
+          <ul className="flex flex-wrap justify-evenly gap-x-10  items-center gap-y-5 w-[50%]">
             {skills.map((skill, index) => (
               <li
-                className="border mt-8 mb-8 uppercase rounded-xl shadow-black shadow-lg text-gray-600 w-[40%] p-4 text-center bg-[#d8d0d035] text-[1.1rem] "
+                className="border mt-8 mb-8 uppercase rounded-xl shadow-black shadow-lg text-gray-600 w-[40%] p-4 text-center bg-[#d8d0d035] text-xl font-semibold "
                 key={index}
               >
                 {skill}

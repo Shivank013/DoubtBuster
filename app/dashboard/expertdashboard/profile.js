@@ -54,15 +54,15 @@ const UserDetails = () => {
           ) : expertdata ? (
             <div className="flex flex-col font-semibold mt-8 gap-1">
               <p>
-                <strong className="text-xl font-semibold">Name:</strong>{' '}
+                <strong className="text-xl text-red-500 font-semibold">Name:</strong>{' '}
                 {expertdata.firstName} {expertdata.lastName}
               </p>
               <p>
-                <strong className="text-xl font-semibold">Name:</strong>{' '}
+                <strong className="text-xl text-red-500 font-semibold">Doubt Solved:</strong>{' '}
                 {expertdata.count}
               </p>
               <p>
-                <strong className="text-xl font-semibold">Email:</strong>{' '}
+                <strong className="text-xl text-red-500 font-semibold">Email:</strong>{' '}
                 {expertdata.email}
               </p>
               {/* Add more details here as needed */}
@@ -93,15 +93,15 @@ const UserDetails = () => {
               >
                 Select File
               </label>
-              <input
+              {/* <input
                 id="file-upload"
                 type="file"
                 onChange={handleFileChange}
                 className="hidden"
-              />
+              /> */}
             </div>
             <button
-              onClick={handleUpload}
+              // onClick={handleUpload}
               className="bg-black text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-600 transition duration-300"
             >
               Upload
@@ -116,15 +116,15 @@ const UserDetails = () => {
               >
                 Select File
               </label>
-              <input
+              {/* <button
                 id="file-upload"
                 type="file"
-                onChange={handleFileChange}
+                // onChange={handleFileChange}
                 className="hidden"
-              />
+              /> */}
             </div>
             <button
-              onClick={handleUpload}
+              // onClick={handleUpload}
               className="bg-black text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-600 transition duration-300"
             >
               Upload
