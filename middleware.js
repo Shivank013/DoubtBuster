@@ -11,8 +11,8 @@ export function middleware(request) {
     request.nextUrl.pathname === '/login'||
     request.nextUrl.pathname === '/signup'
 
-  if (loggedinuserNotAccessPaths) {
-    if (authToken) {
+  if (loggedinuserNotAccessPaths && authToken) {
+   
       const decoded = jwtDecode(authToken)
       console.log(decoded)
       if (decoded.role === 'Instructor') {
@@ -24,14 +24,19 @@ export function middleware(request) {
           new URL(`/dashboard/studentdashboard/${decoded.id}`, request.url)
         )
       }
-    }
-    else{
-      if (loggedinuserNotAccessPaths === '/login'){
-        window.location.href = 'https://doubt-buster.vercel.app/login';
-      } else {
-        window.location.href = 'https://doubt-buster.vercel.app/signup';
-      }
-    }
+      // }
+      // else{
+        
+      //   if (!authToken && request.nextUrl.pathname === '/login'){
+      //     return NextResponse.redirect(
+      //       new URL('/login', request.url)
+      //     )
+      //   } else {
+      //     return NextResponse.redirect(
+      //       new URL('/signup', request.url)
+      //     )
+      //   }
+      // }
     
   } else {
     if (!authToken) {
@@ -45,7 +50,7 @@ export function middleware(request) {
 export const config = {
   matcher: [
     '/dashboard/expertdashboard/:path*',
-
+    // '/',
     '/login',
     '/signup',
     '/dashboard/studentdashboard/:path*',
