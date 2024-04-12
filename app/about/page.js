@@ -57,10 +57,10 @@ const page = () => {
     </div>
     <div className="mx-5 md:mx-10 p-5 md:w-1/2">
       <p className="text-lg text-gray-800 leading-relaxed">
-        Doubt Buster is a revolutionary platform designed to provide unparalleled support in resolving doubts across various domains. Our mission is to empower students and users alike by connecting them with highly educated and verified experts who excel in specific fields. At Doubt Buster, we understand the frustration that comes with unanswered questions and uncertainties. That's why we've assembled a team of experts who are not only knowledgeable but also passionate about helping others succeed.
+        Doubt Buster is a revolutionary platform designed to provide unparalleled support in resolving doubts across various domains. Our mission is to empower students and users alike by connecting them with highly educated and verified experts who excel in specific fields. At Doubt Buster, we understand the frustration that comes with unanswered questions and uncertainties. That&aposs why we&aposve assembled a team of experts who are not only knowledgeable but also passionate about helping others succeed.
       </p>
       <p className="text-lg text-gray-800 leading-relaxed mt-4 mb-10">
-        Whether you're struggling with complex academic concepts, seeking professional advice, or simply curious about a particular topic, our experts are here to guide you every step of the way. What sets Doubt Buster apart is our rigorous verification process. We ensure that each expert on our platform is not only proficient in their domain but also committed to delivering accurate and reliable information. Say goodbye to confusion and hello to clarity with Doubt Buster. Join us today and experience the difference firsthand!
+        Whether you&aposre struggling with complex academic concepts, seeking professional advice, or simply curious about a particular topic, our experts are here to guide you every step of the way. What sets Doubt Buster apart is our rigorous verification process. We ensure that each expert on our platform is not only proficient in their domain but also committed to delivering accurate and reliable information. Say goodbye to confusion and hello to clarity with Doubt Buster. Join us today and experience the difference firsthand!
       </p>
     </div>
   </div>
@@ -76,7 +76,7 @@ const page = () => {
       </div>
       <div className="flex flex-col items-center md:flex-row md:items-end">
       <div className="mx-5 md:mx-10 p-5 md:w-1/2">
-        <p className="text-lg text-gray-800 leading-relaxed">Doubt Buster's vision is to become a comprehensive platform for resolving doubts across various domains. 
+        <p className="text-lg text-gray-800 leading-relaxed">Doubt Buster&aposs vision is to become a comprehensive platform for resolving doubts across various domains. 
         Initially focused on computer science, we aim to expand our expertise to encompass multiple fields. 
         Our platform will not only solve doubts but also offer mock interview facilities conducted by top experts. 
         To enhance user experience and attract skilled professionals, we will introduce a payment feature with affordable prices for users. 
