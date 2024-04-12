@@ -81,7 +81,7 @@ const WhiteBoard = () => {
                 </div>
 
                 <div className=' color-picker-container ml-12 font-bold inline text-white'>
-                    Pen : &nbsp;
+                    Brush : &nbsp;
                     <button onClick={eraser} className=''><FaPaintBrush/></button>
                 </div>
 
