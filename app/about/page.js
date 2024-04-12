@@ -7,7 +7,7 @@ import vision from "../../public/images/vision.png";
 
 import adarsh from "../../public/images/adarsh.png";
 import deepsen from "../../public/images/deepsen.png";
-import shivank from "../../public/images/shivank.png";
+import shivank from "../../public/images/shivank.jpg";
 import akhilesh from "../../public/images/akhilesh.png";
 import gupta from "../../public/images/gupta.png";
 
@@ -100,7 +100,7 @@ const page = () => {
               className="w-[10rem] h-[10rem] border-slate-600 rounded-full"
               alt="adarsh"
             />
-            <h4 className="font-semibold">Adarsh Kumar</h4>
+            <h4 className="font-semibold mt-3">Adarsh Kumar</h4>
             <p className="font-semibold text-purple-600">Backend Developer</p>
           </div>
           <div className="flex flex-col items-center">
@@ -109,8 +109,8 @@ const page = () => {
               className="w-[10rem] border rounded-full"
               alt="Deepsen"
             />
-            <h4 className="font-semibold">Deepsen</h4>
-            <p className="font-semibold text-purple-600">Backend Developer</p>
+            <h4 className="font-semibold mt-3">Deepsen</h4>
+            <p className="font-semibold text-purple-600">FullStack Developer</p>
           </div>
           <div className="flex flex-col items-center">
             <Image
@@ -118,7 +118,7 @@ const page = () => {
               className="w-[10rem] h-[10rem] border rounded-full"
               alt="shivank"
             />
-            <h4 className="font-semibold">Shivank Sharma</h4>
+            <h4 className="font-semibold mt-3">Shivank Sharma</h4>
             <p className="font-semibold text-purple-600">Product Head</p>
           </div>
           <div className="flex flex-col items-center">
@@ -127,7 +127,7 @@ const page = () => {
               className="w-[10rem] h-[10rem] border rounded-full"
               alt="akhilesh"
             />
-            <h4 className="font-semibold">Akhilesh Pal</h4>
+            <h4 className="font-semibold mt-3">Akhilesh Pal</h4>
             <p className="font-semibold text-purple-600">Frontend Developer</p>
           </div>
           <div className="flex flex-col items-center">
@@ -136,7 +136,7 @@ const page = () => {
               className="w-[10rem] h-[10rem] border rounded-full"
               alt="nikhil"
             />
-            <h4 className="font-semibold">Nikhil Gupta</h4>
+            <h4 className="font-semibold mt-3">Nikhil Gupta</h4>
             <p className="font-semibold text-purple-600 p-2">Frontend Developer</p>
           </div>
         </div>

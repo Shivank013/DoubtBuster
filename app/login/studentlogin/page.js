@@ -10,8 +10,11 @@ import { login, sendotp } from '@/frontendservices/operations/autoapi'
 import Link from 'next/link'
 import Image from 'next/image'
 import image1 from '../../../public/images/loginpageimage.svg'
+import { useSelector } from 'react-redux'
+import { ColorRing } from 'react-loader-spinner'
 
 function LoginForm() {
+  const { loading } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const router = useRouter()
   const [formData, setFormData] = useState({
@@ -36,6 +39,20 @@ function LoginForm() {
   }
 
   return (
+    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+    {loading ? (
+      <div className=" flex justify-center  items-center h-[100vh]">
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="color-ring-loading"
+          wrapperStyle={{}}
+          wrapperClass="color-ring-wrapper"
+          colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+        />
+      </div>
+    ) : (
     <div className="flex h-screen w-screen">
       <nav className="flex z-50 justify-between items-center h-[3rem] fixed w-[100vw] top-0 bg-white shadow-md">
         <div>
@@ -117,6 +134,8 @@ function LoginForm() {
           Sign In
         </button>
       </form>
+    </div>
+  )}
     </div>
   )
 }

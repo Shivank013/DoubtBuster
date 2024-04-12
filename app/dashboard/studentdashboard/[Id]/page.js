@@ -130,22 +130,7 @@ function Sidebar({ params }) {
               </button>
               
             </div>
-            <div
-              className="flex items-center text-white pt-1.5 pb-1.5 pl-4 pr-4 transition-all hover:bg-[#1d4ed8] hover:transition-all"
-              activeClassName="bg-[#1d4ed8] text-white"
-            >
-              <div className="">
-                <HiHome size={20} />
-              </div>
-              <button
-                onClick={handelHome}
-                className={`overflow-hidden transition-all   font-sans ${
-                  expanded ? 'w-52 text-start ml-4' : 'w-0'
-                }`}
-              >
-                Home
-              </button>
-            </div>
+           
           </div>
         }
       </div>

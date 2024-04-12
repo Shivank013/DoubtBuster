@@ -15,7 +15,7 @@ const signup = () => {
             <Image alt='' src={logo} className="ml-16 w-[14rem]" />
           </div>
           <div className="mr-16 font-sans flex justify-center items-center">
-            <Link href="" className="cursor-pointer mr-10 text-l font-semibold">
+            <Link href="/about" className="cursor-pointer mr-10 text-l font-semibold">
               About
             </Link>
             <a href="/" className="cursor-pointer mr-10 text-l font-semibold">

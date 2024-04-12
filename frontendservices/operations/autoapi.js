@@ -170,6 +170,7 @@ export function logini(email, password, router) {
       })
       console.log('LOGIN API RESPONSE............', response)
 
+      toast.success('login successfully')
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
@@ -218,10 +219,13 @@ export function logout(email) {
       })
       console.log('SENDOTP API RESPONSE............', response)
 
+      
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
+      toast.success('logout successfully')
     } catch (err) {
+      toast.error('logout Failed')
       console.log(err)
     }
     dispatch(setLoading(false))
@@ -245,10 +249,12 @@ export function logouts(email) {
       })
       console.log('SENDOTP API RESPONSE............', response)
 
+      toast.success('logout successfully')
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
     } catch (err) {
+      toast.error('logout Failed')
       console.log(err)
     }
     dispatch(setLoading(false))

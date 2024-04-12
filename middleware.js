@@ -10,13 +10,18 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   // Check if the user is trying to access login or signup pages
-  const isLoginOrSignup = pathname === '/login' || pathname === '/signup';
+  const isLoginOrSignup = pathname === '/login'||pathname === '/signup'  ;
 
   if (!authToken) {
+    // if (isLoginOrSignup==='/signup') {
+    //   return NextResponse.redirect(new URL('/signup', request.url));
+    // }
     // If there's no authToken and user is not trying to access login/signup, redirect to login
     if (!isLoginOrSignup) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
+    
+    
   } else {
     // If authToken is present
     const decoded = jwtDecode(authToken);
@@ -39,7 +44,7 @@ export const config = {
   // Define the paths to be matched by the middleware
   matcher: [
     '/dashboard/expertdashboard/:path*',
-   
+     
     '/login',
     '/signup',
     '/dashboard/studentdashboard/:path*',
