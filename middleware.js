@@ -33,11 +33,17 @@ export function middleware(request) {
       //     new URL('/dashboard/expertdashboard', request.url)
       //   )
     }
-    // else{
-    //   if (!authToken) {
-    //     return NextResponse.redirect(new URL('/login', request.url))
-    //   }
-    // }
+    else{
+      if (loggedinuserNotAccessPaths === '/login'){
+        return NextResponse.redirect(
+          new URL('/login', request.url)
+        )
+      } else {
+        return NextResponse.redirect(
+          new URL('/signup', request.url)
+        )
+      }
+    }
     
   } else {
     if (!authToken) {
