@@ -24,24 +24,12 @@ export function middleware(request) {
           new URL(`/dashboard/studentdashboard/${decoded.id}`, request.url)
         )
       }
-      // Decode the JWT token
-      // const decodedToken = jwtdecode(authToken)
-      // Extract role from the decoded token
-      // const userRole = decodedToken.rolec
-      // console.log(decodedToken, 'whats your role')
-      //   return NextResponse.redirect(
-      //     new URL('/dashboard/expertdashboard', request.url)
-      //   )
     }
     else{
       if (loggedinuserNotAccessPaths === '/login'){
-        return NextResponse.redirect(
-          new URL('/login', request.url)
-        )
+        window.location.href = 'https://doubt-buster.vercel.app/login';
       } else {
-        return NextResponse.redirect(
-          new URL('/signup', request.url)
-        )
+        window.location.href = 'https://doubt-buster.vercel.app/signup';
       }
     }
     
