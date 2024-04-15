@@ -68,11 +68,13 @@ const TagDetailsPage = () => {
     if (userScore > 6) {
       console.log('dekho yha se atg ja rha h ')
       console.log(tag)
-      toast.update("Socre: ",userScore,"/ 10");
+      // toast("Socre: ",userScore,"/ 10");
+      toast.success("Socre: ",userScore,"/ 10");
       toast.success('Skills  added successfully')
       // Dispatch an action to fetch the specific route using Redux
       dispatch(addskills(tag))
     } else {
+      toast.error("Socre: ",userScore,"/ 10");
       toast.error('Skills not added ')
     }
     router.push('/dashboard/expertdashboard')
