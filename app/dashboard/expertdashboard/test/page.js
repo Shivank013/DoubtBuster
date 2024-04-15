@@ -65,9 +65,10 @@ const TagDetailsPage = () => {
     })
     setScore(userScore) // Update the user's score
     setSubmitted(true) // Set submitted to true to indicate that the user has submitted their answers
-    if (userScore > 4) {
+    if (userScore > 6) {
       console.log('dekho yha se atg ja rha h ')
       console.log(tag)
+      toast.update("Socre: ",userScore,"/ 10");
       toast.success('Skills  added successfully')
       // Dispatch an action to fetch the specific route using Redux
       dispatch(addskills(tag))

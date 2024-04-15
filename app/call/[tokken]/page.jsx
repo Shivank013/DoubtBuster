@@ -7,6 +7,7 @@ import { useSocket } from "../../../context/SocketProvider";
 import { SocketContext } from "../../../context/SocketProvider";
 import { useRouter } from 'next/navigation'
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
     const {email, setEmail, room, setRoom} = useContext(SocketContext);
@@ -28,8 +29,10 @@ const Page = () => {
 
     const handleSubmitForm = useCallback(
         (e) => {
+            toast.loading("Wait Joining...")
             e.preventDefault();
             socket.emit("room:join", { email, room });
+            toast.dismiss();
         },
         [email, room, socket]
     );

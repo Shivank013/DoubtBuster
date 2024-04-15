@@ -177,7 +177,7 @@ const Signup = () => {
               <div className="flex gap-3">
                 <label>
                   <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-                    Start Hour <sup className="text-red-500">*</sup>
+                    24-Hour Format (Start Hour) <sup className="text-red-500">*</sup>
                   </p>
                   <input
                     required
@@ -191,7 +191,7 @@ const Signup = () => {
                 </label>
                 <label>
                   <p className="text-[0.875rem] leading-[1.375rem] text-richblack-5 mt-4">
-                    End Hour <sup className="text-red-500">*</sup>
+                    (End Hour) <sup className="text-red-500">*</sup>
                   </p>
                   <input
                     required

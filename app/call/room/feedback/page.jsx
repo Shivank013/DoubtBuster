@@ -6,7 +6,7 @@ import { FaStar } from 'react-icons/fa6'
 import { RxCross2 } from 'react-icons/rx'
 import { SocketContext } from '@/context/SocketProvider'
 import { useContext } from 'react'
-
+import { toast } from 'react-toastify'
 
 // Adjust the path accordingly
 import { submitRating,incount } from '@/frontendservices/operations/submitrating'
@@ -67,6 +67,7 @@ const RatingForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    toast.success("Feedback submited");
 
     console.log("Le aa gai email :",remoteEmail);
 
