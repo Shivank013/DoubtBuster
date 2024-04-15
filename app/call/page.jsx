@@ -17,6 +17,7 @@ function Page() {
     const {setEmail, setRoom} = useContext(SocketContext);
     const router = useRouter();
     const socket = useSocket();
+    const type = "s";
 
     const handleSubmitForm = useCallback(
         (e) => {
@@ -32,7 +33,7 @@ function Page() {
 
             console.log("room join karne ke phele ki details ", email, room, socket );
 
-            socket.emit("room:join", { email, room });
+            socket.emit("room:join", { email, room, type });
         },
         [socket, setEmail, setRoom, user?.email, roomid]
     );

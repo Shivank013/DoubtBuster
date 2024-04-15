@@ -16,6 +16,7 @@ const Page = () => {
     const socket = useSocket();
     const tokenRef = useRef(null);
     const [roomf, setroomf] = useState(false);
+    const type = "e";
 
     useEffect(() => {
         const tokenFromStorage = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
@@ -31,7 +32,7 @@ const Page = () => {
         (e) => {
             toast.loading("Wait Joining...")
             e.preventDefault();
-            socket.emit("room:join", { email, room });
+            socket.emit("room:join", { email, room, type });
             toast.dismiss();
         },
         [email, room, socket]
