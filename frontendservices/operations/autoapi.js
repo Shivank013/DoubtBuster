@@ -219,7 +219,7 @@ export function logout(email) {
       })
       console.log('SENDOTP API RESPONSE............', response)
 
-      
+      localStorage.clear();
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
@@ -248,6 +248,7 @@ export function logouts(email) {
         email
       })
       console.log('SENDOTP API RESPONSE............', response)
+      localStorage.clear();
 
       toast.success('logout successfully')
       if (!response.data.success) {
@@ -263,7 +264,7 @@ export function logouts(email) {
   //   dispatch(setUser(null))
   //   localStorage.removeItem("token");
   //   localStorage.removeItem("user");
-  //   localStorage.clear();
+   
   //   toast.success("Logged Out")
    
   // }
