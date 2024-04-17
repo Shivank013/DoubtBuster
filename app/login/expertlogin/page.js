@@ -131,6 +131,11 @@ function LoginForm() {
             >
               Sign In
             </button>
+            <Link href="/login" className="mt-[-1.5rem]">
+            <button className="font-medium underline w-full text-center mt-3 hover:text-purple-500 transition">
+              Go back
+            </button>
+            </Link>
           </form>
         </div>
       )}

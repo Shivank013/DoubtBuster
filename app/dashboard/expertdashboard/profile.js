@@ -17,6 +17,7 @@ const {loading}=useSelector((state) => state.profile);
   expertdata =user;
   console.log(expertdata);
   useEffect(()=>{
+
     if(!expertdata){
 
       window.location.href="https://doubt-buster.vercel.app/";

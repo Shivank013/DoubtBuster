@@ -416,7 +416,7 @@ function PageComp() {
 
       <div className="h-[100%] w-[100%] z-30">{code && <Ide/>}</div>
 
-      <div className="text-3xl font-bold text-white absolute" >{start || calldone ? "Connected" : remoteSocketId ? "Some has joined" : "No one in room"}</div>
+      <div className="text-3xl font-bold text-white absolute" >{start || calldone ? "Connected" : remoteSocketId ? "Someone has joined" : "No one in room"}</div>
 
       </div>
         <div className=" w-[22%] h-[100%] z-10 flex flex-col justify-between bg-slate-400 overflow-hidden">

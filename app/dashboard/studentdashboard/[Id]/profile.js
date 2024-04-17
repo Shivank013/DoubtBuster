@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import bgImage from '../../../../public/images/stdbg.png'
 import { useSelector } from 'react-redux'
 const UserDetails = () => {
-  const {user}=useSelector((state) => state.profile);
+const {user}=useSelector((state) => state.profile);
 const {loading}=useSelector((state) => state.profile);
 
   const router=useRouter();
@@ -13,6 +13,7 @@ const {loading}=useSelector((state) => state.profile);
   let userData=null;
   userData =user;
   useEffect(()=>{
+
     if(!userData){
       window.location.href="https://doubt-buster.vercel.app/";
     }

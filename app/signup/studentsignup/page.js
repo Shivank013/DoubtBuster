@@ -9,6 +9,7 @@ import image from '../../../public/images/signupformimage.svg'
 import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import { ColorRing } from 'react-loader-spinner'
+import Link from 'next/link'
 
 const Signup = () => {
   const { loading } = useSelector((state) => state.auth)
@@ -81,7 +82,7 @@ const Signup = () => {
           <div className="mt-[8rem] ml-[6rem]">
             <Image alt='' src={image} height={650} width={650}></Image>
           </div>
-          <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[80%]">
+          <div className="border p-[2.5rem] mt-[4rem] ml-[9rem] mr-12 rounded-lg shadow-2xl h-[83%]">
             <h2 className="text-[2rem]">Signup</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-2">
               <div className="flex gap-3">
@@ -162,6 +163,11 @@ const Signup = () => {
               >
                 Sign Up
               </button>
+              <Link href="/signup" className="">
+            <button className="font-medium underline w-full text-center mt-1 hover:text-purple-500 transition">
+              Go back
+            </button>
+            </Link>
             </form>
           </div>
         </div>
