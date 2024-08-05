@@ -4,10 +4,15 @@ class PeerService {
       if (!this.peer) {
         this.peer = new RTCPeerConnection({
           iceServers: [
+            // {
+            //   urls: "turn:relay1.expressturn.com:3478",
+            //   username: "efD08GKZ1QV5X7KPMN",
+            //   credential: "2vS3rl5sPO0tp3P9",
+            // },
             {
-              urls: "turn:relay1.expressturn.com:3478",
-              username: "efD08GKZ1QV5X7KPMN",
-              credential: "2vS3rl5sPO0tp3P9",
+              urls: 'turn:openrelay.metered.ca:80',
+              username: 'openrelayproject',
+              credentials: 'openrelayproject'
             },
           ],
         });
