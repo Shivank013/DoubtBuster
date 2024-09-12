@@ -10,6 +10,7 @@ import deepsen from "../../public/images/deepsen.png";
 import shivank from "../../public/images/shivank.jpg";
 import akhilesh from "../../public/images/akhilesh.png";
 import gupta from "../../public/images/gupta.png";
+import rishav from "../../public/images/rishav.jpeg"
 
 const page = () => {
   return ( 
@@ -105,20 +106,20 @@ const page = () => {
           </div>
           <div className="flex flex-col items-center">
             <Image
-              src={deepsen}
+              src={rishav}
               className="w-[10rem] border rounded-full"
               alt="Deepsen"
             />
-            <h4 className="font-semibold mt-3">Deepsen</h4>
+            <h4 className="font-semibold mt-3">Rishav</h4>
             <p className="font-semibold text-purple-600">FullStack Developer</p>
           </div>
           <div className="flex flex-col items-center">
             <Image
-              src={shivank}
+              src={deepsen}
               className="w-[10rem] h-[10rem] border rounded-full"
               alt="shivank"
             />
-            <h4 className="font-semibold mt-3">Shivank Sharma</h4>
+            <h4 className="font-semibold mt-3">Deepsen</h4>
             <p className="font-semibold text-purple-600">Product Head</p>
           </div>
           <div className="flex flex-col items-center">
@@ -128,7 +129,7 @@ const page = () => {
               alt="akhilesh"
             />
             <h4 className="font-semibold mt-3">Akhilesh Pal</h4>
-            <p className="font-semibold text-purple-600">Frontend Developer</p>
+            <p className="font-semibold text-purple-600">FullStack Developer</p>
           </div>
           <div className="flex flex-col items-center">
             <Image
