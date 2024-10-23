@@ -75,11 +75,11 @@ export default function Home() {
         <Image
           alt=''
           src={client}
-          className="absolute scale-75 z-10 w-[20rem] mt-[15%] ml-[30%]"
+          className="absolute scale-[80%] z-10 w-[20rem] mt-[20%] ml-[30%]"
         />
-        <div className="absolute scale-75 border-2 border-white w-[20rem] h-[13.5rem] mt-[16%] ml-[33%]"></div>
+        <div className="absolute scale-[80%] border-2 border-white w-[20rem] h-[13.5rem] mt-[21%] ml-[33%]"></div>
 
-        <div className=" flex scale-75 justify-center items-center absolute text-white text-2xl mt-[35%]">
+        <div className=" flex scale-80% justify-center items-center absolute text-white text-2xl mt-[40%]">
           <span className=" p-4 mx-2 bg-white text-black rounded-full">
             <FaUser />
           </span>
