@@ -63,7 +63,7 @@ export default function Home() {
           )}
         </div>
       </nav>
-      <section className="w-full h-[110vh] pt-[3rem] flex justify-between flex-col items-center bg-white">
+      <section className="w-full h-[110vh] pt-[1rem] flex justify-between flex-col items-center bg-white">
         <Image src={laptop} className=" scale-75 w-[82%]" alt="" />
         <div className="text-white text-7xl scale-75 -ml-[8%] font-bold mt-8 absolute">
           <p className=" font-sans">Expert Guidance,</p>
@@ -75,11 +75,11 @@ export default function Home() {
         <Image
           alt=''
           src={client}
-          className="absolute scale-75 z-10 w-[20rem] mt-[20%] ml-[30%]"
+          className="absolute scale-75 z-10 w-[20rem] mt-[15%] ml-[30%]"
         />
-        <div className="absolute scale-75 border-2 border-white w-[20rem] h-[13.5rem] mt-[21%] ml-[33%]"></div>
+        <div className="absolute scale-75 border-2 border-white w-[20rem] h-[13.5rem] mt-[16%] ml-[33%]"></div>
 
-        <div className=" flex scale-75 justify-center items-center absolute text-white text-2xl mt-[40%]">
+        <div className=" flex scale-75 justify-center items-center absolute text-white text-2xl mt-[30%]">
           <span className=" p-4 mx-2 bg-white text-black rounded-full">
             <FaUser />
           </span>
