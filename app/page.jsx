@@ -64,7 +64,7 @@ export default function Home() {
         </div>
       </nav>
       <section className="w-full h-[110vh] pt-[3rem] flex justify-between flex-col items-center bg-white">
-        <Image src={laptop} className="w-[82%]" alt="" />
+        <Image src={laptop} className="w-[75%]" alt="" />
         <div className="text-white text-7xl -ml-[8%] font-bold mt-8 absolute">
           <p className=" font-sans">Expert Guidance,</p>
           <p className=" text-purple-500 font-sans">Right at Your Fingertips</p>
