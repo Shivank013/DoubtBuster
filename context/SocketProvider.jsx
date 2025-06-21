@@ -11,7 +11,7 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = (props) => {
-  const socket = useMemo(() => io("https://doubt-buster-backend-fc8c41666700.herokuapp.com"), []);
+  const socket = useMemo(() => io("https://webback-rx4i.onrender.com"), []);
   const [email, setEmail] = useState("");
   const [room, setRoom] = useState("");
   const [boarddata, setBoarddata] = useState("");
